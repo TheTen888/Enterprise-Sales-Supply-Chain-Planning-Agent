@@ -28,11 +28,11 @@ jobs:
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: "3.11"
-      - name: Install lint tool
-        run: python -m pip install --disable-pip-version-check -r requirements-ci.txt
+      - name: Install lint and local ML tools
+        run: python -m pip install --disable-pip-version-check -r requirements-ci.txt -r requirements-risk.txt
       - name: Check Python source
-        run: python -m ruff check --no-cache app pipelines rag integrations scripts tests
-      - name: Verify local ETL and RAG
-        run: python -m scripts.verify
+        run: python -m ruff check --no-cache app pipelines rag risk_model integrations scripts tests
+      - name: Verify local ETL, RAG and risk model
+        run: python -m scripts.verify --risk
       - name: Review release files
         run: python -m scripts.release_check

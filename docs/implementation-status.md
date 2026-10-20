@@ -2,6 +2,8 @@
 
 Phase 1 is a local incremental ETL. Phase 2 adds minimal scoped keyword retrieval and a deterministic evidence report. Their default runtime uses only the Python standard library; optional cloud SDK dependencies are separate. The sample data and documents are invented. This document separates runnable behavior from the target architecture.
 
+v0.2 adds a minimal delivery-risk model with optional scikit-learn. It reuses the unmodified ETL, reconstructs synthetic historical features, trains a logistic model and compares it with fixed rules on a temporal holdout. Alerts are selected across all eligible orders before matching mature labels; unknown outcomes are reported separately. See [Risk Model review](risk-model-review.md). Source publication does not constitute cloud deployment or approval to use the model in production.
+
 ## Implemented and locally verifiable
 
 | Capability | Evidence |
@@ -31,20 +33,19 @@ Phase 1 is a local incremental ETL. Phase 2 adds minimal scoped keyword retrieva
 
 `docs/evidence/verification.json` contains the latest completed verification timestamp, Python version, code/fixture hashes and measurements. Consult its test count instead of assuming counts from an older interview example are current.
 
-## v0.1 release preparation
+## Source verification and release
 
-A minimal GitHub Actions definition runs pinned Ruff, the local verification command and explicit candidate-file checks on Python 3.11. `release-files.txt` defines the first-commit scope. The release checker reviews candidate content, `.env.example`, local links and indexed blobs when Git is available. No hosted workflow or remote publication is claimed; see [first-commit review](first-commit.md).
+A minimal GitHub Actions definition runs pinned Ruff, full ETL/RAG/risk verification and release-file checks on Python 3.11. `release-files.txt` defines the source release. The release checker reviews candidate content, `.env.example`, local links and indexed blobs. Consult the repository's workflow runs for actual hosted status; no cloud integration or production deployment is implied.
 
 ## Planned business and ML work
 
-- Fulfillment/cancellation quantities, promised delivery dates, usable capacity, historical yield, allocation and time-phased pickup forecasts.
-- Authoritative effective-date joins and point-in-time features using both effective and observed time.
-- Agreed delivery labels, temporal train/validation/holdout splits, training, calibration and risk-model evaluation.
-- Approved-model registration and daily batch scoring.
+- Implemented locally with invented inputs: partial delivery quantities, frozen promises, shared-line capacity, historical yield, allocation and pickup gaps; three-date historical joins; chronological splitting with label purging; train-only preprocessing; model selection; rules comparison and portable JSON scoring.
+- Still planned: authoritative CDC/publication times, production label agreement and source watermarks, event-level manufacturing aggregation, real-data validation, calibration, multiple temporal windows and intervention-aware evaluation.
+- Still planned: approved cloud model registration and Snowflake daily batch scoring; SageMaker training deployment.
 - Real-mail/attachment ingestion, richer document parsing, semantic retrieval, production authorization, complete privacy erasure and historical cross-system snapshots.
 - Business/engineering agents, deterministic pricing tools, scenario recalculation and version-bound approval.
 
-Local version and ownership tests are not evidence that these future features or model metrics have been implemented.
+Local synthetic model results verify the replay/training/evaluation mechanics. They are not production model metrics or evidence of business impact.
 
 ## Optional adapter code, not live integration
 
@@ -56,7 +57,7 @@ The canonical document/policy store remains local; synchronizing it with cloud s
 
 S3 raw storage; real internal database/Gmail ingestion; Airflow scheduling; Snowflake/dbt business tables; Cortex Search; AWS SageMaker training; Snowflake Model Registry and scoring; FastAPI/Streamlit; AgentCore; managed tracing, monitoring and release pipelines. Local retrieval is not an implementation of these services.
 
-These are target services. Only the read-adapter code described above is implemented; all live deployments remain unverified. No credentials or paid services are needed by the present code. There is no configured Git remote, GitHub publication or cloud deployment supplied by this phase.
+These are target services. Only the read-adapter code described above is implemented; all live deployments remain unverified. No credentials or paid services are needed by the present code. GitHub contains source and synthetic evidence, not a cloud deployment.
 
 ## Operational boundaries
 
@@ -75,4 +76,4 @@ These are target services. Only the read-adapter code described above is impleme
 
 ## Next review boundary
 
-Review the ETL fixture, RAG evidence report and the recorded lifecycle experiments. ML, agent behavior, UI, containers and real cloud integration remain separate changes with their own tests and acceptance criteria. Explanations remain in documentation; Python source contains no comments or docstrings.
+Review the new risk-model label, features, historical joins, exclusions and rules comparison alongside existing ETL/RAG regression evidence. Agent behavior, UI, containers and real cloud integration remain separate changes. Explanations remain in documentation; Python source contains no comments or docstrings.

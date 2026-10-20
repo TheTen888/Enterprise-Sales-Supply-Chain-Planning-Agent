@@ -111,5 +111,5 @@
     "context_complete": true
   },
   "limitations": "Injected fake SDK clients exercise real adapter methods. No SDK installation, authentication, remote service, semantic ranking or cloud synchronization is verified.",
-  "report": "artifacts/api-contracts-8gycvl5e/report.json"
+  "report": "artifacts/api-contracts-ql6e30xt/report.json"
 }

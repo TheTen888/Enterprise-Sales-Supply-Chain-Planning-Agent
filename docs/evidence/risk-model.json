@@ -1,0 +1,226 @@
+{
+  "scope": "Local synthetic delivery-risk prototype; existing ETL replay, no live cloud service",
+  "config": {
+    "seed": 20261019,
+    "start": "2025-01-06",
+    "weeks": 52,
+    "orders_per_week": 12,
+    "validation_start": "2025-08-04",
+    "test_start": "2025-10-13",
+    "evaluation_as_of": "2026-02-01",
+    "alert_fraction": 0.25
+  },
+  "raw_sha256": "e4f2bc45588dcebf1100effe82ae910b6ecc859b44117fcb1a4b825aa30a27c1",
+  "etl": {
+    "batches": 104,
+    "counts": {
+      "record_versions": 1248,
+      "processed_events": 1248,
+      "publications": 104,
+      "quarantined_batches": 0,
+      "active_publication": 104
+    }
+  },
+  "dataset": {
+    "splits": {
+      "train": {
+        "rows": 320,
+        "late": 126,
+        "first_prediction": "2025-01-06",
+        "last_prediction": "2025-07-14",
+        "sha256": "ede78f68eb3798ce167c54233791a39aa1fc32cfb6546a01dc28d23efa13f377"
+      },
+      "validation": {
+        "rows": 81,
+        "late": 24,
+        "first_prediction": "2025-08-04",
+        "last_prediction": "2025-09-22",
+        "sha256": "5d99e79c1495110baf320c8f951d2e30ec79eba98034c2031b2712ba2225b5c7"
+      },
+      "test": {
+        "rows": 138,
+        "late": 46,
+        "first_prediction": "2025-10-13",
+        "last_prediction": "2025-12-29",
+        "sha256": "300be58443e9861b3a678dbf9fc5b4b0eba878a83e4e98e27872c42bc918990b"
+      }
+    },
+    "excluded": {
+      "censored_open": 4,
+      "censored_cancelled": 4,
+      "unmatured_label": 6
+    },
+    "purged_at_boundaries": {
+      "train": 34,
+      "validation": 37
+    }
+  },
+  "audit": {
+    "input_orders_accounted_for": true,
+    "split_rows_accounted_for": true,
+    "features_available_at_prediction": true,
+    "historical_yield_only": true,
+    "feature_allowlist": true,
+    "unique_orders_across_splits": true,
+    "labels_available_before_fitting_cutoffs": true,
+    "chronological_prediction_windows": true
+  },
+  "selection": [
+    {
+      "C": 0.1,
+      "validation_average_precision": 0.5044388448965318
+    },
+    {
+      "C": 1.0,
+      "validation_average_precision": 0.5055372083649643
+    },
+    {
+      "C": 10.0,
+      "validation_average_precision": 0.5059580837858397
+    }
+  ],
+  "evaluation": {
+    "budget": "Top ceil(25% of eligible orders) per weekly prediction date",
+    "rule_baseline": {
+      "orders": 144,
+      "labeled_orders": 138,
+      "unlabeled_orders": 6,
+      "late_orders": 46,
+      "alerts": 36,
+      "labeled_alerts": 34,
+      "unlabeled_alerts": 2,
+      "true_positives": 25,
+      "false_positives": 9,
+      "false_negatives": 21,
+      "precision_on_labeled_alerts": 0.7352941176470589,
+      "precision_bounds_all_alerts": [
+        0.6944444444444444,
+        0.75
+      ],
+      "recall_at_budget": 0.5434782608695652,
+      "average_precision": 0.661099294526412,
+      "roc_auc": 0.771266540642722
+    },
+    "logistic_model": {
+      "orders": 144,
+      "labeled_orders": 138,
+      "unlabeled_orders": 6,
+      "late_orders": 46,
+      "alerts": 36,
+      "labeled_alerts": 35,
+      "unlabeled_alerts": 1,
+      "true_positives": 25,
+      "false_positives": 10,
+      "false_negatives": 21,
+      "precision_on_labeled_alerts": 0.7142857142857143,
+      "precision_bounds_all_alerts": [
+        0.6944444444444444,
+        0.7222222222222222
+      ],
+      "recall_at_budget": 0.5434782608695652,
+      "average_precision": 0.720655902013592,
+      "roc_auc": 0.8395557655954631,
+      "brier_score": 0.15658442847046292
+    },
+    "train_prevalence_constant_brier": 0.22587239583333293,
+    "export_max_abs_error": 2.220446049250313e-16,
+    "label_policy": "Select alerts from all point-in-time eligible orders before joining matured outcomes; unknown alerts stay in the budget and are reported separately",
+    "limits": "Synthetic holdout, one fixed seed; no real accuracy, calibrated probability, intervention benefit or lead-time improvement claim"
+  },
+  "example": {
+    "entity_id": "ORDER-41-05",
+    "customer_id": "CUSTOMER-B",
+    "project_id": "PROJECT-B",
+    "prediction_at": "2025-10-20",
+    "features": {
+      "order_quantity": 12000,
+      "capacity_load_ratio": 0.6905769785358217,
+      "schedule_slack_days": -5,
+      "recent_yield": 0.899,
+      "design_changes_30d": 2,
+      "allocation_utilization_ratio": 1.1821666666666666,
+      "pickup_forecast_gap_ratio": 0.19633333333333333
+    },
+    "frozen_due": "2025-11-03",
+    "frozen_quantity": 12000,
+    "line": "LINE-1",
+    "order_version": 1,
+    "lineage": {
+      "order": {
+        "effective_at": "2025-10-18",
+        "observed_at": "2025-10-19",
+        "available_at": "2025-10-20"
+      },
+      "plan": {
+        "entity_id": "ORDER-41-05",
+        "customer_id": "CUSTOMER-B",
+        "project_id": "PROJECT-B",
+        "line": "LINE-1",
+        "window": "2025-10-20",
+        "version": 1,
+        "effective_at": "2025-10-18",
+        "observed_at": "2025-10-19",
+        "available_at": "2025-10-20",
+        "due_date": "2025-11-03",
+        "planned_finish": "2025-11-08",
+        "design_changes_30d": 2,
+        "allocated_quarter_units": 66000,
+        "committed_quarter_units": 78023,
+        "forecast_pickup_units": 15000,
+        "confirmed_pickup_units": 12055
+      },
+      "capacity": {
+        "line": "LINE-1",
+        "window": "2025-10-20",
+        "window_end": "2025-11-03",
+        "version": 1,
+        "effective_at": "2025-10-18",
+        "observed_at": "2025-10-19",
+        "available_at": "2025-10-20",
+        "yield_window_end": "2025-10-18",
+        "gross_capacity": 216000,
+        "recent_yield": 0.899,
+        "committed_units": 134099
+      }
+    },
+    "label": 1,
+    "label_available_at": "2025-11-06",
+    "risk_score": 59.655712545390536,
+    "outcome": {
+      "entity_id": "ORDER-41-05",
+      "status": "completed",
+      "closed_at": "2025-11-06",
+      "deliveries": [
+        {
+          "date": "2025-10-28",
+          "observed_at": "2025-10-29",
+          "quantity": 4000
+        },
+        {
+          "date": "2025-11-04",
+          "observed_at": "2025-11-05",
+          "quantity": 8000
+        }
+      ]
+    },
+    "ignored_later_plan": {
+      "entity_id": "ORDER-41-05",
+      "customer_id": "CUSTOMER-B",
+      "project_id": "PROJECT-B",
+      "line": "LINE-1",
+      "window": "2025-10-20",
+      "version": 2,
+      "effective_at": "2025-10-25",
+      "observed_at": "2025-10-25",
+      "available_at": "2025-10-26",
+      "due_date": "2025-11-10",
+      "planned_finish": "2025-11-08",
+      "design_changes_30d": 2,
+      "allocated_quarter_units": 66000,
+      "committed_quarter_units": 78023,
+      "forecast_pickup_units": 15000,
+      "confirmed_pickup_units": 12055
+    }
+  },
+  "review_decision": "Keep rules as baseline; synthetic ranking metrics alone do not justify production model promotion"
+}

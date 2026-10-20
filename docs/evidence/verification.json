@@ -1,16 +1,17 @@
 {
   "passed": true,
-  "verified_at_utc": "2026-10-20T02:08:00.254041+00:00",
+  "verified_at_utc": "2026-10-20T02:37:13.473454+00:00",
   "python": "3.11.15",
   "unit_tests": {
     "passed": true,
-    "count": 104
+    "count": 140,
+    "skipped": 0
   },
   "code_comments": [],
   "code_docstrings": [],
   "local_demo": {
     "format_version": 1,
-    "workspace": "artifacts/local-demo-bqnu6rfu",
+    "workspace": "artifacts/local-demo-4i222aet",
     "source": "internal-db",
     "input_deliveries": 9,
     "unique_events": 7,
@@ -64,7 +65,7 @@
         "cursor": 3,
         "remaining_changes": 6,
         "replay": false,
-        "elapsed_seconds": 0.003974,
+        "elapsed_seconds": 0.003645,
         "metrics": {
           "duplicate_events": 0,
           "input_rows": 3,
@@ -87,7 +88,7 @@
         "cursor": 6,
         "remaining_changes": 3,
         "replay": false,
-        "elapsed_seconds": 0.003838,
+        "elapsed_seconds": 0.00355,
         "metrics": {
           "duplicate_events": 1,
           "input_rows": 3,
@@ -110,7 +111,7 @@
         "cursor": 9,
         "remaining_changes": 0,
         "replay": false,
-        "elapsed_seconds": 0.003921,
+        "elapsed_seconds": 0.003601,
         "metrics": {
           "duplicate_events": 1,
           "input_rows": 3,
@@ -145,7 +146,7 @@
     "scope": "Local synthetic incremental ETL only; no model, cloud connection or external API"
   },
   "fault_experiments": {
-    "fixture_directory": "artifacts/etl-demo-yky79kbz",
+    "fixture_directory": "artifacts/etl-demo-e9f7hi5j",
     "experiments": [
       {
         "experiment": "1. Replay and duplicate delivery",
@@ -178,15 +179,15 @@
         "rows_visible_before_checkpoint_recovery": 1000,
         "recovery_batches": 5,
         "remaining_changes": 0,
-        "elapsed_seconds": 0.4252,
-        "rows_per_second": 11759.89,
+        "elapsed_seconds": 0.4087,
+        "rows_per_second": 12234.73,
         "measurement_scope": "Local synthetic SQLite run, including injected failure and recovery; not cloud capacity"
       }
     ],
     "all_passed": true
   },
   "load_evaluation": {
-    "fixture_directory": "artifacts/load-eval-czx1mw6o",
+    "fixture_directory": "artifacts/load-eval-nckvi5hb",
     "scenarios": [
       {
         "scenario": "quiet",
@@ -227,9 +228,9 @@
           "quiet"
         ],
         "batch_count": 1,
-        "batch_processing_p95_seconds": 0.007326,
-        "end_to_end_drain_seconds": 0.010961,
-        "input_changes_per_second": 5929.94,
+        "batch_processing_p95_seconds": 0.008173,
+        "end_to_end_drain_seconds": 0.011822,
+        "input_changes_per_second": 5498.44,
         "average_source_payload_bytes": 231.26
       },
       {
@@ -280,9 +281,9 @@
           "normal"
         ],
         "batch_count": 4,
-        "batch_processing_p95_seconds": 0.077225,
-        "end_to_end_drain_seconds": 0.220533,
-        "input_changes_per_second": 8774.21,
+        "batch_processing_p95_seconds": 0.035735,
+        "end_to_end_drain_seconds": 0.163642,
+        "input_changes_per_second": 11824.61,
         "average_source_payload_bytes": 231.23
       },
       {
@@ -366,9 +367,9 @@
           "normal"
         ],
         "batch_count": 15,
-        "batch_processing_p95_seconds": 0.078843,
-        "end_to_end_drain_seconds": 1.113592,
-        "input_changes_per_second": 11584.13,
+        "batch_processing_p95_seconds": 0.071201,
+        "end_to_end_drain_seconds": 1.044171,
+        "input_changes_per_second": 12354.3,
         "average_source_payload_bytes": 231.23
       },
       {
@@ -436,9 +437,9 @@
           "normal"
         ],
         "batch_count": 8,
-        "batch_processing_p95_seconds": 0.073234,
-        "end_to_end_drain_seconds": 0.574804,
-        "input_changes_per_second": 11221.22,
+        "batch_processing_p95_seconds": 0.078491,
+        "end_to_end_drain_seconds": 0.615114,
+        "input_changes_per_second": 10485.85,
         "average_source_payload_bytes": 231.23
       }
     ],
@@ -447,7 +448,7 @@
     "measurement_scope": "Single local SQLite worker; pre-generated small synthetic records. Fault recovery included in drain time. No network, attachments, cloud services or parallel concurrency benchmark."
   },
   "order_walkthrough": {
-    "fixture_directory": "artifacts/order-walkthrough-8pl6yvic",
+    "fixture_directory": "artifacts/order-walkthrough-3xtn5nr0",
     "steps": [
       {
         "step": "1. Initial order published",
@@ -866,12 +867,12 @@
     "model_calls": 0,
     "retrieval_backend": "local_lexical",
     "facts_backend": "local_sqlite",
-    "elapsed_ms": 2.265,
-    "workspace": "artifacts/rag-demo-yz8hz9wd"
+    "elapsed_ms": 2.314,
+    "workspace": "artifacts/rag-demo-nmfh4jgf"
   },
   "rag_evaluation": {
-    "verified_at_utc": "2026-10-20T02:07:59.978333+00:00",
-    "workspace": "artifacts/rag-eval-q865m3j4",
+    "verified_at_utc": "2026-10-20T02:37:10.365862+00:00",
+    "workspace": "artifacts/rag-eval-tc3x1xk8",
     "passed": true,
     "retrieval": {
       "passed": true,
@@ -901,7 +902,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 3.41,
+          "elapsed_ms": 2.798,
           "condition_checks": [
             {
               "condition_id": "unsigned_future_volume",
@@ -950,7 +951,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 2.544,
+          "elapsed_ms": 2.352,
           "condition_checks": [
             {
               "condition_id": "unsigned_future_volume",
@@ -999,7 +1000,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 1.9,
+          "elapsed_ms": 1.912,
           "condition_checks": [],
           "condition_coverage": null,
           "single_passage_condition_coverage": null,
@@ -1029,7 +1030,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 1.742,
+          "elapsed_ms": 1.673,
           "condition_checks": [
             {
               "condition_id": "mandatory_material_inspection",
@@ -1072,7 +1073,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 1.964,
+          "elapsed_ms": 1.505,
           "condition_checks": [
             {
               "condition_id": "mandatory_material_inspection",
@@ -1115,7 +1116,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 1.685,
+          "elapsed_ms": 2.098,
           "condition_checks": [],
           "condition_coverage": null,
           "single_passage_condition_coverage": null,
@@ -1141,7 +1142,7 @@
           "actual_documents": [],
           "recall_at_k": null,
           "precision_at_k": null,
-          "elapsed_ms": 1.26,
+          "elapsed_ms": 1.446,
           "condition_checks": [],
           "condition_coverage": null,
           "single_passage_condition_coverage": null,
@@ -1344,7 +1345,7 @@
       "context_complete": true
     },
     "limitations": "Injected fake SDK clients exercise real adapter methods. No SDK installation, authentication, remote service, semantic ranking or cloud synchronization is verified.",
-    "report": "artifacts/api-contracts-8gycvl5e/report.json"
+    "report": "artifacts/api-contracts-ql6e30xt/report.json"
   },
   "rag_walkthrough": {
     "passed": true,
@@ -1363,8 +1364,8 @@
       "deleted_index_chunks_removed": true,
       "revocation_blocks_cached_evidence": true
     },
-    "report": "artifacts/rag-walkthrough-8_njjsap/report.json",
-    "initial_evidence": "artifacts/rag-walkthrough-8_njjsap/01-initial.txt",
+    "report": "artifacts/rag-walkthrough-2_9m5jds/report.json",
+    "initial_evidence": "artifacts/rag-walkthrough-2_9m5jds/01-initial.txt",
     "condition_comparison": {
       "metric": "Exact source-bound coverage of four manually reviewed conditions in this synthetic discount example",
       "single_passage_baseline": {
@@ -1414,6 +1415,232 @@
       "returned_passages": 4
     }
   },
+  "risk_model": {
+    "scope": "Local synthetic delivery-risk prototype; existing ETL replay, no live cloud service",
+    "config": {
+      "seed": 20261019,
+      "start": "2025-01-06",
+      "weeks": 52,
+      "orders_per_week": 12,
+      "validation_start": "2025-08-04",
+      "test_start": "2025-10-13",
+      "evaluation_as_of": "2026-02-01",
+      "alert_fraction": 0.25
+    },
+    "raw_sha256": "e4f2bc45588dcebf1100effe82ae910b6ecc859b44117fcb1a4b825aa30a27c1",
+    "etl": {
+      "batches": 104,
+      "counts": {
+        "record_versions": 1248,
+        "processed_events": 1248,
+        "publications": 104,
+        "quarantined_batches": 0,
+        "active_publication": 104
+      }
+    },
+    "dataset": {
+      "splits": {
+        "train": {
+          "rows": 320,
+          "late": 126,
+          "first_prediction": "2025-01-06",
+          "last_prediction": "2025-07-14",
+          "sha256": "ede78f68eb3798ce167c54233791a39aa1fc32cfb6546a01dc28d23efa13f377"
+        },
+        "validation": {
+          "rows": 81,
+          "late": 24,
+          "first_prediction": "2025-08-04",
+          "last_prediction": "2025-09-22",
+          "sha256": "5d99e79c1495110baf320c8f951d2e30ec79eba98034c2031b2712ba2225b5c7"
+        },
+        "test": {
+          "rows": 138,
+          "late": 46,
+          "first_prediction": "2025-10-13",
+          "last_prediction": "2025-12-29",
+          "sha256": "300be58443e9861b3a678dbf9fc5b4b0eba878a83e4e98e27872c42bc918990b"
+        }
+      },
+      "excluded": {
+        "censored_open": 4,
+        "censored_cancelled": 4,
+        "unmatured_label": 6
+      },
+      "purged_at_boundaries": {
+        "train": 34,
+        "validation": 37
+      }
+    },
+    "audit": {
+      "input_orders_accounted_for": true,
+      "split_rows_accounted_for": true,
+      "features_available_at_prediction": true,
+      "historical_yield_only": true,
+      "feature_allowlist": true,
+      "unique_orders_across_splits": true,
+      "labels_available_before_fitting_cutoffs": true,
+      "chronological_prediction_windows": true
+    },
+    "selection": [
+      {
+        "C": 0.1,
+        "validation_average_precision": 0.5044388448965318
+      },
+      {
+        "C": 1.0,
+        "validation_average_precision": 0.5055372083649643
+      },
+      {
+        "C": 10.0,
+        "validation_average_precision": 0.5059580837858397
+      }
+    ],
+    "evaluation": {
+      "budget": "Top ceil(25% of eligible orders) per weekly prediction date",
+      "rule_baseline": {
+        "orders": 144,
+        "labeled_orders": 138,
+        "unlabeled_orders": 6,
+        "late_orders": 46,
+        "alerts": 36,
+        "labeled_alerts": 34,
+        "unlabeled_alerts": 2,
+        "true_positives": 25,
+        "false_positives": 9,
+        "false_negatives": 21,
+        "precision_on_labeled_alerts": 0.7352941176470589,
+        "precision_bounds_all_alerts": [
+          0.6944444444444444,
+          0.75
+        ],
+        "recall_at_budget": 0.5434782608695652,
+        "average_precision": 0.661099294526412,
+        "roc_auc": 0.771266540642722
+      },
+      "logistic_model": {
+        "orders": 144,
+        "labeled_orders": 138,
+        "unlabeled_orders": 6,
+        "late_orders": 46,
+        "alerts": 36,
+        "labeled_alerts": 35,
+        "unlabeled_alerts": 1,
+        "true_positives": 25,
+        "false_positives": 10,
+        "false_negatives": 21,
+        "precision_on_labeled_alerts": 0.7142857142857143,
+        "precision_bounds_all_alerts": [
+          0.6944444444444444,
+          0.7222222222222222
+        ],
+        "recall_at_budget": 0.5434782608695652,
+        "average_precision": 0.720655902013592,
+        "roc_auc": 0.8395557655954631,
+        "brier_score": 0.15658442847046292
+      },
+      "train_prevalence_constant_brier": 0.22587239583333293,
+      "export_max_abs_error": 2.220446049250313e-16,
+      "label_policy": "Select alerts from all point-in-time eligible orders before joining matured outcomes; unknown alerts stay in the budget and are reported separately",
+      "limits": "Synthetic holdout, one fixed seed; no real accuracy, calibrated probability, intervention benefit or lead-time improvement claim"
+    },
+    "example": {
+      "entity_id": "ORDER-41-05",
+      "customer_id": "CUSTOMER-B",
+      "project_id": "PROJECT-B",
+      "prediction_at": "2025-10-20",
+      "features": {
+        "order_quantity": 12000,
+        "capacity_load_ratio": 0.6905769785358217,
+        "schedule_slack_days": -5,
+        "recent_yield": 0.899,
+        "design_changes_30d": 2,
+        "allocation_utilization_ratio": 1.1821666666666666,
+        "pickup_forecast_gap_ratio": 0.19633333333333333
+      },
+      "frozen_due": "2025-11-03",
+      "frozen_quantity": 12000,
+      "line": "LINE-1",
+      "order_version": 1,
+      "lineage": {
+        "order": {
+          "effective_at": "2025-10-18",
+          "observed_at": "2025-10-19",
+          "available_at": "2025-10-20"
+        },
+        "plan": {
+          "entity_id": "ORDER-41-05",
+          "customer_id": "CUSTOMER-B",
+          "project_id": "PROJECT-B",
+          "line": "LINE-1",
+          "window": "2025-10-20",
+          "version": 1,
+          "effective_at": "2025-10-18",
+          "observed_at": "2025-10-19",
+          "available_at": "2025-10-20",
+          "due_date": "2025-11-03",
+          "planned_finish": "2025-11-08",
+          "design_changes_30d": 2,
+          "allocated_quarter_units": 66000,
+          "committed_quarter_units": 78023,
+          "forecast_pickup_units": 15000,
+          "confirmed_pickup_units": 12055
+        },
+        "capacity": {
+          "line": "LINE-1",
+          "window": "2025-10-20",
+          "window_end": "2025-11-03",
+          "version": 1,
+          "effective_at": "2025-10-18",
+          "observed_at": "2025-10-19",
+          "available_at": "2025-10-20",
+          "yield_window_end": "2025-10-18",
+          "gross_capacity": 216000,
+          "recent_yield": 0.899,
+          "committed_units": 134099
+        }
+      },
+      "label": 1,
+      "label_available_at": "2025-11-06",
+      "risk_score": 59.655712545390536,
+      "outcome": {
+        "entity_id": "ORDER-41-05",
+        "status": "completed",
+        "closed_at": "2025-11-06",
+        "deliveries": [
+          {
+            "date": "2025-10-28",
+            "observed_at": "2025-10-29",
+            "quantity": 4000
+          },
+          {
+            "date": "2025-11-04",
+            "observed_at": "2025-11-05",
+            "quantity": 8000
+          }
+        ]
+      },
+      "ignored_later_plan": {
+        "entity_id": "ORDER-41-05",
+        "customer_id": "CUSTOMER-B",
+        "project_id": "PROJECT-B",
+        "line": "LINE-1",
+        "window": "2025-10-20",
+        "version": 2,
+        "effective_at": "2025-10-25",
+        "observed_at": "2025-10-25",
+        "available_at": "2025-10-26",
+        "due_date": "2025-11-10",
+        "planned_finish": "2025-11-08",
+        "design_changes_30d": 2,
+        "allocated_quarter_units": 66000,
+        "committed_quarter_units": 78023,
+        "forecast_pickup_units": 15000,
+        "confirmed_pickup_units": 12055
+      }
+    },
+    "review_decision": "Keep rules as baseline; synthetic ranking metrics alone do not justify production model promotion"
+  },
   "source_sha256": {
     "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "app/repositories/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -1433,6 +1660,10 @@
     "rag/evaluation.py": "4c0be00deede142aaa956d32b5128bf0776be98de6d469fc8d563727410e9d55",
     "rag/retrieval.py": "30e646137d46d0e1fa9a7e14fc137da76e463bf5e8651387ed202dd61cb5b53a",
     "rag/store.py": "95ce69537a9dc1260f92c63d96456f059773bfefbb580f11ebf886c8e63b0223",
+    "risk_model/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "risk_model/dataset.py": "6a44ddf97d4c945a4def97883c3d569a7c1492e251c735bacd4b088122f506d9",
+    "risk_model/fixtures.py": "afe8b8e1d94140b19cc45d7d597476f6445af2514ce95ff5e1ed243721996c7a",
+    "risk_model/training.py": "c48f76b2804a285e71bed35cfb6a2d241f9d13688c92b76b38e4d96f10e80dc0",
     "integrations/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
     "integrations/gmail.py": "c6dba7294e7c1150a4ee2e9b18c42a6e84e20e5f3713e3e6bf7d9a082a509809",
     "integrations/settings.py": "6412f2b8060364c003dd1eca1cf6316f649e1e5dd1b0d5979b32ca58bbb958f9",
@@ -1450,7 +1681,9 @@
     "scripts/run_batch.py": "e8bedfa23f1cb22e4dbb36cfddaf755d6212b6911929b75b165db953cddb22ca",
     "scripts/run_local.py": "23703cfcc178aa57653b29de390dec7e4e661b66c4c266205ee82cf3f7af5f32",
     "scripts/run_rag.py": "2490e33a7a77166cc892e0848babe53b380283dac50d2d9057105e75535de2ee",
-    "scripts/verify.py": "bd892732968f943ea9b19d2315618f057c04948fa68b9418f77ccaa6a3d295c4",
+    "scripts/run_risk_model.py": "daabb62e0eb015eb53bcc26e66bcfb25d1a916f0a673c924b54572dceebf0158",
+    "scripts/score_risk_model.py": "df18357fc67e6d372a003d307d12d009b9269d3ae2621e28cd1f40f05809948c",
+    "scripts/verify.py": "0196e8c4b08f8f76540472f8903e417a620c1384822691e90d91189cbab94135",
     "tests/test_api_adapters.py": "f70fc6fd036496b14f90d2211d4b408781753bb0ba06bb8ea315f61507ef827c",
     "tests/test_batch_policy.py": "ed22d7d56db337c221c874541167f6a327735ead4345ac91636cde5d8228fe3b",
     "tests/test_incremental_etl.py": "38ef4195e700d26ab8419a68ea7224493926b204737b360d10ab3801c534a066",
@@ -1458,7 +1691,8 @@
     "tests/test_local_demo.py": "97f1939355de4f6cd07596f71b75fcc1c17802b2e719a919862c9fd0c316057d",
     "tests/test_rag.py": "b1f87e2383c13869c67e56f1d4d87cac9e1d60cda3e37b0c0f66889a957d5340",
     "tests/test_rag_context.py": "bbe7bd9648a9669f6c56ad8e868d80fd63c307082658fa67e3131a7632737166",
-    "tests/test_release_check.py": "5aaa0634936ff73d7961a3eb62b0fce7622aa114f3e0a5abe597bdd7a9315643"
+    "tests/test_release_check.py": "5aaa0634936ff73d7961a3eb62b0fce7622aa114f3e0a5abe597bdd7a9315643",
+    "tests/test_risk_model.py": "319e350873970a527d944fbbb5ba040b79f7e544ac5926b659def05ae04b97ef"
   },
-  "scope": "Local synthetic ETL and scoped keyword retrieval; no cloud services, LLM calls, original project changes or GitHub publication"
+  "scope": "Local synthetic ETL, scoped keyword retrieval and optional risk-model evaluation; no cloud services or LLM calls"
 }

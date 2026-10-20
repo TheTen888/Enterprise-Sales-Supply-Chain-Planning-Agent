@@ -1,5 +1,7 @@
 # v0.1 first-commit review
 
+Historical v0.1 preparation record. That snapshot is now published. For the v0.2 risk-model addition, follow [Risk Model review](risk-model-review.md), [Changelog](../CHANGELOG.md) and the updated release manifest. The statements below describe the original v0.1 preparation stage.
+
 ## Candidate scope
 
 Publish the local ETL and scoped RAG prototype, its synthetic fixtures, tests, optional API call paths and fake-client contracts. Keep ML training, risk predictions, multi-agent drafting and production cloud deployment explicitly planned. The candidate is not an enterprise deployment or evidence of business outcomes.

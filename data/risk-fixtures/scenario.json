@@ -1,0 +1,10 @@
+{
+  "seed": 20261019,
+  "start": "2025-01-06",
+  "weeks": 52,
+  "orders_per_week": 12,
+  "validation_start": "2025-08-04",
+  "test_start": "2025-10-13",
+  "evaluation_as_of": "2026-02-01",
+  "alert_fraction": 0.25
+}

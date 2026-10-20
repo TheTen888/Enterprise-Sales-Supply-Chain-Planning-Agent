@@ -1,6 +1,7 @@
 .env.example
 .github/workflows/ci.yml
 .gitignore
+CHANGELOG.md
 LICENSE
 LICENSES/JohnDataLab-MIT.txt
 README.md
@@ -24,16 +25,20 @@ data/rag-fixtures/documents/mail-b.md
 data/rag-fixtures/documents/shipping-a.md
 data/rag-fixtures/eval-cases.json
 data/rag-fixtures/manifest.json
+data/risk-fixtures/README.md
+data/risk-fixtures/scenario.json
 docs/api-adapters.md
 docs/design.md
 docs/evidence/api-contracts.json
 docs/evidence/rag-evaluation.json
 docs/evidence/rag-walkthrough.json
+docs/evidence/risk-model.json
 docs/evidence/verification.json
 docs/first-commit.md
 docs/implementation-status.md
 docs/rag-audit-walkthrough.md
 docs/rag-review.md
+docs/risk-model-review.md
 integrations/__init__.py
 integrations/gmail.py
 integrations/settings.py
@@ -55,6 +60,11 @@ rag/retrieval.py
 rag/store.py
 release-files.txt
 requirements-ci.txt
+requirements-risk.txt
+risk_model/__init__.py
+risk_model/dataset.py
+risk_model/fixtures.py
+risk_model/training.py
 scripts/__init__.py
 scripts/demo.py
 scripts/demo_api_contracts.py
@@ -68,6 +78,8 @@ scripts/review_rag.py
 scripts/run_batch.py
 scripts/run_local.py
 scripts/run_rag.py
+scripts/run_risk_model.py
+scripts/score_risk_model.py
 scripts/verify.py
 tests/test_api_adapters.py
 tests/test_batch_policy.py
@@ -77,3 +89,4 @@ tests/test_local_demo.py
 tests/test_rag.py
 tests/test_rag_context.py
 tests/test_release_check.py
+tests/test_risk_model.py

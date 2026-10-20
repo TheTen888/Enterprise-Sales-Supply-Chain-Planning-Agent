@@ -34,3 +34,4 @@ docs/evidence/*
 !docs/evidence/rag-evaluation.json
 !docs/evidence/api-contracts.json
 !docs/evidence/rag-walkthrough.json
+!docs/evidence/risk-model.json

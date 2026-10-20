@@ -17,12 +17,13 @@ def main():
     )
     parser.add_argument("--output", type=Path, default=Path("artifacts"))
     parser.add_argument("--full", action="store_true")
+    parser.add_argument("--risk", action="store_true")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
     output = args.output if args.output.is_absolute() else root / args.output
     output.mkdir(parents=True, exist_ok=True)
     comments, docstrings, hashes = [], [], {}
-    for directory in ["app", "pipelines", "rag", "integrations", "scripts", "tests"]:
+    for directory in ["app", "pipelines", "rag", "risk_model", "integrations", "scripts", "tests"]:
         for path in sorted((root / directory).rglob("*.py")):
             source = path.read_text()
             name = str(path.relative_to(root))
@@ -47,6 +48,9 @@ def main():
     if tests.returncode:
         print(tests.stderr, file=sys.stderr)
         raise SystemExit(tests.returncode)
+    skipped = int(match.group(1)) if (match := re.search(r"skipped=(\d+)", tests.stderr)) else 0
+    if args.risk and skipped:
+        raise RuntimeError("full risk verification requires zero skipped tests")
     local_demo = subprocess.run(
         [
             sys.executable,
@@ -140,6 +144,18 @@ def main():
             print(completed.stdout, file=sys.stderr)
             raise SystemExit(completed.returncode)
         additional[name] = json.loads(completed.stdout)
+    if args.risk:
+        completed = subprocess.run(
+            [sys.executable, "-m", "scripts.run_risk_model", "--output", str(output)],
+            cwd=root,
+            capture_output=True,
+            text=True,
+        )
+        if completed.returncode:
+            print(completed.stderr, file=sys.stderr)
+            raise SystemExit(completed.returncode)
+        risk_run = json.loads(completed.stdout)
+        additional["risk_model"] = json.loads(Path(risk_run["report"]).read_text())
     result = {
         "passed": True,
         "verified_at_utc": datetime.now(UTC).isoformat(),
@@ -147,6 +163,7 @@ def main():
         "unit_tests": {
             "passed": True,
             "count": int(re.search(r"Ran (\d+) tests", tests.stderr).group(1)),
+            "skipped": skipped,
         },
         "code_comments": comments,
         "code_docstrings": docstrings,
@@ -158,7 +175,7 @@ def main():
         "rag_evaluation": rag_evaluation,
         **additional,
         "source_sha256": hashes,
-        "scope": "Local synthetic ETL and scoped keyword retrieval; no cloud services, LLM calls, original project changes or GitHub publication",
+        "scope": "Local synthetic ETL, scoped keyword retrieval and optional risk-model evaluation; no cloud services or LLM calls",
     }
     destination = root / "docs/evidence/verification.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
@@ -199,6 +216,7 @@ def main():
                     "rag_walkthrough": additional["rag_walkthrough"]["passed"],
                     "code_comments": len(comments),
                     "code_docstrings": len(docstrings),
+                    "risk_model": "risk_model" in additional,
                     "evidence": str(destination.relative_to(root)),
                     "demo_report": str(Path(result["local_demo"]["workspace"]) / "report.json"),
                     "rag_report": str(

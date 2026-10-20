@@ -15,8 +15,8 @@
     "deleted_index_chunks_removed": true,
     "revocation_blocks_cached_evidence": true
   },
-  "report": "artifacts/rag-walkthrough-8_njjsap/report.json",
-  "initial_evidence": "artifacts/rag-walkthrough-8_njjsap/01-initial.txt",
+  "report": "artifacts/rag-walkthrough-2_9m5jds/report.json",
+  "initial_evidence": "artifacts/rag-walkthrough-2_9m5jds/01-initial.txt",
   "condition_comparison": {
     "metric": "Exact source-bound coverage of four manually reviewed conditions in this synthetic discount example",
     "single_passage_baseline": {

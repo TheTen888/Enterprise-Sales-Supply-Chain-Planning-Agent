@@ -1,6 +1,6 @@
 {
-  "verified_at_utc": "2026-10-20T02:07:59.978333+00:00",
-  "workspace": "artifacts/rag-eval-q865m3j4",
+  "verified_at_utc": "2026-10-20T02:37:10.365862+00:00",
+  "workspace": "artifacts/rag-eval-tc3x1xk8",
   "passed": true,
   "retrieval": {
     "passed": true,
@@ -30,7 +30,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 3.41,
+        "elapsed_ms": 2.798,
         "condition_checks": [
           {
             "condition_id": "unsigned_future_volume",
@@ -79,7 +79,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 2.544,
+        "elapsed_ms": 2.352,
         "condition_checks": [
           {
             "condition_id": "unsigned_future_volume",
@@ -128,7 +128,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 1.9,
+        "elapsed_ms": 1.912,
         "condition_checks": [],
         "condition_coverage": null,
         "single_passage_condition_coverage": null,
@@ -158,7 +158,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 1.742,
+        "elapsed_ms": 1.673,
         "condition_checks": [
           {
             "condition_id": "mandatory_material_inspection",
@@ -201,7 +201,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 1.964,
+        "elapsed_ms": 1.505,
         "condition_checks": [
           {
             "condition_id": "mandatory_material_inspection",
@@ -244,7 +244,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 1.685,
+        "elapsed_ms": 2.098,
         "condition_checks": [],
         "condition_coverage": null,
         "single_passage_condition_coverage": null,
@@ -270,7 +270,7 @@
         "actual_documents": [],
         "recall_at_k": null,
         "precision_at_k": null,
-        "elapsed_ms": 1.26,
+        "elapsed_ms": 1.446,
         "condition_checks": [],
         "condition_coverage": null,
         "single_passage_condition_coverage": null,
