@@ -8,6 +8,8 @@ When a customer asks for a lower price or changes an order, sales needs answers 
 
 **v0.3 is a runnable, zero-cost local prototype.** It uses invented data, deterministic business and engineering roles, and a small delivery-risk model. Cloud services in the architecture are target integrations; no language model or paid API is required.
 
+[Overview](#system-overview) · [ETL](#etl-and-data-ingestion) · [RAG](#rag-and-document-retrieval) · [ML](#ml-risk-model) · [Multi-Agent](#multi-agent-analysis) · [Agent Eval](#agent-eval-and-observability) · [Run the demo](#run-the-showcase)
+
 ## What business problem does it solve?
 
 | Business question | How the system helps |
@@ -26,6 +28,68 @@ The intended benefit is less time assembling information and fewer decisions mad
 **Target architecture:** S3 retains raw inputs. Existing CRM data, business tables, RAG, daily batch scoring and dashboards stay in Snowflake; SageMaker handles training. Multi-Agent Analysis prepares drafts for manager review, with evaluation and access controls shared across the system.
 
 **Current runtime:** Python, SQLite, local keyword retrieval and a portable numeric model implement the core contracts below. The diagram describes the cloud design, not an already deployed cloud system. [Explore module boundaries and technology choices →](architecture/README.md)
+
+The following module diagrams preserve the agreed target design and service logos. Each section identifies the subset that runs locally today; click any diagram to view it at full size.
+
+## ETL and Data Ingestion
+
+**Give sales, engineering and planning the same current order facts.** A repeated update should not double the order, and an older event should not overwrite a newer delivery commitment or cost.
+
+[![ETL and Data Ingestion architecture](architecture/etl.svg)](architecture/etl.svg)
+
+- **Target flow:** Read-only database exports and Gmail updates → S3 originals → Airflow orchestration → Snowflake/dbt transformations → validated business snapshots.
+- **Local implementation:** Pin input batches, check customer ownership and amounts, deduplicate events, enforce versions, publish atomically and recover after failures. Quarantined batches cannot advance the checkpoint.
+- **Business example:** A quantity or design update reaches downstream pricing and risk analysis only after the new order version passes validation.
+
+[ETL design and trade-offs](docs/design.md) · [Runnable order walkthrough](scripts/order_walkthrough.py)
+
+## RAG and Document Retrieval
+
+**Keep the conditions behind a quote attached to the recommendation.** A customer's possible future volume is not a signed commitment, and required engineering work cannot disappear from a discount proposal.
+
+[![RAG and Document Retrieval architecture](architecture/rag.svg)](architecture/rag.svg)
+
+- **Target flow:** Authorized database/email content → permission binding and chunking → versioned Snowflake knowledge → Cortex Search → a customer/project-scoped evidence pack.
+- **Local implementation:** Keyword retrieval with bounded document expansion, citations, source-version checks and access checks before retrieval and return. Updates, logical deletion and revoked permissions invalidate cached evidence.
+- **Business example:** The discount case retains all four annotated commercial and engineering conditions across two current documents, instead of returning only one passage per document.
+
+[RAG design and limits](docs/rag-review.md) · [Discount and document-lifecycle walkthrough](docs/rag-audit-walkthrough.md)
+
+## ML Risk Model
+
+**Help supply planners prioritize orders that may miss their delivery commitments.** Features capture shared-line load, schedule slack, historical yield, design changes, allocation and pickup gaps, alongside order quantity.
+
+[![Risk Model Training and Evaluation architecture](architecture/risk-model.svg)](architecture/risk-model.svg)
+
+- **Target flow:** Point-in-time Snowflake features and delivery labels → S3 training snapshot → SageMaker training → MLflow evaluation and promotion checks → Snowflake registry and daily batch scoring.
+- **Local implementation:** Synthetic historical replay, train-only preprocessing, chronological splits, mature-label checks, rules comparison and portable numeric scoring. Later deadline changes cannot rewrite the original prediction-time commitment.
+- **Business example:** Prioritize a capacity-constrained order without treating a later renegotiated deadline as information the model already knew. The current model does not beat rules at the operating alert budget and remains unpromoted.
+
+[Labels, features, leakage controls and measured results](docs/risk-model-review.md)
+
+## Multi-Agent Analysis
+
+**Turn customer feedback and engineering costs into options a sales manager can compare.** Engineering establishes costs and constraints; business uses those checked facts to prepare pricing options.
+
+[![Multi-Agent Analysis architecture](architecture/multi-agent.svg)](architecture/multi-agent.svg)
+
+- **Target flow:** Scoped RAG, SQL facts and risk scores → an asynchronous LangGraph/AgentCore draft job → deterministic checks and guardrails → versioned quote options → manager questions and approval.
+- **Local implementation:** Deterministic engineering/business roles, a local background worker, exact quote calculations, guided follow-ups, quantity what-ifs and revision-bound review. General LLM chat and targeted cost/design-edit routing remain planned.
+- **Business example:** A manager increases quantity from 12,000 to 18,000 units. The system recomputes cost and capacity, blocks approval for the resulting 4,000-unit gap, and keeps the customer commitment unchanged.
+
+[Role handoffs and approval rules](docs/multi-agent-review.md) · [Decision Workspace walkthrough](docs/showcase.md)
+
+## Agent Eval and Observability
+
+**Find out why a proposal failed, and prevent the same mistake from reaching the next review.** Trace inspection explains the decision path; evaluation checks whether that path and its result satisfy the business rules.
+
+[![Agent Evaluation and Observability architecture](architecture/agent-eval.svg)](architecture/agent-eval.svg)
+
+- **Target flow:** Correlated draft/revision traces and manager feedback → human-reviewed evaluation cases → candidate replay and comparison → an agent release gate. CloudWatch, OpenTelemetry/ADOT and MLflow support the target monitoring and evaluation workflow.
+- **Local implementation:** Recorded workflow events, controlled failure experiments, source-bound feedback, recalculation checks and offline model contracts. Manager disagreement stays pending review rather than automatically becoming ground truth.
+- **Business example:** A rejected quote or changed quantity is replayed to check evidence conditions, exact amounts, capacity and approval invalidation. Real LLM quality remains unmeasured, so model qualification stays blocked. Delivery-risk ML evaluation remains in the ML module.
+
+[Evaluation Studio and test boundaries](docs/eval-ui.md) · [Model-contract evaluation and monitoring](docs/model-adapters.md)
 
 ## Walk through one customer request
 

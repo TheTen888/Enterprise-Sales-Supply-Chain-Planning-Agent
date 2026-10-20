@@ -22,6 +22,18 @@ flowchart LR
 
 Risk training runs separately on point-in-time historical order, capacity and planning snapshots. It produces a frozen numeric model consumed by the engineering role. Model evaluation uses a later time period and the same alert budget as rules. The current result keeps rules as the baseline; the synthetic model is advisory and unpromoted.
 
+## Module diagrams
+
+These are the existing target-design views, with the same technology labels and logos as the overview. Local implementation and planned integration boundaries are described in the corresponding README sections.
+
+| Module | Diagram | Business walkthrough |
+|---|---|---|
+| ETL and ingestion | [View diagram](etl.svg) | [ETL design](../docs/design.md) |
+| RAG and retrieval | [View diagram](rag.svg) | [Evidence and lifecycle](../docs/rag-audit-walkthrough.md) |
+| Risk-model training and evaluation | [View diagram](risk-model.svg) | [Labels and temporal evaluation](../docs/risk-model-review.md) |
+| Multi-Agent analysis | [View diagram](multi-agent.svg) | [Quote and revision workflow](../docs/multi-agent-review.md) |
+| Agent evaluation and observability | [View diagram](agent-eval.svg) | [Evaluation Studio](../docs/eval-ui.md) |
+
 ## Contracts between modules
 
 | Boundary | Input / output | Invariant |

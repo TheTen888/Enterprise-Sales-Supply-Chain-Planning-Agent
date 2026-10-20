@@ -2,6 +2,8 @@
 
 ## 0.3.0
 
+- Embed the five existing module diagrams in README sections covering business purpose, target flow and local implementation.
+
 - Add disabled-by-default Bedrock/Ollama adapters, offline SDK contract tests, separate development/acceptance inputs, model release checks and session monitoring without real model inference.
 - Add deterministic engineering/business quote drafting, validated cent arithmetic, version-bound internal approval and manager quantity revisions.
 - Add a local Decision Workspace with queued generation, guided follow-ups, structured rejection and pending-review feedback tied to exact source versions.

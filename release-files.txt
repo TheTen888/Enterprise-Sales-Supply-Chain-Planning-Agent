@@ -28,7 +28,12 @@ app/repositories/source.py
 app/repositories/warehouse.py
 app/showcase.py
 architecture/README.md
+architecture/agent-eval.svg
+architecture/etl.svg
+architecture/multi-agent.svg
 architecture/overview.svg
+architecture/rag.svg
+architecture/risk-model.svg
 data/agent-fixtures/README.md
 data/agent-fixtures/scenario.json
 data/fixtures/README.md
