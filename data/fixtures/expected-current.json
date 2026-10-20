@@ -1,0 +1,43 @@
+{
+  "format_version": 1,
+  "input_deliveries": 9,
+  "unique_event_ids": [
+    "ORDER-A001-L1-v1",
+    "ORDER-A001-L1-v2",
+    "ORDER-A001-L1-v3",
+    "ORDER-A002-L1-v1",
+    "ORDER-A002-L1-v2",
+    "ORDER-B001-L1-v1",
+    "ORDER-B001-L1-v2"
+  ],
+  "current_records": [
+    {
+      "source": "internal-db",
+      "entity_id": "ORDER-A001-L1",
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "version": 3,
+      "currency": "USD",
+      "quantity": 12000,
+      "unit_cost_cents": 1300,
+      "unit_price_cents": 1500,
+      "design_version": "D2",
+      "extended_cost_cents": 15600000,
+      "extended_price_cents": 18000000
+    },
+    {
+      "source": "internal-db",
+      "entity_id": "ORDER-B001-L1",
+      "customer_id": "CUSTOMER-B",
+      "project_id": "PROJECT-B",
+      "version": 2,
+      "currency": "USD",
+      "quantity": 4500,
+      "unit_cost_cents": 850,
+      "unit_price_cents": 1025,
+      "design_version": "D1",
+      "extended_cost_cents": 3825000,
+      "extended_price_cents": 4612500
+    }
+  ]
+}

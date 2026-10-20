@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "checks": {
+    "initial_order_v3_quantity_12000_cost_1300": true,
+    "initial_current_sources_only": true,
+    "all_four_reviewed_conditions_present": true,
+    "single_passage_baseline_misses_three_conditions": true,
+    "budget_exhaustion_is_not_silent_truncation": true,
+    "cache_was_populated": true,
+    "stale_old_engineering_blocked": true,
+    "new_version_cited_after_refresh": true,
+    "delete_blocks_stale_index": true,
+    "old_replay_does_not_resurrect": true,
+    "historical_query_cannot_bypass_delete": true,
+    "deleted_index_chunks_removed": true,
+    "revocation_blocks_cached_evidence": true
+  },
+  "report": "artifacts/rag-walkthrough-8_njjsap/report.json",
+  "initial_evidence": "artifacts/rag-walkthrough-8_njjsap/01-initial.txt",
+  "condition_comparison": {
+    "metric": "Exact source-bound coverage of four manually reviewed conditions in this synthetic discount example",
+    "single_passage_baseline": {
+      "coverage": 0.25,
+      "checks": [
+        {
+          "condition_id": "unsigned_future_volume",
+          "covered": false
+        },
+        {
+          "condition_id": "mandatory_material_inspection",
+          "covered": true
+        },
+        {
+          "condition_id": "no_approved_volume_cost_reduction",
+          "covered": false
+        },
+        {
+          "condition_id": "engineering_review_required",
+          "covered": false
+        }
+      ]
+    },
+    "bounded_document_context": {
+      "coverage": 1.0,
+      "checks": [
+        {
+          "condition_id": "unsigned_future_volume",
+          "covered": true
+        },
+        {
+          "condition_id": "mandatory_material_inspection",
+          "covered": true
+        },
+        {
+          "condition_id": "no_approved_volume_cost_reduction",
+          "covered": true
+        },
+        {
+          "condition_id": "engineering_review_required",
+          "covered": true
+        }
+      ]
+    },
+    "context_chars": 744,
+    "returned_documents": 2,
+    "returned_passages": 4
+  }
+}

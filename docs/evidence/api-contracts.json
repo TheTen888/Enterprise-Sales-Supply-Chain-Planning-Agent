@@ -1,0 +1,115 @@
+{
+  "passed": true,
+  "mode": "mocked_sdk_contracts",
+  "network_calls": 0,
+  "live_integration_verified": false,
+  "snowflake_sql": {
+    "template": "SELECT SOURCE, ENTITY_ID, CUSTOMER_ID, PROJECT_ID, BUSINESS_VERSION, PUBLICATION_ID, DESIGN_VERSION, QUANTITY, CURRENCY, UNIT_COST_CENTS, UNIT_PRICE_CENTS, EXTENDED_COST_CENTS, EXTENDED_PRICE_CENTS FROM SALES.CURATED.CURRENT_ORDER_FACTS WHERE CUSTOMER_ID=%s AND PROJECT_ID=%s AND ENTITY_ID=%s LIMIT 2",
+    "parameters": [
+      "CUSTOMER-A",
+      "PROJECT-A",
+      "ORDER-A001-L1"
+    ],
+    "timeout_seconds": 10,
+    "read_count": 2
+  },
+  "cortex_search": {
+    "query": "customer price discount design D2 material inspection engineering cost change",
+    "columns": [
+      "CHUNK_ID",
+      "DOCUMENT_ID",
+      "VERSION",
+      "CUSTOMER_ID",
+      "PROJECT_ID",
+      "ENTITY_ID",
+      "DESIGN_VERSION",
+      "SOURCE_HASH",
+      "TEXT"
+    ],
+    "filter": {
+      "@and": [
+        {
+          "@eq": {
+            "CUSTOMER_ID": "CUSTOMER-A"
+          }
+        },
+        {
+          "@eq": {
+            "PROJECT_ID": "PROJECT-A"
+          }
+        },
+        {
+          "@eq": {
+            "ENTITY_ID": "ORDER-A001-L1"
+          }
+        },
+        {
+          "@or": [
+            {
+              "@eq": {
+                "DESIGN_VERSION": "D2"
+              }
+            },
+            {
+              "@eq": {
+                "DESIGN_VERSION": ""
+              }
+            }
+          ]
+        },
+        {
+          "@lte": {
+            "EFFECTIVE_FROM": "2026-10-19"
+          }
+        },
+        {
+          "@lte": {
+            "OBSERVED_ON": "2026-10-19"
+          }
+        },
+        {
+          "@or": [
+            {
+              "@eq": {
+                "STATUS": "approved"
+              }
+            },
+            {
+              "@eq": {
+                "STATUS": "request"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "limit": 40
+  },
+  "gmail": {
+    "get": {
+      "userId": "me",
+      "id": "synthetic-mail-a",
+      "format": "full"
+    },
+    "execute": {
+      "num_retries": 0
+    },
+    "chunks": 2,
+    "indexed_with_trusted_scope": true
+  },
+  "evidence": {
+    "status": "ready",
+    "order_version": 3,
+    "citations": [
+      "ENG-A-001:v2:c1",
+      "ENG-A-001:v2:c2",
+      "MAIL-A-001:v2:c1",
+      "MAIL-A-001:v2:c2"
+    ],
+    "returned_document_count": 2,
+    "returned_chunk_count": 4,
+    "context_complete": true
+  },
+  "limitations": "Injected fake SDK clients exercise real adapter methods. No SDK installation, authentication, remote service, semantic ranking or cloud synchronization is verified.",
+  "report": "artifacts/api-contracts-8gycvl5e/report.json"
+}

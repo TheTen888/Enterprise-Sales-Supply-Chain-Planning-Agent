@@ -1,0 +1,10 @@
+{
+  "format_version": 1,
+  "synthetic": true,
+  "source": "internal-db",
+  "ownerships": [
+    {"entity_id": "ORDER-A001-L1", "customer_id": "CUSTOMER-A", "project_id": "PROJECT-A"},
+    {"entity_id": "ORDER-A002-L1", "customer_id": "CUSTOMER-A", "project_id": "PROJECT-A"},
+    {"entity_id": "ORDER-B001-L1", "customer_id": "CUSTOMER-B", "project_id": "PROJECT-B"}
+  ]
+}

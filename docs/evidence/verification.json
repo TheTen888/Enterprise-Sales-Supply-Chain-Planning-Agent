@@ -1,0 +1,1464 @@
+{
+  "passed": true,
+  "verified_at_utc": "2026-10-20T02:08:00.254041+00:00",
+  "python": "3.11.15",
+  "unit_tests": {
+    "passed": true,
+    "count": 104
+  },
+  "code_comments": [],
+  "code_docstrings": [],
+  "local_demo": {
+    "format_version": 1,
+    "workspace": "artifacts/local-demo-bqnu6rfu",
+    "source": "internal-db",
+    "input_deliveries": 9,
+    "unique_events": 7,
+    "current_order_lines": 2,
+    "checkpoint": 9,
+    "counts": {
+      "record_versions": 6,
+      "processed_events": 7,
+      "publications": 3,
+      "quarantined_batches": 0,
+      "active_publication": 3
+    },
+    "current_records": [
+      {
+        "source": "internal-db",
+        "entity_id": "ORDER-A001-L1",
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-A",
+        "version": 3,
+        "currency": "USD",
+        "quantity": 12000,
+        "unit_cost_cents": 1300,
+        "unit_price_cents": 1500,
+        "design_version": "D2",
+        "extended_cost_cents": 15600000,
+        "extended_price_cents": 18000000
+      },
+      {
+        "source": "internal-db",
+        "entity_id": "ORDER-B001-L1",
+        "customer_id": "CUSTOMER-B",
+        "project_id": "PROJECT-B",
+        "version": 2,
+        "currency": "USD",
+        "quantity": 4500,
+        "unit_cost_cents": 850,
+        "unit_price_cents": 1025,
+        "design_version": "D1",
+        "extended_cost_cents": 3825000,
+        "extended_price_cents": 4612500
+      }
+    ],
+    "batches": [
+      {
+        "status": "completed",
+        "batch_id": "30a4383f024ed082b407825767063282daaefb7cccd605a4017f8ecf50c3c873",
+        "source": "internal-db",
+        "lower_cursor": 0,
+        "upper_cursor": 3,
+        "publication_id": 1,
+        "cursor": 3,
+        "remaining_changes": 6,
+        "replay": false,
+        "elapsed_seconds": 0.003974,
+        "metrics": {
+          "duplicate_events": 0,
+          "input_rows": 3,
+          "inserted_versions": 3,
+          "same_versions": 0,
+          "stale_versions": 0
+        },
+        "batch_policy": {
+          "mode": "fixed",
+          "selected_size": 3
+        }
+      },
+      {
+        "status": "completed",
+        "batch_id": "98c33a202e46c44fc9cfeba465d48fc231c99619885bd53ab640b0ec0fb4c7e6",
+        "source": "internal-db",
+        "lower_cursor": 3,
+        "upper_cursor": 6,
+        "publication_id": 2,
+        "cursor": 6,
+        "remaining_changes": 3,
+        "replay": false,
+        "elapsed_seconds": 0.003838,
+        "metrics": {
+          "duplicate_events": 1,
+          "input_rows": 3,
+          "inserted_versions": 1,
+          "same_versions": 0,
+          "stale_versions": 1
+        },
+        "batch_policy": {
+          "mode": "fixed",
+          "selected_size": 3
+        }
+      },
+      {
+        "status": "completed",
+        "batch_id": "09e7f1bfd6a00f601e2e768c39631cdd53ae388f07b3d17d649efd3a2ae6d389",
+        "source": "internal-db",
+        "lower_cursor": 6,
+        "upper_cursor": 9,
+        "publication_id": 3,
+        "cursor": 9,
+        "remaining_changes": 0,
+        "replay": false,
+        "elapsed_seconds": 0.003921,
+        "metrics": {
+          "duplicate_events": 1,
+          "input_rows": 3,
+          "inserted_versions": 2,
+          "same_versions": 0,
+          "stale_versions": 0
+        },
+        "batch_policy": {
+          "mode": "fixed",
+          "selected_size": 3
+        }
+      }
+    ],
+    "quarantine": [],
+    "checks": {
+      "matches_reviewed_expected_records": true,
+      "fixture_delivery_count_matches": true,
+      "fixture_event_ids_match": true,
+      "logical_event_ids_match": true,
+      "source_offsets_covered_once": true,
+      "checkpoint_acknowledges_all_deliveries": true,
+      "all_batches_completed": true,
+      "no_quarantine": true,
+      "drained_worker_is_idle": true
+    },
+    "passed": true,
+    "fixture_sha256": {
+      "scopes.json": "c7df79c00994fd1c99f1817cd3c305382b01e2dc1ce9c2b6f5790ba936282435",
+      "order-changes.jsonl": "2620f539808b93e67447c90d30614b6addae38f402ea89778f0e3b01201e1361",
+      "expected-current.json": "be66f7c2cd0a0eae3ac55597f938cf9922cf4c8791a44dfd4e79a78012cf30cd"
+    },
+    "scope": "Local synthetic incremental ETL only; no model, cloud connection or external API"
+  },
+  "fault_experiments": {
+    "fixture_directory": "artifacts/etl-demo-yky79kbz",
+    "experiments": [
+      {
+        "experiment": "1. Replay and duplicate delivery",
+        "passed": true,
+        "duplicate_events": 1,
+        "record_versions": 1
+      },
+      {
+        "experiment": "2. Late old version",
+        "passed": true,
+        "visible_version": 3,
+        "stale_versions": 1
+      },
+      {
+        "experiment": "3. Missing or forged scope",
+        "passed": true,
+        "status": "quarantined",
+        "checkpoint_unchanged": true
+      },
+      {
+        "experiment": "4. Partial publication failure",
+        "passed": true,
+        "old_snapshot_preserved": true,
+        "resumed_successfully": true
+      },
+      {
+        "experiment": "5. Restart and backlog recovery",
+        "passed": true,
+        "input_rows": 5000,
+        "rows_visible_before_checkpoint_recovery": 1000,
+        "recovery_batches": 5,
+        "remaining_changes": 0,
+        "elapsed_seconds": 0.4252,
+        "rows_per_second": 11759.89,
+        "measurement_scope": "Local synthetic SQLite run, including injected failure and recovery; not cloud capacity"
+      }
+    ],
+    "all_passed": true
+  },
+  "load_evaluation": {
+    "fixture_directory": "artifacts/load-eval-czx1mw6o",
+    "scenarios": [
+      {
+        "scenario": "quiet",
+        "input_changes": 65,
+        "expected_current_entities": 47,
+        "actual_current_entities": 47,
+        "mismatched_entities": [],
+        "event_reconciliation": {
+          "expected_unique_events": 63,
+          "actual_unique_events": 63,
+          "missing_events": 0,
+          "unexpected_events": 0,
+          "missing_offsets": 0,
+          "unexpected_offsets": 0,
+          "offsets_stored_more_than_once": 0
+        },
+        "checks": {
+          "matches_independent_full_recompute": true,
+          "logical_event_ids_match_source": true,
+          "source_offsets_covered_once": true,
+          "all_offsets_acknowledged": true,
+          "no_pending_changes": true,
+          "logical_event_count_correct": true,
+          "batch_size_bounded": true,
+          "no_quarantine_for_valid_inputs": true,
+          "local_batch_p95_within_budget": true
+        },
+        "passed": true,
+        "injected_failures": [],
+        "backlog_curve": [
+          65,
+          0
+        ],
+        "selected_batch_sizes": [
+          100
+        ],
+        "batch_modes": [
+          "quiet"
+        ],
+        "batch_count": 1,
+        "batch_processing_p95_seconds": 0.007326,
+        "end_to_end_drain_seconds": 0.010961,
+        "input_changes_per_second": 5929.94,
+        "average_source_payload_bytes": 231.26
+      },
+      {
+        "scenario": "steady",
+        "input_changes": 1935,
+        "expected_current_entities": 1425,
+        "actual_current_entities": 1425,
+        "mismatched_entities": [],
+        "event_reconciliation": {
+          "expected_unique_events": 1875,
+          "actual_unique_events": 1875,
+          "missing_events": 0,
+          "unexpected_events": 0,
+          "missing_offsets": 0,
+          "unexpected_offsets": 0,
+          "offsets_stored_more_than_once": 0
+        },
+        "checks": {
+          "matches_independent_full_recompute": true,
+          "logical_event_ids_match_source": true,
+          "source_offsets_covered_once": true,
+          "all_offsets_acknowledged": true,
+          "no_pending_changes": true,
+          "logical_event_count_correct": true,
+          "batch_size_bounded": true,
+          "no_quarantine_for_valid_inputs": true,
+          "local_batch_p95_within_budget": true
+        },
+        "passed": true,
+        "injected_failures": [],
+        "backlog_curve": [
+          1935,
+          1435,
+          935,
+          435,
+          0
+        ],
+        "selected_batch_sizes": [
+          500,
+          500,
+          500,
+          500
+        ],
+        "batch_modes": [
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "batch_count": 4,
+        "batch_processing_p95_seconds": 0.077225,
+        "end_to_end_drain_seconds": 0.220533,
+        "input_changes_per_second": 8774.21,
+        "average_source_payload_bytes": 231.23
+      },
+      {
+        "scenario": "burst",
+        "input_changes": 12900,
+        "expected_current_entities": 9500,
+        "actual_current_entities": 9500,
+        "mismatched_entities": [],
+        "event_reconciliation": {
+          "expected_unique_events": 12500,
+          "actual_unique_events": 12500,
+          "missing_events": 0,
+          "unexpected_events": 0,
+          "missing_offsets": 0,
+          "unexpected_offsets": 0,
+          "offsets_stored_more_than_once": 0
+        },
+        "checks": {
+          "matches_independent_full_recompute": true,
+          "logical_event_ids_match_source": true,
+          "source_offsets_covered_once": true,
+          "all_offsets_acknowledged": true,
+          "no_pending_changes": true,
+          "logical_event_count_correct": true,
+          "batch_size_bounded": true,
+          "no_quarantine_for_valid_inputs": true,
+          "local_batch_p95_within_budget": true
+        },
+        "passed": true,
+        "injected_failures": [],
+        "backlog_curve": [
+          12900,
+          11900,
+          10900,
+          9900,
+          8900,
+          7900,
+          6900,
+          5900,
+          4900,
+          3900,
+          2900,
+          1900,
+          1400,
+          900,
+          400,
+          0
+        ],
+        "selected_batch_sizes": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          500,
+          500,
+          500,
+          500
+        ],
+        "batch_modes": [
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "normal",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "batch_count": 15,
+        "batch_processing_p95_seconds": 0.078843,
+        "end_to_end_drain_seconds": 1.113592,
+        "input_changes_per_second": 11584.13,
+        "average_source_payload_bytes": 231.23
+      },
+      {
+        "scenario": "burst-restart",
+        "input_changes": 6450,
+        "expected_current_entities": 4750,
+        "actual_current_entities": 4750,
+        "mismatched_entities": [],
+        "event_reconciliation": {
+          "expected_unique_events": 6250,
+          "actual_unique_events": 6250,
+          "missing_events": 0,
+          "unexpected_events": 0,
+          "missing_offsets": 0,
+          "unexpected_offsets": 0,
+          "offsets_stored_more_than_once": 0
+        },
+        "checks": {
+          "matches_independent_full_recompute": true,
+          "logical_event_ids_match_source": true,
+          "source_offsets_covered_once": true,
+          "all_offsets_acknowledged": true,
+          "no_pending_changes": true,
+          "logical_event_count_correct": true,
+          "batch_size_bounded": true,
+          "no_quarantine_for_valid_inputs": true,
+          "local_batch_p95_within_budget": true
+        },
+        "passed": true,
+        "injected_failures": [
+          "during_publish",
+          "after_publish"
+        ],
+        "backlog_curve": [
+          6450,
+          6450,
+          6450,
+          5450,
+          4450,
+          3450,
+          2450,
+          1450,
+          950,
+          450,
+          0
+        ],
+        "selected_batch_sizes": [
+          1000,
+          1000,
+          1000,
+          1000,
+          1000,
+          500,
+          500,
+          500
+        ],
+        "batch_modes": [
+          "pinned-recovery",
+          "burst",
+          "burst",
+          "burst",
+          "burst",
+          "normal",
+          "normal",
+          "normal"
+        ],
+        "batch_count": 8,
+        "batch_processing_p95_seconds": 0.073234,
+        "end_to_end_drain_seconds": 0.574804,
+        "input_changes_per_second": 11221.22,
+        "average_source_payload_bytes": 231.23
+      }
+    ],
+    "all_passed": true,
+    "local_batch_p95_budget_seconds": 2.0,
+    "measurement_scope": "Single local SQLite worker; pre-generated small synthetic records. Fault recovery included in drain time. No network, attachments, cloud services or parallel concurrency benchmark."
+  },
+  "order_walkthrough": {
+    "fixture_directory": "artifacts/order-walkthrough-8pl6yvic",
+    "steps": [
+      {
+        "step": "1. Initial order published",
+        "checkpoint": 1,
+        "remaining_changes": 0,
+        "pending_state": null,
+        "visible_order": {
+          "version": 1,
+          "quantity": 10000,
+          "design_version": "D1",
+          "extended_cost_cents": 12500000,
+          "extended_price_cents": 15000000
+        },
+        "counts": {
+          "record_versions": 1,
+          "processed_events": 1,
+          "publications": 1,
+          "quarantined_batches": 0,
+          "active_publication": 1
+        }
+      },
+      {
+        "step": "2. Order change appended to source",
+        "checkpoint": 1,
+        "remaining_changes": 1,
+        "pending_state": null,
+        "visible_order": {
+          "version": 1,
+          "quantity": 10000,
+          "design_version": "D1",
+          "extended_cost_cents": 12500000,
+          "extended_price_cents": 15000000
+        },
+        "counts": {
+          "record_versions": 1,
+          "processed_events": 1,
+          "publications": 1,
+          "quarantined_batches": 0,
+          "active_publication": 1
+        }
+      },
+      {
+        "step": "3. Exact raw input pinned before transformation",
+        "checkpoint": 1,
+        "remaining_changes": 1,
+        "pending_state": "extracted",
+        "visible_order": {
+          "version": 1,
+          "quantity": 10000,
+          "design_version": "D1",
+          "extended_cost_cents": 12500000,
+          "extended_price_cents": 15000000
+        },
+        "counts": {
+          "record_versions": 1,
+          "processed_events": 1,
+          "publications": 1,
+          "quarantined_batches": 0,
+          "active_publication": 1
+        },
+        "raw_input": {
+          "currency": "USD",
+          "customer_id": "CUSTOMER-A",
+          "design_version": "D2",
+          "entity_id": "ORDER-001-L1",
+          "event_id": "ORDER-001-L1-v2",
+          "operation": "upsert",
+          "project_id": "PROJECT-A",
+          "quantity": 12000,
+          "unit_cost": "13.00",
+          "unit_price": "15.00",
+          "version": 2
+        }
+      },
+      {
+        "step": "4. Validated and staged; injected failure before publication",
+        "checkpoint": 1,
+        "remaining_changes": 1,
+        "pending_state": "staged",
+        "visible_order": {
+          "version": 1,
+          "quantity": 10000,
+          "design_version": "D1",
+          "extended_cost_cents": 12500000,
+          "extended_price_cents": 15000000
+        },
+        "counts": {
+          "record_versions": 1,
+          "processed_events": 1,
+          "publications": 1,
+          "quarantined_batches": 0,
+          "active_publication": 1
+        },
+        "staged_candidate": {
+          "event": {
+            "content_hash": "4ec865fc79a3346a793f3c3d7ac256a8426707c65af179e7ea796fb810c4bb6e",
+            "currency": "USD",
+            "customer_id": "CUSTOMER-A",
+            "design_version": "D2",
+            "entity_id": "ORDER-001-L1",
+            "event_id": "ORDER-001-L1-v2",
+            "operation": "upsert",
+            "project_id": "PROJECT-A",
+            "quantity": 12000,
+            "source": "internal-db",
+            "unit_cost_cents": 1300,
+            "unit_price_cents": 1500,
+            "version": 2
+          },
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000
+        }
+      },
+      {
+        "step": "5. Publication transaction rolled back after injected failure",
+        "checkpoint": 1,
+        "remaining_changes": 1,
+        "pending_state": "staged",
+        "visible_order": {
+          "version": 1,
+          "quantity": 10000,
+          "design_version": "D1",
+          "extended_cost_cents": 12500000,
+          "extended_price_cents": 15000000
+        },
+        "counts": {
+          "record_versions": 1,
+          "processed_events": 1,
+          "publications": 1,
+          "quarantined_batches": 0,
+          "active_publication": 1
+        },
+        "staged_candidate": {
+          "event": {
+            "content_hash": "4ec865fc79a3346a793f3c3d7ac256a8426707c65af179e7ea796fb810c4bb6e",
+            "currency": "USD",
+            "customer_id": "CUSTOMER-A",
+            "design_version": "D2",
+            "entity_id": "ORDER-001-L1",
+            "event_id": "ORDER-001-L1-v2",
+            "operation": "upsert",
+            "project_id": "PROJECT-A",
+            "quantity": 12000,
+            "source": "internal-db",
+            "unit_cost_cents": 1300,
+            "unit_price_cents": 1500,
+            "version": 2
+          },
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000
+        }
+      },
+      {
+        "step": "6. Publication committed; injected failure before checkpoint ACK",
+        "checkpoint": 1,
+        "remaining_changes": 1,
+        "pending_state": "published",
+        "visible_order": {
+          "version": 2,
+          "quantity": 12000,
+          "design_version": "D2",
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000
+        },
+        "counts": {
+          "record_versions": 2,
+          "processed_events": 2,
+          "publications": 2,
+          "quarantined_batches": 0,
+          "active_publication": 2
+        },
+        "staged_candidate": {
+          "event": {
+            "content_hash": "4ec865fc79a3346a793f3c3d7ac256a8426707c65af179e7ea796fb810c4bb6e",
+            "currency": "USD",
+            "customer_id": "CUSTOMER-A",
+            "design_version": "D2",
+            "entity_id": "ORDER-001-L1",
+            "event_id": "ORDER-001-L1-v2",
+            "operation": "upsert",
+            "project_id": "PROJECT-A",
+            "quantity": 12000,
+            "source": "internal-db",
+            "unit_cost_cents": 1300,
+            "unit_price_cents": 1500,
+            "version": 2
+          },
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000
+        }
+      },
+      {
+        "step": "7. Fresh worker acknowledges existing publication",
+        "checkpoint": 2,
+        "remaining_changes": 0,
+        "pending_state": null,
+        "visible_order": {
+          "version": 2,
+          "quantity": 12000,
+          "design_version": "D2",
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000
+        },
+        "counts": {
+          "record_versions": 2,
+          "processed_events": 2,
+          "publications": 2,
+          "quarantined_batches": 0,
+          "active_publication": 2
+        }
+      },
+      {
+        "step": "8. Completed batch replay makes no changes",
+        "checkpoint": 2,
+        "remaining_changes": 0,
+        "pending_state": null,
+        "visible_order": {
+          "version": 2,
+          "quantity": 12000,
+          "design_version": "D2",
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000
+        },
+        "counts": {
+          "record_versions": 2,
+          "processed_events": 2,
+          "publications": 2,
+          "quarantined_batches": 0,
+          "active_publication": 2
+        }
+      },
+      {
+        "step": "9. Duplicate delivery acknowledged without new version",
+        "checkpoint": 3,
+        "remaining_changes": 0,
+        "pending_state": null,
+        "visible_order": {
+          "version": 2,
+          "quantity": 12000,
+          "design_version": "D2",
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000
+        },
+        "counts": {
+          "record_versions": 2,
+          "processed_events": 2,
+          "publications": 3,
+          "quarantined_batches": 0,
+          "active_publication": 3
+        }
+      }
+    ],
+    "checks": {
+      "staged_change_not_visible": true,
+      "failed_transaction_preserves_old_view": true,
+      "published_before_ack": true,
+      "recovery_does_not_republish": true,
+      "completed_replay_unchanged": true,
+      "duplicate_has_no_extra_version": true,
+      "logical_events_accounted_for": true,
+      "all_deliveries_acknowledged": true,
+      "final_amounts_correct": true
+    },
+    "all_passed": true,
+    "batch_policy_examples": [
+      {
+        "backlog": 50,
+        "previous_processing_seconds": 0,
+        "selected_size": 100,
+        "mode": "quiet"
+      },
+      {
+        "backlog": 1500,
+        "previous_processing_seconds": 0,
+        "selected_size": 500,
+        "mode": "normal"
+      },
+      {
+        "backlog": 10000,
+        "previous_processing_seconds": 0,
+        "selected_size": 1000,
+        "mode": "burst"
+      },
+      {
+        "backlog": 10000,
+        "previous_processing_seconds": 0.3,
+        "selected_size": 500,
+        "mode": "burst-pressure-limited"
+      }
+    ],
+    "scope": "Synthetic order change; batch policy inputs are illustrative. No cloud scaling or risk prediction is performed."
+  },
+  "rag_demo": {
+    "status": "ready",
+    "task": "quote",
+    "query": "customer price discount design D2 material inspection engineering cost change",
+    "as_of": "2026-10-19",
+    "facts": {
+      "source": "internal-db",
+      "entity_id": "ORDER-A001-L1",
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "business_version": 3,
+      "publication_id": 3,
+      "design_version": "D2",
+      "quantity": 12000,
+      "currency": "USD",
+      "unit_cost_cents": 1300,
+      "unit_price_cents": 1500,
+      "extended_cost_cents": 15600000,
+      "extended_price_cents": 18000000
+    },
+    "citations": [
+      {
+        "chunk_id": "ENG-A-001:v2:c1",
+        "document_id": "ENG-A-001",
+        "version": 2,
+        "section": "Design D2 rationale",
+        "text": "Design D2 requires a revised material and an additional inspection step. These requirements explain the engineering cost change. Preserve both requirements when discussing a customer price discount. Published numerical costs must come from the current order facts, not an estimate in an email.",
+        "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+        "kind": "engineering_change",
+        "status": "approved",
+        "source_path": "documents/eng-a-v2.md",
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-A",
+        "entity_id": "ORDER-A001-L1",
+        "design_version": "D2",
+        "score": 11.652003,
+        "context_role": "retrieval_match"
+      },
+      {
+        "chunk_id": "ENG-A-001:v2:c2",
+        "document_id": "ENG-A-001",
+        "version": 2,
+        "section": "Limits",
+        "text": "No approved volume-based cost reduction has been provided. Any simplification needs a separate engineering review.",
+        "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+        "kind": "engineering_change",
+        "status": "approved",
+        "source_path": "documents/eng-a-v2.md",
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-A",
+        "entity_id": "ORDER-A001-L1",
+        "design_version": "D2",
+        "score": null,
+        "context_role": "document_context"
+      },
+      {
+        "chunk_id": "MAIL-A-001:v2:c1",
+        "document_id": "MAIL-A-001",
+        "version": 2,
+        "section": "Current customer request",
+        "text": "Please consider a 5 percent price discount for ORDER-A001-L1, Project A, design D2. Explain the engineering cost change and whether material or inspection requirements affect the price.",
+        "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+        "kind": "customer_request",
+        "status": "request",
+        "source_path": "documents/mail-a-v2.md",
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-A",
+        "entity_id": "ORDER-A001-L1",
+        "design_version": "",
+        "score": 10.764128,
+        "context_role": "retrieval_match"
+      },
+      {
+        "chunk_id": "MAIL-A-001:v2:c2",
+        "document_id": "MAIL-A-001",
+        "version": 2,
+        "section": "Volume expectation",
+        "text": "We may increase future volume, but no additional quantity commitment has been signed.",
+        "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+        "kind": "customer_request",
+        "status": "request",
+        "source_path": "documents/mail-a-v2.md",
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-A",
+        "entity_id": "ORDER-A001-L1",
+        "design_version": "",
+        "score": null,
+        "context_role": "document_context"
+      }
+    ],
+    "missing_evidence_kinds": [],
+    "index_fresh": true,
+    "revisions": {
+      "singleton": 1,
+      "data_revision": 8,
+      "index_revision": 8,
+      "policy_revision": 2
+    },
+    "candidate_chunk_count": 5,
+    "returned_document_count": 2,
+    "returned_chunk_count": 4,
+    "retrieval_matches": [
+      {
+        "chunk_id": "ENG-A-001:v2:c1",
+        "document_id": "ENG-A-001",
+        "version": 2
+      },
+      {
+        "chunk_id": "MAIL-A-001:v2:c1",
+        "document_id": "MAIL-A-001",
+        "version": 2
+      }
+    ],
+    "context": {
+      "policy": "bounded_parent_document",
+      "complete": true,
+      "max_chars": 6000,
+      "max_chunks": 16,
+      "returned_chars": 744,
+      "omitted_documents": []
+    },
+    "cache_hit": false,
+    "generation_mode": "deterministic_evidence_template",
+    "model_calls": 0,
+    "retrieval_backend": "local_lexical",
+    "facts_backend": "local_sqlite",
+    "elapsed_ms": 2.265,
+    "workspace": "artifacts/rag-demo-yz8hz9wd"
+  },
+  "rag_evaluation": {
+    "verified_at_utc": "2026-10-20T02:07:59.978333+00:00",
+    "workspace": "artifacts/rag-eval-q865m3j4",
+    "passed": true,
+    "retrieval": {
+      "passed": true,
+      "cases": [
+        {
+          "case_id": "a-price-context",
+          "passed": true,
+          "checks": {
+            "access_behavior": true,
+            "expected_documents": true,
+            "expected_status": true,
+            "expected_document_versions": true,
+            "expected_sql_facts": true,
+            "authorized_evidence_only": true,
+            "no_model_calls": true,
+            "expected_context_complete": true,
+            "expected_chunks": true,
+            "required_conditions_covered": true
+          },
+          "expected_documents": [
+            "ENG-A-001",
+            "MAIL-A-001"
+          ],
+          "actual_documents": [
+            "ENG-A-001",
+            "MAIL-A-001"
+          ],
+          "recall_at_k": 1.0,
+          "precision_at_k": 1.0,
+          "elapsed_ms": 3.41,
+          "condition_checks": [
+            {
+              "condition_id": "unsigned_future_volume",
+              "covered": true
+            },
+            {
+              "condition_id": "mandatory_material_inspection",
+              "covered": true
+            },
+            {
+              "condition_id": "no_approved_volume_cost_reduction",
+              "covered": true
+            },
+            {
+              "condition_id": "engineering_review_required",
+              "covered": true
+            }
+          ],
+          "condition_coverage": 1.0,
+          "single_passage_condition_coverage": 0.25,
+          "returned_chunk_count": 4,
+          "context_chars": 744
+        },
+        {
+          "case_id": "a-price-no-volume-keywords",
+          "passed": true,
+          "checks": {
+            "access_behavior": true,
+            "expected_documents": true,
+            "expected_status": true,
+            "expected_document_versions": true,
+            "expected_sql_facts": true,
+            "authorized_evidence_only": true,
+            "no_model_calls": true,
+            "expected_context_complete": true,
+            "expected_chunks": true,
+            "required_conditions_covered": true
+          },
+          "expected_documents": [
+            "ENG-A-001",
+            "MAIL-A-001"
+          ],
+          "actual_documents": [
+            "ENG-A-001",
+            "MAIL-A-001"
+          ],
+          "recall_at_k": 1.0,
+          "precision_at_k": 1.0,
+          "elapsed_ms": 2.544,
+          "condition_checks": [
+            {
+              "condition_id": "unsigned_future_volume",
+              "covered": true
+            },
+            {
+              "condition_id": "mandatory_material_inspection",
+              "covered": true
+            },
+            {
+              "condition_id": "no_approved_volume_cost_reduction",
+              "covered": true
+            },
+            {
+              "condition_id": "engineering_review_required",
+              "covered": true
+            }
+          ],
+          "condition_coverage": 1.0,
+          "single_passage_condition_coverage": 0.25,
+          "returned_chunk_count": 4,
+          "context_chars": 744
+        },
+        {
+          "case_id": "b-price-context",
+          "passed": true,
+          "checks": {
+            "access_behavior": true,
+            "expected_documents": true,
+            "expected_status": true,
+            "expected_document_versions": true,
+            "expected_sql_facts": true,
+            "authorized_evidence_only": true,
+            "no_model_calls": true,
+            "expected_context_complete": true,
+            "expected_chunks": true,
+            "required_conditions_covered": true
+          },
+          "expected_documents": [
+            "ENG-B-001",
+            "MAIL-B-001"
+          ],
+          "actual_documents": [
+            "ENG-B-001",
+            "MAIL-B-001"
+          ],
+          "recall_at_k": 1.0,
+          "precision_at_k": 1.0,
+          "elapsed_ms": 1.9,
+          "condition_checks": [],
+          "condition_coverage": null,
+          "single_passage_condition_coverage": null,
+          "returned_chunk_count": 2,
+          "context_chars": 375
+        },
+        {
+          "case_id": "a-engineering-lookup",
+          "passed": true,
+          "checks": {
+            "access_behavior": true,
+            "expected_documents": true,
+            "expected_status": true,
+            "expected_document_versions": true,
+            "expected_sql_facts": true,
+            "authorized_evidence_only": true,
+            "no_model_calls": true,
+            "expected_context_complete": true,
+            "expected_chunks": true,
+            "required_conditions_covered": true
+          },
+          "expected_documents": [
+            "ENG-A-001"
+          ],
+          "actual_documents": [
+            "ENG-A-001"
+          ],
+          "recall_at_k": 1.0,
+          "precision_at_k": 1.0,
+          "elapsed_ms": 1.742,
+          "condition_checks": [
+            {
+              "condition_id": "mandatory_material_inspection",
+              "covered": true
+            },
+            {
+              "condition_id": "no_approved_volume_cost_reduction",
+              "covered": true
+            },
+            {
+              "condition_id": "engineering_review_required",
+              "covered": true
+            }
+          ],
+          "condition_coverage": 1.0,
+          "single_passage_condition_coverage": 0.3333333333333333,
+          "returned_chunk_count": 2,
+          "context_chars": 432
+        },
+        {
+          "case_id": "a-engineering-context-from-cost-query",
+          "passed": true,
+          "checks": {
+            "access_behavior": true,
+            "expected_documents": true,
+            "expected_status": true,
+            "expected_document_versions": true,
+            "expected_sql_facts": true,
+            "authorized_evidence_only": true,
+            "no_model_calls": true,
+            "expected_context_complete": true,
+            "expected_chunks": true,
+            "required_conditions_covered": true
+          },
+          "expected_documents": [
+            "ENG-A-001"
+          ],
+          "actual_documents": [
+            "ENG-A-001"
+          ],
+          "recall_at_k": 1.0,
+          "precision_at_k": 1.0,
+          "elapsed_ms": 1.964,
+          "condition_checks": [
+            {
+              "condition_id": "mandatory_material_inspection",
+              "covered": true
+            },
+            {
+              "condition_id": "no_approved_volume_cost_reduction",
+              "covered": true
+            },
+            {
+              "condition_id": "engineering_review_required",
+              "covered": true
+            }
+          ],
+          "condition_coverage": 1.0,
+          "single_passage_condition_coverage": 0.3333333333333333,
+          "returned_chunk_count": 2,
+          "context_chars": 432
+        },
+        {
+          "case_id": "a-packaging-lookup",
+          "passed": true,
+          "checks": {
+            "access_behavior": true,
+            "expected_documents": true,
+            "expected_status": true,
+            "expected_document_versions": true,
+            "expected_sql_facts": true,
+            "authorized_evidence_only": true,
+            "no_model_calls": true,
+            "expected_context_complete": true,
+            "expected_chunks": true,
+            "required_conditions_covered": true
+          },
+          "expected_documents": [
+            "SHIP-A-001"
+          ],
+          "actual_documents": [
+            "SHIP-A-001"
+          ],
+          "recall_at_k": 1.0,
+          "precision_at_k": 1.0,
+          "elapsed_ms": 1.685,
+          "condition_checks": [],
+          "condition_coverage": null,
+          "single_passage_condition_coverage": null,
+          "returned_chunk_count": 1,
+          "context_chars": 155
+        },
+        {
+          "case_id": "missing-evidence",
+          "passed": true,
+          "checks": {
+            "access_behavior": true,
+            "expected_documents": true,
+            "expected_status": true,
+            "expected_document_versions": true,
+            "expected_sql_facts": true,
+            "authorized_evidence_only": true,
+            "no_model_calls": true,
+            "expected_context_complete": true,
+            "expected_chunks": true,
+            "required_conditions_covered": true
+          },
+          "expected_documents": [],
+          "actual_documents": [],
+          "recall_at_k": null,
+          "precision_at_k": null,
+          "elapsed_ms": 1.26,
+          "condition_checks": [],
+          "condition_coverage": null,
+          "single_passage_condition_coverage": null,
+          "returned_chunk_count": 0,
+          "context_chars": 0
+        },
+        {
+          "case_id": "cross-customer-denied",
+          "passed": true,
+          "denied": true
+        },
+        {
+          "case_id": "unknown-principal-denied",
+          "passed": true,
+          "denied": true
+        }
+      ],
+      "case_count": 9,
+      "positive_retrieval_case_count": 6,
+      "access_denial_cases": 2,
+      "mean_recall_at_k": 1.0,
+      "mean_precision_at_k": 1.0,
+      "metric_unit": "distinct source document at k; same-version parent context expanded under a separate budget",
+      "condition_labeled_cases": 4,
+      "mean_condition_coverage": 1.0,
+      "mean_single_passage_condition_coverage": 0.29166666666666663,
+      "measurement_scope": "Small reviewed English synthetic corpus; distinct-document lexical retrieval, exact SQL facts and manually labeled source-bound condition spans. No semantic generalization, LLM faithfulness or production latency claim."
+    },
+    "lifecycle": [
+      {
+        "experiment": "Source update while index and answer cache are stale",
+        "checks": {
+          "initial_quote_ready": true,
+          "cache_exercised": true,
+          "stale_version_blocked_before_refresh": true,
+          "incomplete_before_refresh": true,
+          "new_version_after_refresh": true
+        },
+        "passed": true
+      },
+      {
+        "experiment": "Deletion propagation and late old-version replay",
+        "checks": {
+          "deleted_evidence_blocked_before_refresh": true,
+          "historical_query_cannot_bypass_current_deletion": true,
+          "deleted_index_chunks_removed": true,
+          "old_ingestion_cannot_resurrect": true
+        },
+        "passed": true
+      },
+      {
+        "experiment": "Access revoked after cache population",
+        "passed": true
+      },
+      {
+        "experiment": "Conflicting version and reassigned document ownership",
+        "checks": {
+          "version_and_ownership_conflicts_rejected": true,
+          "failed_ingestion_does_not_change_revision": true,
+          "previous_quote_still_ready": true
+        },
+        "passed": true
+      },
+      {
+        "experiment": "New ETL publication invalidates cached order facts",
+        "checks": {
+          "new_order_version_used": true,
+          "new_quantity_and_cost_used": true,
+          "old_fact_cache_not_used": true
+        },
+        "passed": true
+      }
+    ],
+    "fixture_sha256": {
+      "README.md": "bb50473592704108b6df9609ab5797d1381c41321324d5da0b2d700df278848b",
+      "access.json": "02c39a89d684f4e153f9887c0898c50b2259ecdf29c0f7e66f0c6ac2fffd23b0",
+      "documents/eng-a-draft.md": "01b96b42a0c0cf8061a247b5f190783671b342a648c14c3990be5eeee44ddfdd",
+      "documents/eng-a-v1.md": "2257b8b198ab0f956c36eda0b28451e5286b75d09198b9b098f56985dc2c3ce2",
+      "documents/eng-a-v2.md": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+      "documents/eng-b.md": "14072e893b389957ce606d2ef05ee85d67da35c13ea3725e3dbe84663994b601",
+      "documents/mail-a-v1.md": "6f133b3c17ec02b1d428122fb4b8223ad6ba3ebc9619a2f73cd454816fb24903",
+      "documents/mail-a-v2.md": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+      "documents/mail-b.md": "f5972f3685664e9068a18720ed034fefff0f1e228271efe91c4ac57e54eeb634",
+      "documents/shipping-a.md": "d0c3b09641a4d4d671b17482832860e408712183cfe098f4c0f00a534f35671b",
+      "eval-cases.json": "fc126a3d99634cb82a4f43b5332648826bf3cb41e13c7b79208f2ac041528ca9",
+      "manifest.json": "98a01ae34289a9168c2543747cc9db18e242265d910e934b121b24b56e6dcc0c"
+    },
+    "scope": "Local synthetic RAG only; static demo principals, keyword retrieval, logical deletion and deterministic evidence report. No cloud services or LLM calls."
+  },
+  "api_contracts": {
+    "passed": true,
+    "mode": "mocked_sdk_contracts",
+    "network_calls": 0,
+    "live_integration_verified": false,
+    "snowflake_sql": {
+      "template": "SELECT SOURCE, ENTITY_ID, CUSTOMER_ID, PROJECT_ID, BUSINESS_VERSION, PUBLICATION_ID, DESIGN_VERSION, QUANTITY, CURRENCY, UNIT_COST_CENTS, UNIT_PRICE_CENTS, EXTENDED_COST_CENTS, EXTENDED_PRICE_CENTS FROM SALES.CURATED.CURRENT_ORDER_FACTS WHERE CUSTOMER_ID=%s AND PROJECT_ID=%s AND ENTITY_ID=%s LIMIT 2",
+      "parameters": [
+        "CUSTOMER-A",
+        "PROJECT-A",
+        "ORDER-A001-L1"
+      ],
+      "timeout_seconds": 10,
+      "read_count": 2
+    },
+    "cortex_search": {
+      "query": "customer price discount design D2 material inspection engineering cost change",
+      "columns": [
+        "CHUNK_ID",
+        "DOCUMENT_ID",
+        "VERSION",
+        "CUSTOMER_ID",
+        "PROJECT_ID",
+        "ENTITY_ID",
+        "DESIGN_VERSION",
+        "SOURCE_HASH",
+        "TEXT"
+      ],
+      "filter": {
+        "@and": [
+          {
+            "@eq": {
+              "CUSTOMER_ID": "CUSTOMER-A"
+            }
+          },
+          {
+            "@eq": {
+              "PROJECT_ID": "PROJECT-A"
+            }
+          },
+          {
+            "@eq": {
+              "ENTITY_ID": "ORDER-A001-L1"
+            }
+          },
+          {
+            "@or": [
+              {
+                "@eq": {
+                  "DESIGN_VERSION": "D2"
+                }
+              },
+              {
+                "@eq": {
+                  "DESIGN_VERSION": ""
+                }
+              }
+            ]
+          },
+          {
+            "@lte": {
+              "EFFECTIVE_FROM": "2026-10-19"
+            }
+          },
+          {
+            "@lte": {
+              "OBSERVED_ON": "2026-10-19"
+            }
+          },
+          {
+            "@or": [
+              {
+                "@eq": {
+                  "STATUS": "approved"
+                }
+              },
+              {
+                "@eq": {
+                  "STATUS": "request"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "limit": 40
+    },
+    "gmail": {
+      "get": {
+        "userId": "me",
+        "id": "synthetic-mail-a",
+        "format": "full"
+      },
+      "execute": {
+        "num_retries": 0
+      },
+      "chunks": 2,
+      "indexed_with_trusted_scope": true
+    },
+    "evidence": {
+      "status": "ready",
+      "order_version": 3,
+      "citations": [
+        "ENG-A-001:v2:c1",
+        "ENG-A-001:v2:c2",
+        "MAIL-A-001:v2:c1",
+        "MAIL-A-001:v2:c2"
+      ],
+      "returned_document_count": 2,
+      "returned_chunk_count": 4,
+      "context_complete": true
+    },
+    "limitations": "Injected fake SDK clients exercise real adapter methods. No SDK installation, authentication, remote service, semantic ranking or cloud synchronization is verified.",
+    "report": "artifacts/api-contracts-8gycvl5e/report.json"
+  },
+  "rag_walkthrough": {
+    "passed": true,
+    "checks": {
+      "initial_order_v3_quantity_12000_cost_1300": true,
+      "initial_current_sources_only": true,
+      "all_four_reviewed_conditions_present": true,
+      "single_passage_baseline_misses_three_conditions": true,
+      "budget_exhaustion_is_not_silent_truncation": true,
+      "cache_was_populated": true,
+      "stale_old_engineering_blocked": true,
+      "new_version_cited_after_refresh": true,
+      "delete_blocks_stale_index": true,
+      "old_replay_does_not_resurrect": true,
+      "historical_query_cannot_bypass_delete": true,
+      "deleted_index_chunks_removed": true,
+      "revocation_blocks_cached_evidence": true
+    },
+    "report": "artifacts/rag-walkthrough-8_njjsap/report.json",
+    "initial_evidence": "artifacts/rag-walkthrough-8_njjsap/01-initial.txt",
+    "condition_comparison": {
+      "metric": "Exact source-bound coverage of four manually reviewed conditions in this synthetic discount example",
+      "single_passage_baseline": {
+        "coverage": 0.25,
+        "checks": [
+          {
+            "condition_id": "unsigned_future_volume",
+            "covered": false
+          },
+          {
+            "condition_id": "mandatory_material_inspection",
+            "covered": true
+          },
+          {
+            "condition_id": "no_approved_volume_cost_reduction",
+            "covered": false
+          },
+          {
+            "condition_id": "engineering_review_required",
+            "covered": false
+          }
+        ]
+      },
+      "bounded_document_context": {
+        "coverage": 1.0,
+        "checks": [
+          {
+            "condition_id": "unsigned_future_volume",
+            "covered": true
+          },
+          {
+            "condition_id": "mandatory_material_inspection",
+            "covered": true
+          },
+          {
+            "condition_id": "no_approved_volume_cost_reduction",
+            "covered": true
+          },
+          {
+            "condition_id": "engineering_review_required",
+            "covered": true
+          }
+        ]
+      },
+      "context_chars": 744,
+      "returned_documents": 2,
+      "returned_passages": 4
+    }
+  },
+  "source_sha256": {
+    "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/repositories/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/repositories/source.py": "5ea283a4a05f2acdd70fe27d0ce765fc33e1fa2f5e6770ade9bd1e5f6a602b4d",
+    "app/repositories/warehouse.py": "b6ca110e7368ac8ddee842389d060b067c08798e4babcead818f5f8aa07831e0",
+    "pipelines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipelines/etl/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pipelines/etl/extract.py": "42b328df0dfccf813eb7b4a3ebee5bd50274493014189641fea4febaae820596",
+    "pipelines/etl/load.py": "cef77cadd85311bb619b48f8a15b07f79b62f9b54243d44537c7fa7c2f2b5d20",
+    "pipelines/etl/models.py": "5dd81a0f6fea4565d4cbbbfa2c281bdb135310b84ce911bd0789a4a8b69ec2f5",
+    "pipelines/etl/pipeline.py": "c8f9591a92203dc15cf892aba2c2f7cf1bdfc469e75f3fe91bf1e90b7c61123e",
+    "pipelines/etl/policy.py": "56cabfb048cc8fedba3d30ee46a3ad4e9264652ac03c763752b46f191dfd0b6c",
+    "pipelines/etl/transform.py": "917954fe188493063bd7cabec1bc97fac6cf33e5e7ee108db1ba5e5eec3e3e59",
+    "pipelines/etl/validate.py": "1e8fed940625002516598b3648a47cb2d72bfcd3cb672fbfe244ee2b16a7f738",
+    "rag/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rag/documents.py": "143b1925b86db55777919066381e2fce7d8eb6d97f7aec8555bad9ed5ced4a72",
+    "rag/evaluation.py": "4c0be00deede142aaa956d32b5128bf0776be98de6d469fc8d563727410e9d55",
+    "rag/retrieval.py": "30e646137d46d0e1fa9a7e14fc137da76e463bf5e8651387ed202dd61cb5b53a",
+    "rag/store.py": "95ce69537a9dc1260f92c63d96456f059773bfefbb580f11ebf886c8e63b0223",
+    "integrations/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "integrations/gmail.py": "c6dba7294e7c1150a4ee2e9b18c42a6e84e20e5f3713e3e6bf7d9a082a509809",
+    "integrations/settings.py": "6412f2b8060364c003dd1eca1cf6316f649e1e5dd1b0d5979b32ca58bbb958f9",
+    "integrations/snowflake.py": "8059b6dd7de45904cad7d8942e5caee48769bc1209c0b119c69715ccc0e76245",
+    "scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scripts/demo.py": "43504473a86eb0d2d5d0b6babb9c29ac16d0e75bea420ee6da531078ddde689d",
+    "scripts/demo_api_contracts.py": "c5317221e45449d9cd006304f312945edf80d768ce9bdfc4db485452e1f42dc6",
+    "scripts/eval_rag.py": "dcfe9ca1a5cda29acba7c65b5c8a0fa8cb499b52c1424bbcb7f3f812e84ab881",
+    "scripts/fixtures.py": "1e981cb8f5b3d80487b701aa1f8a0de2d3d34b1a3153d6fa601ec74d1fdc436f",
+    "scripts/inspect.py": "af61a746e738c9a939a9409a735c2648e0445656d5defeb0907daf4138540799",
+    "scripts/load_eval.py": "a46c9ce79cf03c347946eb5c3297716f7e3aff4469f3f9e6d095ab2409346dd9",
+    "scripts/order_walkthrough.py": "b7c255c9a663d1de03c6f25e6a8e574b28c9f1b4b60deaccd2a84b160e78e1ea",
+    "scripts/release_check.py": "3a7892bfba0b360ab7cecc5c20e109c53db98abe6775dac17f6b3260e161d27c",
+    "scripts/review_rag.py": "34d9b9f3010b03b0419d3de1f1d4d29b119f3257b3e9942015ef42d5e169ca26",
+    "scripts/run_batch.py": "e8bedfa23f1cb22e4dbb36cfddaf755d6212b6911929b75b165db953cddb22ca",
+    "scripts/run_local.py": "23703cfcc178aa57653b29de390dec7e4e661b66c4c266205ee82cf3f7af5f32",
+    "scripts/run_rag.py": "2490e33a7a77166cc892e0848babe53b380283dac50d2d9057105e75535de2ee",
+    "scripts/verify.py": "bd892732968f943ea9b19d2315618f057c04948fa68b9418f77ccaa6a3d295c4",
+    "tests/test_api_adapters.py": "f70fc6fd036496b14f90d2211d4b408781753bb0ba06bb8ea315f61507ef827c",
+    "tests/test_batch_policy.py": "ed22d7d56db337c221c874541167f6a327735ead4345ac91636cde5d8228fe3b",
+    "tests/test_incremental_etl.py": "38ef4195e700d26ab8419a68ea7224493926b204737b360d10ab3801c534a066",
+    "tests/test_load_evaluation.py": "2930df634e85722f3e493b2107e44478ed8dc65fb9e8a9c09045bb24752c9470",
+    "tests/test_local_demo.py": "97f1939355de4f6cd07596f71b75fcc1c17802b2e719a919862c9fd0c316057d",
+    "tests/test_rag.py": "b1f87e2383c13869c67e56f1d4d87cac9e1d60cda3e37b0c0f66889a957d5340",
+    "tests/test_rag_context.py": "bbe7bd9648a9669f6c56ad8e868d80fd63c307082658fa67e3131a7632737166",
+    "tests/test_release_check.py": "5aaa0634936ff73d7961a3eb62b0fce7622aa114f3e0a5abe597bdd7a9315643"
+  },
+  "scope": "Local synthetic ETL and scoped keyword retrieval; no cloud services, LLM calls, original project changes or GitHub publication"
+}

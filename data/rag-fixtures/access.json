@@ -1,0 +1,16 @@
+{
+  "format_version": 1,
+  "synthetic": true,
+  "grants": [
+    {
+      "actor": "demo-manager-a",
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A"
+    },
+    {
+      "actor": "demo-manager-b",
+      "customer_id": "CUSTOMER-B",
+      "project_id": "PROJECT-B"
+    }
+  ]
+}

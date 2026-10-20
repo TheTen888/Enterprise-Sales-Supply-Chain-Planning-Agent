@@ -1,0 +1,143 @@
+{
+  "format_version": 1,
+  "synthetic": true,
+  "as_of": "2026-10-19",
+  "ownerships": {
+    "MAIL-A-001": [
+      "CUSTOMER-A",
+      "PROJECT-A",
+      "ORDER-A001-L1"
+    ],
+    "ENG-A-001": [
+      "CUSTOMER-A",
+      "PROJECT-A",
+      "ORDER-A001-L1"
+    ],
+    "SHIP-A-001": [
+      "CUSTOMER-A",
+      "PROJECT-A",
+      "ORDER-A001-L1"
+    ],
+    "ENG-A-DRAFT": [
+      "CUSTOMER-A",
+      "PROJECT-A",
+      "ORDER-A001-L1"
+    ],
+    "MAIL-B-001": [
+      "CUSTOMER-B",
+      "PROJECT-B",
+      "ORDER-B001-L1"
+    ],
+    "ENG-B-001": [
+      "CUSTOMER-B",
+      "PROJECT-B",
+      "ORDER-B001-L1"
+    ]
+  },
+  "documents": [
+    {
+      "document_id": "MAIL-A-001",
+      "version": 1,
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "entity_id": "ORDER-A001-L1",
+      "design_version": "",
+      "kind": "customer_request",
+      "status": "request",
+      "source_path": "documents/mail-a-v1.md",
+      "effective_from": "2026-10-01",
+      "observed_on": "2026-10-01"
+    },
+    {
+      "document_id": "MAIL-A-001",
+      "version": 2,
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "entity_id": "ORDER-A001-L1",
+      "design_version": "",
+      "kind": "customer_request",
+      "status": "request",
+      "source_path": "documents/mail-a-v2.md",
+      "effective_from": "2026-10-14",
+      "observed_on": "2026-10-14"
+    },
+    {
+      "document_id": "ENG-A-001",
+      "version": 1,
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "entity_id": "ORDER-A001-L1",
+      "design_version": "D1",
+      "kind": "engineering_change",
+      "status": "approved",
+      "source_path": "documents/eng-a-v1.md",
+      "effective_from": "2026-10-01",
+      "observed_on": "2026-10-01"
+    },
+    {
+      "document_id": "ENG-A-001",
+      "version": 2,
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "entity_id": "ORDER-A001-L1",
+      "design_version": "D2",
+      "kind": "engineering_change",
+      "status": "approved",
+      "source_path": "documents/eng-a-v2.md",
+      "effective_from": "2026-10-14",
+      "observed_on": "2026-10-14"
+    },
+    {
+      "document_id": "SHIP-A-001",
+      "version": 1,
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "entity_id": "ORDER-A001-L1",
+      "design_version": "",
+      "kind": "shipping_note",
+      "status": "approved",
+      "source_path": "documents/shipping-a.md",
+      "effective_from": "2026-10-01",
+      "observed_on": "2026-10-01"
+    },
+    {
+      "document_id": "ENG-A-DRAFT",
+      "version": 1,
+      "customer_id": "CUSTOMER-A",
+      "project_id": "PROJECT-A",
+      "entity_id": "ORDER-A001-L1",
+      "design_version": "D2",
+      "kind": "engineering_change",
+      "status": "draft",
+      "source_path": "documents/eng-a-draft.md",
+      "effective_from": "2026-10-01",
+      "observed_on": "2026-10-01"
+    },
+    {
+      "document_id": "MAIL-B-001",
+      "version": 1,
+      "customer_id": "CUSTOMER-B",
+      "project_id": "PROJECT-B",
+      "entity_id": "ORDER-B001-L1",
+      "design_version": "",
+      "kind": "customer_request",
+      "status": "request",
+      "source_path": "documents/mail-b.md",
+      "effective_from": "2026-10-01",
+      "observed_on": "2026-10-01"
+    },
+    {
+      "document_id": "ENG-B-001",
+      "version": 1,
+      "customer_id": "CUSTOMER-B",
+      "project_id": "PROJECT-B",
+      "entity_id": "ORDER-B001-L1",
+      "design_version": "D1",
+      "kind": "engineering_change",
+      "status": "approved",
+      "source_path": "documents/eng-b.md",
+      "effective_from": "2026-10-01",
+      "observed_on": "2026-10-01"
+    }
+  ]
+}

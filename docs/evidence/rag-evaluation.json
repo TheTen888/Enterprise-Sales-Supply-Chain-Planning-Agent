@@ -1,0 +1,362 @@
+{
+  "verified_at_utc": "2026-10-20T02:07:59.978333+00:00",
+  "workspace": "artifacts/rag-eval-q865m3j4",
+  "passed": true,
+  "retrieval": {
+    "passed": true,
+    "cases": [
+      {
+        "case_id": "a-price-context",
+        "passed": true,
+        "checks": {
+          "access_behavior": true,
+          "expected_documents": true,
+          "expected_status": true,
+          "expected_document_versions": true,
+          "expected_sql_facts": true,
+          "authorized_evidence_only": true,
+          "no_model_calls": true,
+          "expected_context_complete": true,
+          "expected_chunks": true,
+          "required_conditions_covered": true
+        },
+        "expected_documents": [
+          "ENG-A-001",
+          "MAIL-A-001"
+        ],
+        "actual_documents": [
+          "ENG-A-001",
+          "MAIL-A-001"
+        ],
+        "recall_at_k": 1.0,
+        "precision_at_k": 1.0,
+        "elapsed_ms": 3.41,
+        "condition_checks": [
+          {
+            "condition_id": "unsigned_future_volume",
+            "covered": true
+          },
+          {
+            "condition_id": "mandatory_material_inspection",
+            "covered": true
+          },
+          {
+            "condition_id": "no_approved_volume_cost_reduction",
+            "covered": true
+          },
+          {
+            "condition_id": "engineering_review_required",
+            "covered": true
+          }
+        ],
+        "condition_coverage": 1.0,
+        "single_passage_condition_coverage": 0.25,
+        "returned_chunk_count": 4,
+        "context_chars": 744
+      },
+      {
+        "case_id": "a-price-no-volume-keywords",
+        "passed": true,
+        "checks": {
+          "access_behavior": true,
+          "expected_documents": true,
+          "expected_status": true,
+          "expected_document_versions": true,
+          "expected_sql_facts": true,
+          "authorized_evidence_only": true,
+          "no_model_calls": true,
+          "expected_context_complete": true,
+          "expected_chunks": true,
+          "required_conditions_covered": true
+        },
+        "expected_documents": [
+          "ENG-A-001",
+          "MAIL-A-001"
+        ],
+        "actual_documents": [
+          "ENG-A-001",
+          "MAIL-A-001"
+        ],
+        "recall_at_k": 1.0,
+        "precision_at_k": 1.0,
+        "elapsed_ms": 2.544,
+        "condition_checks": [
+          {
+            "condition_id": "unsigned_future_volume",
+            "covered": true
+          },
+          {
+            "condition_id": "mandatory_material_inspection",
+            "covered": true
+          },
+          {
+            "condition_id": "no_approved_volume_cost_reduction",
+            "covered": true
+          },
+          {
+            "condition_id": "engineering_review_required",
+            "covered": true
+          }
+        ],
+        "condition_coverage": 1.0,
+        "single_passage_condition_coverage": 0.25,
+        "returned_chunk_count": 4,
+        "context_chars": 744
+      },
+      {
+        "case_id": "b-price-context",
+        "passed": true,
+        "checks": {
+          "access_behavior": true,
+          "expected_documents": true,
+          "expected_status": true,
+          "expected_document_versions": true,
+          "expected_sql_facts": true,
+          "authorized_evidence_only": true,
+          "no_model_calls": true,
+          "expected_context_complete": true,
+          "expected_chunks": true,
+          "required_conditions_covered": true
+        },
+        "expected_documents": [
+          "ENG-B-001",
+          "MAIL-B-001"
+        ],
+        "actual_documents": [
+          "ENG-B-001",
+          "MAIL-B-001"
+        ],
+        "recall_at_k": 1.0,
+        "precision_at_k": 1.0,
+        "elapsed_ms": 1.9,
+        "condition_checks": [],
+        "condition_coverage": null,
+        "single_passage_condition_coverage": null,
+        "returned_chunk_count": 2,
+        "context_chars": 375
+      },
+      {
+        "case_id": "a-engineering-lookup",
+        "passed": true,
+        "checks": {
+          "access_behavior": true,
+          "expected_documents": true,
+          "expected_status": true,
+          "expected_document_versions": true,
+          "expected_sql_facts": true,
+          "authorized_evidence_only": true,
+          "no_model_calls": true,
+          "expected_context_complete": true,
+          "expected_chunks": true,
+          "required_conditions_covered": true
+        },
+        "expected_documents": [
+          "ENG-A-001"
+        ],
+        "actual_documents": [
+          "ENG-A-001"
+        ],
+        "recall_at_k": 1.0,
+        "precision_at_k": 1.0,
+        "elapsed_ms": 1.742,
+        "condition_checks": [
+          {
+            "condition_id": "mandatory_material_inspection",
+            "covered": true
+          },
+          {
+            "condition_id": "no_approved_volume_cost_reduction",
+            "covered": true
+          },
+          {
+            "condition_id": "engineering_review_required",
+            "covered": true
+          }
+        ],
+        "condition_coverage": 1.0,
+        "single_passage_condition_coverage": 0.3333333333333333,
+        "returned_chunk_count": 2,
+        "context_chars": 432
+      },
+      {
+        "case_id": "a-engineering-context-from-cost-query",
+        "passed": true,
+        "checks": {
+          "access_behavior": true,
+          "expected_documents": true,
+          "expected_status": true,
+          "expected_document_versions": true,
+          "expected_sql_facts": true,
+          "authorized_evidence_only": true,
+          "no_model_calls": true,
+          "expected_context_complete": true,
+          "expected_chunks": true,
+          "required_conditions_covered": true
+        },
+        "expected_documents": [
+          "ENG-A-001"
+        ],
+        "actual_documents": [
+          "ENG-A-001"
+        ],
+        "recall_at_k": 1.0,
+        "precision_at_k": 1.0,
+        "elapsed_ms": 1.964,
+        "condition_checks": [
+          {
+            "condition_id": "mandatory_material_inspection",
+            "covered": true
+          },
+          {
+            "condition_id": "no_approved_volume_cost_reduction",
+            "covered": true
+          },
+          {
+            "condition_id": "engineering_review_required",
+            "covered": true
+          }
+        ],
+        "condition_coverage": 1.0,
+        "single_passage_condition_coverage": 0.3333333333333333,
+        "returned_chunk_count": 2,
+        "context_chars": 432
+      },
+      {
+        "case_id": "a-packaging-lookup",
+        "passed": true,
+        "checks": {
+          "access_behavior": true,
+          "expected_documents": true,
+          "expected_status": true,
+          "expected_document_versions": true,
+          "expected_sql_facts": true,
+          "authorized_evidence_only": true,
+          "no_model_calls": true,
+          "expected_context_complete": true,
+          "expected_chunks": true,
+          "required_conditions_covered": true
+        },
+        "expected_documents": [
+          "SHIP-A-001"
+        ],
+        "actual_documents": [
+          "SHIP-A-001"
+        ],
+        "recall_at_k": 1.0,
+        "precision_at_k": 1.0,
+        "elapsed_ms": 1.685,
+        "condition_checks": [],
+        "condition_coverage": null,
+        "single_passage_condition_coverage": null,
+        "returned_chunk_count": 1,
+        "context_chars": 155
+      },
+      {
+        "case_id": "missing-evidence",
+        "passed": true,
+        "checks": {
+          "access_behavior": true,
+          "expected_documents": true,
+          "expected_status": true,
+          "expected_document_versions": true,
+          "expected_sql_facts": true,
+          "authorized_evidence_only": true,
+          "no_model_calls": true,
+          "expected_context_complete": true,
+          "expected_chunks": true,
+          "required_conditions_covered": true
+        },
+        "expected_documents": [],
+        "actual_documents": [],
+        "recall_at_k": null,
+        "precision_at_k": null,
+        "elapsed_ms": 1.26,
+        "condition_checks": [],
+        "condition_coverage": null,
+        "single_passage_condition_coverage": null,
+        "returned_chunk_count": 0,
+        "context_chars": 0
+      },
+      {
+        "case_id": "cross-customer-denied",
+        "passed": true,
+        "denied": true
+      },
+      {
+        "case_id": "unknown-principal-denied",
+        "passed": true,
+        "denied": true
+      }
+    ],
+    "case_count": 9,
+    "positive_retrieval_case_count": 6,
+    "access_denial_cases": 2,
+    "mean_recall_at_k": 1.0,
+    "mean_precision_at_k": 1.0,
+    "metric_unit": "distinct source document at k; same-version parent context expanded under a separate budget",
+    "condition_labeled_cases": 4,
+    "mean_condition_coverage": 1.0,
+    "mean_single_passage_condition_coverage": 0.29166666666666663,
+    "measurement_scope": "Small reviewed English synthetic corpus; distinct-document lexical retrieval, exact SQL facts and manually labeled source-bound condition spans. No semantic generalization, LLM faithfulness or production latency claim."
+  },
+  "lifecycle": [
+    {
+      "experiment": "Source update while index and answer cache are stale",
+      "checks": {
+        "initial_quote_ready": true,
+        "cache_exercised": true,
+        "stale_version_blocked_before_refresh": true,
+        "incomplete_before_refresh": true,
+        "new_version_after_refresh": true
+      },
+      "passed": true
+    },
+    {
+      "experiment": "Deletion propagation and late old-version replay",
+      "checks": {
+        "deleted_evidence_blocked_before_refresh": true,
+        "historical_query_cannot_bypass_current_deletion": true,
+        "deleted_index_chunks_removed": true,
+        "old_ingestion_cannot_resurrect": true
+      },
+      "passed": true
+    },
+    {
+      "experiment": "Access revoked after cache population",
+      "passed": true
+    },
+    {
+      "experiment": "Conflicting version and reassigned document ownership",
+      "checks": {
+        "version_and_ownership_conflicts_rejected": true,
+        "failed_ingestion_does_not_change_revision": true,
+        "previous_quote_still_ready": true
+      },
+      "passed": true
+    },
+    {
+      "experiment": "New ETL publication invalidates cached order facts",
+      "checks": {
+        "new_order_version_used": true,
+        "new_quantity_and_cost_used": true,
+        "old_fact_cache_not_used": true
+      },
+      "passed": true
+    }
+  ],
+  "fixture_sha256": {
+    "README.md": "bb50473592704108b6df9609ab5797d1381c41321324d5da0b2d700df278848b",
+    "access.json": "02c39a89d684f4e153f9887c0898c50b2259ecdf29c0f7e66f0c6ac2fffd23b0",
+    "documents/eng-a-draft.md": "01b96b42a0c0cf8061a247b5f190783671b342a648c14c3990be5eeee44ddfdd",
+    "documents/eng-a-v1.md": "2257b8b198ab0f956c36eda0b28451e5286b75d09198b9b098f56985dc2c3ce2",
+    "documents/eng-a-v2.md": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+    "documents/eng-b.md": "14072e893b389957ce606d2ef05ee85d67da35c13ea3725e3dbe84663994b601",
+    "documents/mail-a-v1.md": "6f133b3c17ec02b1d428122fb4b8223ad6ba3ebc9619a2f73cd454816fb24903",
+    "documents/mail-a-v2.md": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+    "documents/mail-b.md": "f5972f3685664e9068a18720ed034fefff0f1e228271efe91c4ac57e54eeb634",
+    "documents/shipping-a.md": "d0c3b09641a4d4d671b17482832860e408712183cfe098f4c0f00a534f35671b",
+    "eval-cases.json": "fc126a3d99634cb82a4f43b5332648826bf3cb41e13c7b79208f2ac041528ca9",
+    "manifest.json": "98a01ae34289a9168c2543747cc9db18e242265d910e934b121b24b56e6dcc0c"
+  },
+  "scope": "Local synthetic RAG only; static demo principals, keyword retrieval, logical deletion and deterministic evidence report. No cloud services or LLM calls."
+}

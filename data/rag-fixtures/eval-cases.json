@@ -1,0 +1,314 @@
+{
+  "format_version": 1,
+  "synthetic": true,
+  "metric_unit": "distinct source document at k; same-version parent context expanded under a separate budget",
+  "cases": [
+    {
+      "case_id": "a-price-context",
+      "actor": "demo-manager-a",
+      "customer": "CUSTOMER-A",
+      "project": "PROJECT-A",
+      "entity": "ORDER-A001-L1",
+      "query": "customer price discount design D2 material inspection engineering cost change",
+      "k": 2,
+      "task": "quote",
+      "expected_document_ids": [
+        "MAIL-A-001",
+        "ENG-A-001"
+      ],
+      "expected_status": "ready",
+      "expected_facts": {
+        "quantity": 12000,
+        "unit_cost_cents": 1300,
+        "business_version": 3
+      },
+      "expected_versions": {
+        "MAIL-A-001": 2,
+        "ENG-A-001": 2
+      },
+      "expected_context_complete": true,
+      "expected_chunk_ids": [
+        "MAIL-A-001:v2:c1",
+        "MAIL-A-001:v2:c2",
+        "ENG-A-001:v2:c1",
+        "ENG-A-001:v2:c2"
+      ],
+      "expected_conditions": [
+        {
+          "condition_id": "unsigned_future_volume",
+          "document_id": "MAIL-A-001",
+          "version": 2,
+          "chunk_id": "MAIL-A-001:v2:c2",
+          "required_text": "no additional quantity commitment has been signed."
+        },
+        {
+          "condition_id": "mandatory_material_inspection",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c1",
+          "required_text": "Preserve both requirements when discussing a customer price discount."
+        },
+        {
+          "condition_id": "no_approved_volume_cost_reduction",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "No approved volume-based cost reduction has been provided."
+        },
+        {
+          "condition_id": "engineering_review_required",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "Any simplification needs a separate engineering review."
+        }
+      ]
+    },
+    {
+      "case_id": "a-price-no-volume-keywords",
+      "actor": "demo-manager-a",
+      "customer": "CUSTOMER-A",
+      "project": "PROJECT-A",
+      "entity": "ORDER-A001-L1",
+      "query": "customer price discount engineering",
+      "k": 2,
+      "task": "quote",
+      "expected_document_ids": [
+        "MAIL-A-001",
+        "ENG-A-001"
+      ],
+      "expected_status": "ready",
+      "expected_facts": {
+        "quantity": 12000,
+        "unit_cost_cents": 1300,
+        "business_version": 3
+      },
+      "expected_versions": {
+        "MAIL-A-001": 2,
+        "ENG-A-001": 2
+      },
+      "expected_context_complete": true,
+      "expected_chunk_ids": [
+        "MAIL-A-001:v2:c1",
+        "MAIL-A-001:v2:c2",
+        "ENG-A-001:v2:c1",
+        "ENG-A-001:v2:c2"
+      ],
+      "expected_conditions": [
+        {
+          "condition_id": "unsigned_future_volume",
+          "document_id": "MAIL-A-001",
+          "version": 2,
+          "chunk_id": "MAIL-A-001:v2:c2",
+          "required_text": "no additional quantity commitment has been signed."
+        },
+        {
+          "condition_id": "mandatory_material_inspection",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c1",
+          "required_text": "Preserve both requirements when discussing a customer price discount."
+        },
+        {
+          "condition_id": "no_approved_volume_cost_reduction",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "No approved volume-based cost reduction has been provided."
+        },
+        {
+          "condition_id": "engineering_review_required",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "Any simplification needs a separate engineering review."
+        }
+      ]
+    },
+    {
+      "case_id": "b-price-context",
+      "actor": "demo-manager-b",
+      "customer": "CUSTOMER-B",
+      "project": "PROJECT-B",
+      "entity": "ORDER-B001-L1",
+      "query": "customer price discount material inspection cost",
+      "k": 2,
+      "task": "quote",
+      "expected_document_ids": [
+        "MAIL-B-001",
+        "ENG-B-001"
+      ],
+      "expected_status": "ready",
+      "expected_facts": {
+        "quantity": 4500,
+        "unit_cost_cents": 850,
+        "business_version": 2
+      },
+      "expected_versions": {
+        "MAIL-B-001": 1,
+        "ENG-B-001": 1
+      },
+      "expected_context_complete": true,
+      "expected_chunk_ids": [
+        "MAIL-B-001:v1:c1",
+        "ENG-B-001:v1:c1"
+      ]
+    },
+    {
+      "case_id": "a-engineering-lookup",
+      "actor": "demo-manager-a",
+      "customer": "CUSTOMER-A",
+      "project": "PROJECT-A",
+      "entity": "ORDER-A001-L1",
+      "query": "revised material additional inspection step",
+      "k": 1,
+      "task": "lookup",
+      "expected_document_ids": [
+        "ENG-A-001"
+      ],
+      "expected_status": "ready",
+      "expected_facts": {
+        "design_version": "D2"
+      },
+      "expected_versions": {
+        "ENG-A-001": 2
+      },
+      "expected_context_complete": true,
+      "expected_chunk_ids": [
+        "ENG-A-001:v2:c1",
+        "ENG-A-001:v2:c2"
+      ],
+      "expected_conditions": [
+        {
+          "condition_id": "mandatory_material_inspection",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c1",
+          "required_text": "Preserve both requirements when discussing a customer price discount."
+        },
+        {
+          "condition_id": "no_approved_volume_cost_reduction",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "No approved volume-based cost reduction has been provided."
+        },
+        {
+          "condition_id": "engineering_review_required",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "Any simplification needs a separate engineering review."
+        }
+      ]
+    },
+    {
+      "case_id": "a-engineering-context-from-cost-query",
+      "actor": "demo-manager-a",
+      "customer": "CUSTOMER-A",
+      "project": "PROJECT-A",
+      "entity": "ORDER-A001-L1",
+      "query": "engineering cost change",
+      "k": 1,
+      "task": "lookup",
+      "expected_document_ids": [
+        "ENG-A-001"
+      ],
+      "expected_status": "ready",
+      "expected_facts": {
+        "design_version": "D2"
+      },
+      "expected_versions": {
+        "ENG-A-001": 2
+      },
+      "expected_context_complete": true,
+      "expected_chunk_ids": [
+        "ENG-A-001:v2:c1",
+        "ENG-A-001:v2:c2"
+      ],
+      "expected_conditions": [
+        {
+          "condition_id": "mandatory_material_inspection",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c1",
+          "required_text": "Preserve both requirements when discussing a customer price discount."
+        },
+        {
+          "condition_id": "no_approved_volume_cost_reduction",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "No approved volume-based cost reduction has been provided."
+        },
+        {
+          "condition_id": "engineering_review_required",
+          "document_id": "ENG-A-001",
+          "version": 2,
+          "chunk_id": "ENG-A-001:v2:c2",
+          "required_text": "Any simplification needs a separate engineering review."
+        }
+      ]
+    },
+    {
+      "case_id": "a-packaging-lookup",
+      "actor": "demo-manager-a",
+      "customer": "CUSTOMER-A",
+      "project": "PROJECT-A",
+      "entity": "ORDER-A001-L1",
+      "query": "reusable trays blue carton labels packaging",
+      "k": 1,
+      "task": "lookup",
+      "expected_document_ids": [
+        "SHIP-A-001"
+      ],
+      "expected_status": "ready",
+      "expected_facts": {},
+      "expected_versions": {
+        "SHIP-A-001": 1
+      },
+      "expected_context_complete": true,
+      "expected_chunk_ids": [
+        "SHIP-A-001:v1:c1"
+      ]
+    },
+    {
+      "case_id": "missing-evidence",
+      "actor": "demo-manager-a",
+      "customer": "CUSTOMER-A",
+      "project": "PROJECT-A",
+      "entity": "ORDER-A001-L1",
+      "query": "laser welding fracture microscopy",
+      "k": 2,
+      "task": "quote",
+      "expected_document_ids": [],
+      "expected_status": "insufficient_evidence",
+      "expected_facts": {},
+      "expected_versions": {},
+      "expected_context_complete": true,
+      "expected_chunk_ids": []
+    },
+    {
+      "case_id": "cross-customer-denied",
+      "actor": "demo-manager-a",
+      "customer": "CUSTOMER-B",
+      "project": "PROJECT-B",
+      "entity": "ORDER-B001-L1",
+      "query": "price discount",
+      "k": 2,
+      "task": "quote",
+      "expect_denied": true
+    },
+    {
+      "case_id": "unknown-principal-denied",
+      "actor": "unknown-manager",
+      "customer": "CUSTOMER-A",
+      "project": "PROJECT-A",
+      "entity": "ORDER-A001-L1",
+      "query": "price discount",
+      "k": 2,
+      "task": "quote",
+      "expect_denied": true
+    }
+  ]
+}
