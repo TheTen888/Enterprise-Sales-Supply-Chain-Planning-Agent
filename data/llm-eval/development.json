@@ -1,0 +1,321 @@
+{
+  "format_version": 1,
+  "annotation": {
+    "origin": "Separately authored synthetic business expectations; not derived from model responses",
+    "human_review_status": "pending",
+    "scope": "Small regression and acceptance set, not statistically representative production quality"
+  },
+  "cases": [
+    {
+      "case_id": "DEV-01",
+      "split": "development",
+      "category": "canonical",
+      "language": "en",
+      "input": {
+        "role": "engineering",
+        "request": "Prepare an internal response to a customer requesting a five percent discount. Preserve engineering conditions and check delivery capacity.",
+        "authorized": true,
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-X",
+        "facts": {
+          "customer_id": "CUSTOMER-A",
+          "project_id": "PROJECT-X",
+          "entity_id": "ORDER-X01",
+          "design_version": "D2",
+          "unit_cost_cents": 1300,
+          "unit_price_cents": 1500,
+          "quantity": 12000,
+          "currency": "USD"
+        },
+        "quantity": 12000,
+        "discount_bps": 500,
+        "policy": {
+          "minimum_margin_bps": 1000
+        },
+        "other_committed_units": 4000,
+        "usable_capacity_units": 18000,
+        "documents": [
+          {
+            "citation_id": "DOC-1:v2:c1",
+            "document_id": "DOC-1",
+            "version": 2,
+            "kind": "customer_request",
+            "text": "We request a 5 percent price discount. No additional quantity commitment has been signed.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          },
+          {
+            "citation_id": "DOC-2:v2:c1",
+            "document_id": "DOC-2",
+            "version": 2,
+            "kind": "engineering_change",
+            "text": "Required material and inspection must remain. Preserve both requirements when discussing a customer price discount.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          },
+          {
+            "citation_id": "DOC-3:v2:c1",
+            "document_id": "DOC-3",
+            "version": 2,
+            "kind": "engineering_change",
+            "text": "No approved volume-based cost reduction has been provided. Any simplification needs a separate engineering review.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "ready",
+        "next_action": "preserve_requirements",
+        "support": {
+          "unsigned_future_volume": [
+            "DOC-1:v2:c1"
+          ],
+          "mandatory_material_inspection": [
+            "DOC-2:v2:c1"
+          ],
+          "no_approved_volume_cost_reduction": [
+            "DOC-3:v2:c1"
+          ],
+          "engineering_review_required": [
+            "DOC-3:v2:c1"
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "DEV-02",
+      "split": "development",
+      "category": "canonical",
+      "language": "en",
+      "input": {
+        "role": "business",
+        "request": "Prepare an internal response to a customer requesting a five percent discount. Preserve engineering conditions and check delivery capacity.",
+        "authorized": true,
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-X",
+        "facts": {
+          "customer_id": "CUSTOMER-A",
+          "project_id": "PROJECT-X",
+          "entity_id": "ORDER-X01",
+          "design_version": "D2",
+          "unit_cost_cents": 1300,
+          "unit_price_cents": 1500,
+          "quantity": 12000,
+          "currency": "USD"
+        },
+        "quantity": 18000,
+        "discount_bps": 500,
+        "policy": {
+          "minimum_margin_bps": 1000
+        },
+        "other_committed_units": 4000,
+        "usable_capacity_units": 18000,
+        "documents": [
+          {
+            "citation_id": "DOC-1:v2:c1",
+            "document_id": "DOC-1",
+            "version": 2,
+            "kind": "customer_request",
+            "text": "We request a 5 percent price discount. No additional quantity commitment has been signed.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          },
+          {
+            "citation_id": "DOC-2:v2:c1",
+            "document_id": "DOC-2",
+            "version": 2,
+            "kind": "engineering_change",
+            "text": "Required material and inspection must remain. Preserve both requirements when discussing a customer price discount.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          },
+          {
+            "citation_id": "DOC-3:v2:c1",
+            "document_id": "DOC-3",
+            "version": 2,
+            "kind": "engineering_change",
+            "text": "No approved volume-based cost reduction has been provided. Any simplification needs a separate engineering review.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "ready",
+        "next_action": "capacity_review",
+        "support": {
+          "unsigned_future_volume": [
+            "DOC-1:v2:c1"
+          ],
+          "mandatory_material_inspection": [
+            "DOC-2:v2:c1"
+          ],
+          "no_approved_volume_cost_reduction": [
+            "DOC-3:v2:c1"
+          ],
+          "engineering_review_required": [
+            "DOC-3:v2:c1"
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "DEV-03",
+      "split": "development",
+      "category": "paraphrase",
+      "language": "en",
+      "input": {
+        "role": "engineering",
+        "request": "Prepare an internal response to a customer requesting a five percent discount. Preserve engineering conditions and check delivery capacity.",
+        "authorized": true,
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-X",
+        "facts": {
+          "customer_id": "CUSTOMER-A",
+          "project_id": "PROJECT-X",
+          "entity_id": "ORDER-X01",
+          "design_version": "D2",
+          "unit_cost_cents": 1300,
+          "unit_price_cents": 1500,
+          "quantity": 12000,
+          "currency": "USD"
+        },
+        "quantity": 12000,
+        "discount_bps": 500,
+        "policy": {
+          "minimum_margin_bps": 1000
+        },
+        "other_committed_units": 4000,
+        "usable_capacity_units": 18000,
+        "documents": [
+          {
+            "citation_id": "DOC-1:v2:c1",
+            "document_id": "DOC-1",
+            "version": 2,
+            "kind": "customer_request",
+            "text": "Please lower the quote by five percent. The extra units are a forecast, not an executed purchase commitment.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          },
+          {
+            "citation_id": "DOC-2:v2:c1",
+            "document_id": "DOC-2",
+            "version": 2,
+            "kind": "engineering_change",
+            "text": "The specified alloy and final inspection are non-negotiable; neither may be eliminated to reach the target price.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          },
+          {
+            "citation_id": "DOC-3:v2:c1",
+            "document_id": "DOC-3",
+            "version": 2,
+            "kind": "engineering_change",
+            "text": "Finance has not authorized a lower unit cost for a larger lot. Engineering must sign off before any redesign or simplification.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "ready",
+        "next_action": "preserve_requirements",
+        "support": {
+          "unsigned_future_volume": [
+            "DOC-1:v2:c1"
+          ],
+          "mandatory_material_inspection": [
+            "DOC-2:v2:c1"
+          ],
+          "no_approved_volume_cost_reduction": [
+            "DOC-3:v2:c1"
+          ],
+          "engineering_review_required": [
+            "DOC-3:v2:c1"
+          ]
+        }
+      }
+    },
+    {
+      "case_id": "DEV-04",
+      "split": "development",
+      "category": "missing_engineering",
+      "language": "en",
+      "input": {
+        "role": "business",
+        "request": "Prepare an internal response to a customer requesting a five percent discount. Preserve engineering conditions and check delivery capacity.",
+        "authorized": true,
+        "customer_id": "CUSTOMER-A",
+        "project_id": "PROJECT-X",
+        "facts": {
+          "customer_id": "CUSTOMER-A",
+          "project_id": "PROJECT-X",
+          "entity_id": "ORDER-X01",
+          "design_version": "D2",
+          "unit_cost_cents": 1300,
+          "unit_price_cents": 1500,
+          "quantity": 12000,
+          "currency": "USD"
+        },
+        "quantity": 12000,
+        "discount_bps": 500,
+        "policy": {
+          "minimum_margin_bps": 1000
+        },
+        "other_committed_units": 4000,
+        "usable_capacity_units": 18000,
+        "documents": [
+          {
+            "citation_id": "DOC-1:v2:c1",
+            "document_id": "DOC-1",
+            "version": 2,
+            "kind": "customer_request",
+            "text": "We request a 5 percent price discount. No additional quantity commitment has been signed.",
+            "customer_id": "CUSTOMER-A",
+            "project_id": "PROJECT-X",
+            "design_version": "D2",
+            "active": true,
+            "approved": true
+          }
+        ]
+      },
+      "expected": {
+        "status": "needs_review",
+        "next_action": "request_evidence",
+        "support": {
+          "unsigned_future_volume": [
+            "DOC-1:v2:c1"
+          ]
+        }
+      }
+    }
+  ]
+}

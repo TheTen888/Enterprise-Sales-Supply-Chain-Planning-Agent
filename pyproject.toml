@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "enterprise-sales-supply-chain-planning-agent"
-version = "0.2.0"
-description = "Local incremental ETL, scoped retrieval and optional delivery-risk modeling prototype"
+version = "0.3.0"
+description = "Local manufacturing quote and delivery-risk decision support with reproducible evaluation"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
@@ -14,10 +14,14 @@ dependencies = []
 risk = ["scikit-learn==1.9.1"]
 snowflake = ["snowflake>=0.8,<2", "snowflake-connector-python>=3,<5"]
 gmail = ["google-api-python-client>=2,<3", "google-auth-httplib2>=0.2,<1"]
+bedrock = ["boto3>=1.34,<2"]
 
 [tool.setuptools.packages.find]
-include = ["app*", "pipelines*", "rag*", "scripts*", "integrations*", "risk_model*"]
+include = ["app*", "pipelines*", "rag*", "scripts*", "integrations*", "risk_model*", "agents*"]
 exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+app = ["eval_ui/*.html", "eval_ui/*.css", "eval_ui/*.js"]
 
 [tool.ruff]
 target-version = "py311"

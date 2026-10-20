@@ -1,17 +1,17 @@
 {
   "passed": true,
-  "verified_at_utc": "2026-10-20T02:37:13.473454+00:00",
+  "verified_at_utc": "2026-10-20T03:55:28.606822+00:00",
   "python": "3.11.15",
   "unit_tests": {
     "passed": true,
-    "count": 140,
+    "count": 230,
     "skipped": 0
   },
   "code_comments": [],
   "code_docstrings": [],
   "local_demo": {
     "format_version": 1,
-    "workspace": "artifacts/local-demo-4i222aet",
+    "workspace": "artifacts/local-demo-g3z9r9o6",
     "source": "internal-db",
     "input_deliveries": 9,
     "unique_events": 7,
@@ -65,7 +65,7 @@
         "cursor": 3,
         "remaining_changes": 6,
         "replay": false,
-        "elapsed_seconds": 0.003645,
+        "elapsed_seconds": 0.003977,
         "metrics": {
           "duplicate_events": 0,
           "input_rows": 3,
@@ -88,7 +88,7 @@
         "cursor": 6,
         "remaining_changes": 3,
         "replay": false,
-        "elapsed_seconds": 0.00355,
+        "elapsed_seconds": 0.003149,
         "metrics": {
           "duplicate_events": 1,
           "input_rows": 3,
@@ -111,7 +111,7 @@
         "cursor": 9,
         "remaining_changes": 0,
         "replay": false,
-        "elapsed_seconds": 0.003601,
+        "elapsed_seconds": 0.003551,
         "metrics": {
           "duplicate_events": 1,
           "input_rows": 3,
@@ -146,7 +146,7 @@
     "scope": "Local synthetic incremental ETL only; no model, cloud connection or external API"
   },
   "fault_experiments": {
-    "fixture_directory": "artifacts/etl-demo-e9f7hi5j",
+    "fixture_directory": "artifacts/etl-demo-gpvw0y42",
     "experiments": [
       {
         "experiment": "1. Replay and duplicate delivery",
@@ -179,15 +179,15 @@
         "rows_visible_before_checkpoint_recovery": 1000,
         "recovery_batches": 5,
         "remaining_changes": 0,
-        "elapsed_seconds": 0.4087,
-        "rows_per_second": 12234.73,
+        "elapsed_seconds": 0.466,
+        "rows_per_second": 10728.55,
         "measurement_scope": "Local synthetic SQLite run, including injected failure and recovery; not cloud capacity"
       }
     ],
     "all_passed": true
   },
   "load_evaluation": {
-    "fixture_directory": "artifacts/load-eval-nckvi5hb",
+    "fixture_directory": "artifacts/load-eval-6ntfw86z",
     "scenarios": [
       {
         "scenario": "quiet",
@@ -228,9 +228,9 @@
           "quiet"
         ],
         "batch_count": 1,
-        "batch_processing_p95_seconds": 0.008173,
-        "end_to_end_drain_seconds": 0.011822,
-        "input_changes_per_second": 5498.44,
+        "batch_processing_p95_seconds": 0.008363,
+        "end_to_end_drain_seconds": 0.012858,
+        "input_changes_per_second": 5055.38,
         "average_source_payload_bytes": 231.26
       },
       {
@@ -281,9 +281,9 @@
           "normal"
         ],
         "batch_count": 4,
-        "batch_processing_p95_seconds": 0.035735,
-        "end_to_end_drain_seconds": 0.163642,
-        "input_changes_per_second": 11824.61,
+        "batch_processing_p95_seconds": 0.037069,
+        "end_to_end_drain_seconds": 0.169778,
+        "input_changes_per_second": 11397.26,
         "average_source_payload_bytes": 231.23
       },
       {
@@ -367,9 +367,9 @@
           "normal"
         ],
         "batch_count": 15,
-        "batch_processing_p95_seconds": 0.071201,
-        "end_to_end_drain_seconds": 1.044171,
-        "input_changes_per_second": 12354.3,
+        "batch_processing_p95_seconds": 0.073518,
+        "end_to_end_drain_seconds": 1.06983,
+        "input_changes_per_second": 12057.99,
         "average_source_payload_bytes": 231.23
       },
       {
@@ -437,9 +437,9 @@
           "normal"
         ],
         "batch_count": 8,
-        "batch_processing_p95_seconds": 0.078491,
-        "end_to_end_drain_seconds": 0.615114,
-        "input_changes_per_second": 10485.85,
+        "batch_processing_p95_seconds": 0.071735,
+        "end_to_end_drain_seconds": 0.587662,
+        "input_changes_per_second": 10975.7,
         "average_source_payload_bytes": 231.23
       }
     ],
@@ -448,7 +448,7 @@
     "measurement_scope": "Single local SQLite worker; pre-generated small synthetic records. Fault recovery included in drain time. No network, attachments, cloud services or parallel concurrency benchmark."
   },
   "order_walkthrough": {
-    "fixture_directory": "artifacts/order-walkthrough-3xtn5nr0",
+    "fixture_directory": "artifacts/order-walkthrough-jk73cz8j",
     "steps": [
       {
         "step": "1. Initial order published",
@@ -867,12 +867,12 @@
     "model_calls": 0,
     "retrieval_backend": "local_lexical",
     "facts_backend": "local_sqlite",
-    "elapsed_ms": 2.314,
-    "workspace": "artifacts/rag-demo-nmfh4jgf"
+    "elapsed_ms": 2.638,
+    "workspace": "artifacts/rag-demo-wv5gn3t4"
   },
   "rag_evaluation": {
-    "verified_at_utc": "2026-10-20T02:37:10.365862+00:00",
-    "workspace": "artifacts/rag-eval-tc3x1xk8",
+    "verified_at_utc": "2026-10-20T03:55:24.505017+00:00",
+    "workspace": "artifacts/rag-eval-tlr57swl",
     "passed": true,
     "retrieval": {
       "passed": true,
@@ -902,7 +902,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 2.798,
+          "elapsed_ms": 2.847,
           "condition_checks": [
             {
               "condition_id": "unsigned_future_volume",
@@ -951,7 +951,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 2.352,
+          "elapsed_ms": 2.182,
           "condition_checks": [
             {
               "condition_id": "unsigned_future_volume",
@@ -1000,7 +1000,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 1.912,
+          "elapsed_ms": 1.911,
           "condition_checks": [],
           "condition_coverage": null,
           "single_passage_condition_coverage": null,
@@ -1030,7 +1030,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 1.673,
+          "elapsed_ms": 1.503,
           "condition_checks": [
             {
               "condition_id": "mandatory_material_inspection",
@@ -1073,7 +1073,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 1.505,
+          "elapsed_ms": 2.047,
           "condition_checks": [
             {
               "condition_id": "mandatory_material_inspection",
@@ -1116,7 +1116,7 @@
           ],
           "recall_at_k": 1.0,
           "precision_at_k": 1.0,
-          "elapsed_ms": 2.098,
+          "elapsed_ms": 1.794,
           "condition_checks": [],
           "condition_coverage": null,
           "single_passage_condition_coverage": null,
@@ -1142,7 +1142,7 @@
           "actual_documents": [],
           "recall_at_k": null,
           "precision_at_k": null,
-          "elapsed_ms": 1.446,
+          "elapsed_ms": 1.395,
           "condition_checks": [],
           "condition_coverage": null,
           "single_passage_condition_coverage": null,
@@ -1345,7 +1345,7 @@
       "context_complete": true
     },
     "limitations": "Injected fake SDK clients exercise real adapter methods. No SDK installation, authentication, remote service, semantic ranking or cloud synchronization is verified.",
-    "report": "artifacts/api-contracts-ql6e30xt/report.json"
+    "report": "artifacts/api-contracts-jdxrputk/report.json"
   },
   "rag_walkthrough": {
     "passed": true,
@@ -1364,8 +1364,8 @@
       "deleted_index_chunks_removed": true,
       "revocation_blocks_cached_evidence": true
     },
-    "report": "artifacts/rag-walkthrough-2_9m5jds/report.json",
-    "initial_evidence": "artifacts/rag-walkthrough-2_9m5jds/01-initial.txt",
+    "report": "artifacts/rag-walkthrough-8m9j8ula/report.json",
+    "initial_evidence": "artifacts/rag-walkthrough-8m9j8ula/01-initial.txt",
     "condition_comparison": {
       "metric": "Exact source-bound coverage of four manually reviewed conditions in this synthetic discount example",
       "single_passage_baseline": {
@@ -1641,11 +1641,2278 @@
     },
     "review_decision": "Keep rules as baseline; synthetic ranking metrics alone do not justify production model promotion"
   },
+  "agents": {
+    "passed": true,
+    "checks": {
+      "draft_generation_is_queued": true,
+      "current_etl_and_four_rag_conditions_used": true,
+      "requested_five_percent_below_demo_margin_floor": true,
+      "counteroffer_1445_cents_passes": true,
+      "approval_bound_to_payload": true,
+      "revision_invalidates_old_approval": true,
+      "hypothetical_volume_is_not_customer_commitment": true,
+      "unit_cost_does_not_fall_without_approved_evidence": true,
+      "revised_cost_and_counteroffer_recomputed": true,
+      "shared_capacity_shortfall_blocks_approval": true,
+      "stale_and_infeasible_approvals_rejected": true,
+      "what_if_does_not_modify_etl": true,
+      "same_model_reused_without_retraining": true,
+      "no_paid_calls_or_customer_send": true
+    },
+    "initial": {
+      "job_id": "42dfea10bab04d35a0e825c73d8b9ef5",
+      "status": "needs_review",
+      "revision": 1,
+      "parent_id": null,
+      "draft": {
+        "business": {
+          "conditions": [
+            "unsigned_future_volume",
+            "mandatory_material_inspection",
+            "no_approved_volume_cost_reduction",
+            "engineering_review_required"
+          ],
+          "discount_request": {
+            "chunk_id": "MAIL-A-001:v2:c1",
+            "discount_bps": 500
+          },
+          "next_action": "Manager reviews pricing options; no automatic customer send",
+          "options": [
+            {
+              "gross_profit_cents": 2400000,
+              "margin_allowed": true,
+              "margin_bps": 1333,
+              "option_id": "retain_price",
+              "quantity": 12000,
+              "revenue_cents": 18000000,
+              "total_cost_cents": 15600000,
+              "unit_price_cents": 1500
+            },
+            {
+              "gross_profit_cents": 1500000,
+              "margin_allowed": false,
+              "margin_bps": 877,
+              "option_id": "customer_request",
+              "quantity": 12000,
+              "revenue_cents": 17100000,
+              "total_cost_cents": 15600000,
+              "unit_price_cents": 1425
+            },
+            {
+              "gross_profit_cents": 1740000,
+              "margin_allowed": true,
+              "margin_bps": 1003,
+              "option_id": "counteroffer",
+              "quantity": 12000,
+              "revenue_cents": 17340000,
+              "total_cost_cents": 15600000,
+              "unit_price_cents": 1445
+            }
+          ],
+          "recommended_option_id": "counteroffer",
+          "requires_capacity_review": false,
+          "role": "business"
+        },
+        "customer_send_enabled": false,
+        "customer_volume_committed": true,
+        "engineering": {
+          "constraints": [
+            {
+              "chunk_id": "MAIL-A-001:v2:c2",
+              "document_id": "MAIL-A-001",
+              "id": "unsigned_future_volume",
+              "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+              "text": "no additional quantity commitment has been signed.",
+              "version": 2
+            },
+            {
+              "chunk_id": "ENG-A-001:v2:c1",
+              "document_id": "ENG-A-001",
+              "id": "mandatory_material_inspection",
+              "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+              "text": "Preserve both requirements when discussing a customer price discount.",
+              "version": 2
+            },
+            {
+              "chunk_id": "ENG-A-001:v2:c2",
+              "document_id": "ENG-A-001",
+              "id": "no_approved_volume_cost_reduction",
+              "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+              "text": "No approved volume-based cost reduction has been provided.",
+              "version": 2
+            },
+            {
+              "chunk_id": "ENG-A-001:v2:c2",
+              "document_id": "ENG-A-001",
+              "id": "engineering_review_required",
+              "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+              "text": "Any simplification needs a separate engineering review.",
+              "version": 2
+            }
+          ],
+          "costing": {
+            "cost_basis": "published ETL unit cost; no approved volume reduction",
+            "total_cost_cents": 15600000,
+            "unit_cost_cents": 1300
+          },
+          "recommendation": "Preserve material and inspection; seek separate engineering review for design simplification",
+          "risk": {
+            "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+            "capacity_shortfall_units": 0,
+            "features": {
+              "allocation_utilization_ratio": 0.8,
+              "capacity_load_ratio": 0.8888888888888888,
+              "design_changes_30d": 2,
+              "order_quantity": 12000,
+              "pickup_forecast_gap_ratio": 0.2,
+              "recent_yield": 0.9,
+              "schedule_slack_days": 1
+            },
+            "line": "LINE-1",
+            "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+            "model_status": "synthetic_unpromoted",
+            "outside_training_range": [],
+            "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+            "requires_capacity_review": false,
+            "risk_score": 16.481822514943325,
+            "training_range_check": "available"
+          },
+          "role": "engineering"
+        },
+        "external_api_calls": 0,
+        "facts": {
+          "business_version": 3,
+          "currency": "USD",
+          "customer_id": "CUSTOMER-A",
+          "design_version": "D2",
+          "entity_id": "ORDER-A001-L1",
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000,
+          "project_id": "PROJECT-A",
+          "publication_id": 3,
+          "quantity": 12000,
+          "source": "internal-db",
+          "unit_cost_cents": 1300,
+          "unit_price_cents": 1500
+        },
+        "input_fingerprints": {
+          "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+          "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+          "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+          "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+        },
+        "job_id": "42dfea10bab04d35a0e825c73d8b9ef5",
+        "llm_calls": 0,
+        "mock_model_calls": 0,
+        "mode": "deterministic_two_role_workflow",
+        "quantity": 12000,
+        "recalculated": [
+          "total_cost",
+          "quote_totals",
+          "capacity_load",
+          "schedule_slack",
+          "allocation_utilization",
+          "risk_score"
+        ],
+        "reused": [
+          "published_unit_cost",
+          "frozen_model_parameters",
+          "source_document_versions_when_unchanged"
+        ],
+        "revision": 1,
+        "runtime_identity": {
+          "business": {
+            "provider": "deterministic",
+            "role": "business"
+          },
+          "engineering": {
+            "provider": "deterministic",
+            "role": "engineering"
+          }
+        },
+        "scenario_kind": "published_order",
+        "scope": {
+          "customer_id": "CUSTOMER-A",
+          "entity_id": "ORDER-A001-L1",
+          "project_id": "PROJECT-A"
+        }
+      },
+      "approval": null,
+      "approval_valid": false,
+      "feedback": []
+    },
+    "manager_follow_up": {
+      "topic": "discount_limit",
+      "answer": {
+        "requested": {
+          "gross_profit_cents": 1500000,
+          "margin_allowed": false,
+          "margin_bps": 877,
+          "option_id": "customer_request",
+          "quantity": 12000,
+          "revenue_cents": 17100000,
+          "total_cost_cents": 15600000,
+          "unit_price_cents": 1425
+        },
+        "counteroffer": {
+          "gross_profit_cents": 1740000,
+          "margin_allowed": true,
+          "margin_bps": 1003,
+          "option_id": "counteroffer",
+          "quantity": 12000,
+          "revenue_cents": 17340000,
+          "total_cost_cents": 15600000,
+          "unit_price_cents": 1445
+        },
+        "minimum_margin_bps": 1000,
+        "reason": "Current published cost sets the margin floor; unsigned volume does not authorize cost savings"
+      },
+      "citations": [
+        {
+          "chunk_id": "MAIL-A-001:v2:c2",
+          "document_id": "MAIL-A-001",
+          "id": "unsigned_future_volume",
+          "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+          "text": "no additional quantity commitment has been signed.",
+          "version": 2
+        },
+        {
+          "chunk_id": "ENG-A-001:v2:c1",
+          "document_id": "ENG-A-001",
+          "id": "mandatory_material_inspection",
+          "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+          "text": "Preserve both requirements when discussing a customer price discount.",
+          "version": 2
+        },
+        {
+          "chunk_id": "ENG-A-001:v2:c2",
+          "document_id": "ENG-A-001",
+          "id": "no_approved_volume_cost_reduction",
+          "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+          "text": "No approved volume-based cost reduction has been provided.",
+          "version": 2
+        },
+        {
+          "chunk_id": "ENG-A-001:v2:c2",
+          "document_id": "ENG-A-001",
+          "id": "engineering_review_required",
+          "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+          "text": "Any simplification needs a separate engineering review.",
+          "version": 2
+        }
+      ]
+    },
+    "initial_internal_approval": {
+      "actor": "demo-manager-a",
+      "input_fingerprints": {
+        "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+        "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+        "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+        "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+      },
+      "option_id": "counteroffer",
+      "payload_hash": "98716404216daace3b30b705e3f54c657350bf025fbdae6626313b006c2c1e77",
+      "revision": 1,
+      "scope": "internal review only; not customer dispatch"
+    },
+    "superseded_status": "superseded",
+    "revised": {
+      "job_id": "cb8831fc45ae492cae05790662e9ed90",
+      "status": "needs_capacity_review",
+      "revision": 2,
+      "parent_id": "42dfea10bab04d35a0e825c73d8b9ef5",
+      "draft": {
+        "business": {
+          "conditions": [
+            "unsigned_future_volume",
+            "mandatory_material_inspection",
+            "no_approved_volume_cost_reduction",
+            "engineering_review_required"
+          ],
+          "discount_request": {
+            "chunk_id": "MAIL-A-001:v2:c1",
+            "discount_bps": 500
+          },
+          "next_action": "Planner must resolve capacity before approval",
+          "options": [
+            {
+              "gross_profit_cents": 3600000,
+              "margin_allowed": true,
+              "margin_bps": 1333,
+              "option_id": "retain_price",
+              "quantity": 18000,
+              "revenue_cents": 27000000,
+              "total_cost_cents": 23400000,
+              "unit_price_cents": 1500
+            },
+            {
+              "gross_profit_cents": 2250000,
+              "margin_allowed": false,
+              "margin_bps": 877,
+              "option_id": "customer_request",
+              "quantity": 18000,
+              "revenue_cents": 25650000,
+              "total_cost_cents": 23400000,
+              "unit_price_cents": 1425
+            },
+            {
+              "gross_profit_cents": 2610000,
+              "margin_allowed": true,
+              "margin_bps": 1003,
+              "option_id": "counteroffer",
+              "quantity": 18000,
+              "revenue_cents": 26010000,
+              "total_cost_cents": 23400000,
+              "unit_price_cents": 1445
+            }
+          ],
+          "recommended_option_id": "counteroffer",
+          "requires_capacity_review": true,
+          "role": "business"
+        },
+        "customer_send_enabled": false,
+        "customer_volume_committed": false,
+        "engineering": {
+          "constraints": [
+            {
+              "chunk_id": "MAIL-A-001:v2:c2",
+              "document_id": "MAIL-A-001",
+              "id": "unsigned_future_volume",
+              "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+              "text": "no additional quantity commitment has been signed.",
+              "version": 2
+            },
+            {
+              "chunk_id": "ENG-A-001:v2:c1",
+              "document_id": "ENG-A-001",
+              "id": "mandatory_material_inspection",
+              "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+              "text": "Preserve both requirements when discussing a customer price discount.",
+              "version": 2
+            },
+            {
+              "chunk_id": "ENG-A-001:v2:c2",
+              "document_id": "ENG-A-001",
+              "id": "no_approved_volume_cost_reduction",
+              "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+              "text": "No approved volume-based cost reduction has been provided.",
+              "version": 2
+            },
+            {
+              "chunk_id": "ENG-A-001:v2:c2",
+              "document_id": "ENG-A-001",
+              "id": "engineering_review_required",
+              "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+              "text": "Any simplification needs a separate engineering review.",
+              "version": 2
+            }
+          ],
+          "costing": {
+            "cost_basis": "published ETL unit cost; no approved volume reduction",
+            "total_cost_cents": 23400000,
+            "unit_cost_cents": 1300
+          },
+          "recommendation": "Preserve material and inspection; seek separate engineering review for design simplification",
+          "risk": {
+            "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+            "capacity_shortfall_units": 4000,
+            "features": {
+              "allocation_utilization_ratio": 1.0,
+              "capacity_load_ratio": 1.2222222222222223,
+              "design_changes_30d": 2,
+              "order_quantity": 18000,
+              "pickup_forecast_gap_ratio": 0.2,
+              "recent_yield": 0.9,
+              "schedule_slack_days": -3
+            },
+            "line": "LINE-1",
+            "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+            "model_status": "synthetic_unpromoted",
+            "outside_training_range": [
+              "order_quantity"
+            ],
+            "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+            "requires_capacity_review": true,
+            "risk_score": 60.75051767730787,
+            "training_range_check": "available"
+          },
+          "role": "engineering"
+        },
+        "external_api_calls": 0,
+        "facts": {
+          "business_version": 3,
+          "currency": "USD",
+          "customer_id": "CUSTOMER-A",
+          "design_version": "D2",
+          "entity_id": "ORDER-A001-L1",
+          "extended_cost_cents": 15600000,
+          "extended_price_cents": 18000000,
+          "project_id": "PROJECT-A",
+          "publication_id": 3,
+          "quantity": 12000,
+          "source": "internal-db",
+          "unit_cost_cents": 1300,
+          "unit_price_cents": 1500
+        },
+        "input_fingerprints": {
+          "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+          "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+          "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+          "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+        },
+        "job_id": "cb8831fc45ae492cae05790662e9ed90",
+        "llm_calls": 0,
+        "mock_model_calls": 0,
+        "mode": "deterministic_two_role_workflow",
+        "quantity": 18000,
+        "recalculated": [
+          "total_cost",
+          "quote_totals",
+          "capacity_load",
+          "schedule_slack",
+          "allocation_utilization",
+          "risk_score"
+        ],
+        "reused": [
+          "published_unit_cost",
+          "frozen_model_parameters",
+          "source_document_versions_when_unchanged"
+        ],
+        "revision": 2,
+        "runtime_identity": {
+          "business": {
+            "provider": "deterministic",
+            "role": "business"
+          },
+          "engineering": {
+            "provider": "deterministic",
+            "role": "engineering"
+          }
+        },
+        "scenario_kind": "manager_what_if",
+        "scope": {
+          "customer_id": "CUSTOMER-A",
+          "entity_id": "ORDER-A001-L1",
+          "project_id": "PROJECT-A"
+        }
+      },
+      "approval": null,
+      "approval_valid": false,
+      "feedback": []
+    },
+    "traces": {
+      "initial": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 15600000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 0,
+              "features": {
+                "allocation_utilization_ratio": 0.8,
+                "capacity_load_ratio": 0.8888888888888888,
+                "design_changes_30d": 2,
+                "order_quantity": 12000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": 1
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": false,
+              "risk_score": 16.481822514943325,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "event": "business.complete",
+          "body": {
+            "options": [
+              {
+                "gross_profit_cents": 2400000,
+                "margin_allowed": true,
+                "margin_bps": 1333,
+                "option_id": "retain_price",
+                "quantity": 12000,
+                "revenue_cents": 18000000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1500
+              },
+              {
+                "gross_profit_cents": 1500000,
+                "margin_allowed": false,
+                "margin_bps": 877,
+                "option_id": "customer_request",
+                "quantity": 12000,
+                "revenue_cents": 17100000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1425
+              },
+              {
+                "gross_profit_cents": 1740000,
+                "margin_allowed": true,
+                "margin_bps": 1003,
+                "option_id": "counteroffer",
+                "quantity": 12000,
+                "revenue_cents": 17340000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1445
+              }
+            ],
+            "tool": "integer_cent_pricing"
+          }
+        },
+        {
+          "seq": 5,
+          "event": "draft.validated",
+          "body": {
+            "payload_hash": "98716404216daace3b30b705e3f54c657350bf025fbdae6626313b006c2c1e77"
+          }
+        },
+        {
+          "seq": 6,
+          "event": "manager.follow_up",
+          "body": {
+            "topic": "discount_limit"
+          }
+        },
+        {
+          "seq": 7,
+          "event": "manager.approved_internal",
+          "body": {
+            "actor": "demo-manager-a",
+            "input_fingerprints": {
+              "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+              "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+              "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+            },
+            "option_id": "counteroffer",
+            "payload_hash": "98716404216daace3b30b705e3f54c657350bf025fbdae6626313b006c2c1e77",
+            "revision": 1,
+            "scope": "internal review only; not customer dispatch"
+          }
+        },
+        {
+          "seq": 8,
+          "event": "manager.revision_invalidates_approval",
+          "body": {
+            "next_revision": 2
+          }
+        }
+      ],
+      "revised": [
+        {
+          "seq": 9,
+          "event": "draft.queued",
+          "body": {
+            "revision": 2
+          }
+        },
+        {
+          "seq": 10,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": true,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 11,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 23400000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 4000,
+              "features": {
+                "allocation_utilization_ratio": 1.0,
+                "capacity_load_ratio": 1.2222222222222223,
+                "design_changes_30d": 2,
+                "order_quantity": 18000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": -3
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [
+                "order_quantity"
+              ],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": true,
+              "risk_score": 60.75051767730787,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 12,
+          "event": "business.complete",
+          "body": {
+            "options": [
+              {
+                "gross_profit_cents": 3600000,
+                "margin_allowed": true,
+                "margin_bps": 1333,
+                "option_id": "retain_price",
+                "quantity": 18000,
+                "revenue_cents": 27000000,
+                "total_cost_cents": 23400000,
+                "unit_price_cents": 1500
+              },
+              {
+                "gross_profit_cents": 2250000,
+                "margin_allowed": false,
+                "margin_bps": 877,
+                "option_id": "customer_request",
+                "quantity": 18000,
+                "revenue_cents": 25650000,
+                "total_cost_cents": 23400000,
+                "unit_price_cents": 1425
+              },
+              {
+                "gross_profit_cents": 2610000,
+                "margin_allowed": true,
+                "margin_bps": 1003,
+                "option_id": "counteroffer",
+                "quantity": 18000,
+                "revenue_cents": 26010000,
+                "total_cost_cents": 23400000,
+                "unit_price_cents": 1445
+              }
+            ],
+            "tool": "integer_cent_pricing"
+          }
+        },
+        {
+          "seq": 13,
+          "event": "draft.validated",
+          "body": {
+            "payload_hash": "ddcb96e024064b48bf4f64fa49db0fcc83fa3da88ec9e82ca83659fbde0c7c73"
+          }
+        }
+      ]
+    },
+    "limits": "Deterministic two-role workflow with reviewed extraction rules; no LLM, LangGraph, AgentCore, real authentication or customer dispatch. Model scores are synthetic and unpromoted."
+  },
+  "agent_eval": {
+    "passed": true,
+    "case_count": 9,
+    "passed_count": 9,
+    "cases": [
+      {
+        "case_id": "engineering-math",
+        "category": "Pricing",
+        "title": "Engineering cost changed by one cent",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true,
+          "invalid_payload_not_published": true,
+          "bad_handoff_did_not_reach_business": true
+        },
+        "reason": "engineering handoff failed source and arithmetic checks",
+        "error_type": "ValueError",
+        "draft_state": "failed",
+        "elapsed_ms": 52.626,
+        "trace": [
+          {
+            "seq": 1,
+            "event": "draft.queued",
+            "body": {
+              "revision": 1
+            }
+          },
+          {
+            "seq": 2,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": false,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 3,
+            "event": "draft.failed",
+            "body": {
+              "error_type": "ValueError"
+            }
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "business-math",
+        "category": "Pricing",
+        "title": "Business revenue changed by one cent",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true,
+          "invalid_payload_not_published": true
+        },
+        "reason": "quote failed independent arithmetic checks",
+        "error_type": "ValueError",
+        "draft_state": "failed",
+        "elapsed_ms": 50.014,
+        "trace": [
+          {
+            "seq": 1,
+            "event": "draft.queued",
+            "body": {
+              "revision": 1
+            }
+          },
+          {
+            "seq": 2,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": false,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 3,
+            "event": "engineering.complete",
+            "body": {
+              "costing": {
+                "cost_basis": "published ETL unit cost; no approved volume reduction",
+                "total_cost_cents": 15600000,
+                "unit_cost_cents": 1300
+              },
+              "handoff_conditions": [
+                "unsigned_future_volume",
+                "mandatory_material_inspection",
+                "no_approved_volume_cost_reduction",
+                "engineering_review_required"
+              ],
+              "risk": {
+                "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+                "capacity_shortfall_units": 0,
+                "features": {
+                  "allocation_utilization_ratio": 0.8,
+                  "capacity_load_ratio": 0.8888888888888888,
+                  "design_changes_30d": 2,
+                  "order_quantity": 12000,
+                  "pickup_forecast_gap_ratio": 0.2,
+                  "recent_yield": 0.9,
+                  "schedule_slack_days": 1
+                },
+                "line": "LINE-1",
+                "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+                "model_status": "synthetic_unpromoted",
+                "outside_training_range": [],
+                "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+                "requires_capacity_review": false,
+                "risk_score": 16.481822514943325,
+                "training_range_check": "available"
+              },
+              "tools": [
+                "published_cost_totals",
+                "source_condition_checks",
+                "local_risk_model.score"
+              ]
+            }
+          },
+          {
+            "seq": 4,
+            "event": "draft.failed",
+            "body": {
+              "error_type": "ValueError"
+            }
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "missing-condition",
+        "category": "Evidence",
+        "title": "Required engineering condition removed",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true,
+          "invalid_payload_not_published": true,
+          "bad_handoff_did_not_reach_business": true
+        },
+        "reason": "engineering handoff failed source and arithmetic checks",
+        "error_type": "ValueError",
+        "draft_state": "failed",
+        "elapsed_ms": 51.93,
+        "trace": [
+          {
+            "seq": 1,
+            "event": "draft.queued",
+            "body": {
+              "revision": 1
+            }
+          },
+          {
+            "seq": 2,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": false,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 3,
+            "event": "draft.failed",
+            "body": {
+              "error_type": "ValueError"
+            }
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "document-update",
+        "category": "Evidence",
+        "title": "Source revised after draft generation",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true
+        },
+        "reason": "draft inputs changed; generate a new draft",
+        "error_type": "ValueError",
+        "draft_state": "invalidated",
+        "elapsed_ms": 60.67,
+        "trace": [
+          {
+            "seq": 1,
+            "event": "draft.queued",
+            "body": {
+              "revision": 1
+            }
+          },
+          {
+            "seq": 2,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": false,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 3,
+            "event": "engineering.complete",
+            "body": {
+              "costing": {
+                "cost_basis": "published ETL unit cost; no approved volume reduction",
+                "total_cost_cents": 15600000,
+                "unit_cost_cents": 1300
+              },
+              "handoff_conditions": [
+                "unsigned_future_volume",
+                "mandatory_material_inspection",
+                "no_approved_volume_cost_reduction",
+                "engineering_review_required"
+              ],
+              "risk": {
+                "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+                "capacity_shortfall_units": 0,
+                "features": {
+                  "allocation_utilization_ratio": 0.8,
+                  "capacity_load_ratio": 0.8888888888888888,
+                  "design_changes_30d": 2,
+                  "order_quantity": 12000,
+                  "pickup_forecast_gap_ratio": 0.2,
+                  "recent_yield": 0.9,
+                  "schedule_slack_days": 1
+                },
+                "line": "LINE-1",
+                "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+                "model_status": "synthetic_unpromoted",
+                "outside_training_range": [],
+                "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+                "requires_capacity_review": false,
+                "risk_score": 16.481822514943325,
+                "training_range_check": "available"
+              },
+              "tools": [
+                "published_cost_totals",
+                "source_condition_checks",
+                "local_risk_model.score"
+              ]
+            }
+          },
+          {
+            "seq": 4,
+            "event": "business.complete",
+            "body": {
+              "options": [
+                {
+                  "gross_profit_cents": 2400000,
+                  "margin_allowed": true,
+                  "margin_bps": 1333,
+                  "option_id": "retain_price",
+                  "quantity": 12000,
+                  "revenue_cents": 18000000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1500
+                },
+                {
+                  "gross_profit_cents": 1500000,
+                  "margin_allowed": false,
+                  "margin_bps": 877,
+                  "option_id": "customer_request",
+                  "quantity": 12000,
+                  "revenue_cents": 17100000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1425
+                },
+                {
+                  "gross_profit_cents": 1740000,
+                  "margin_allowed": true,
+                  "margin_bps": 1003,
+                  "option_id": "counteroffer",
+                  "quantity": 12000,
+                  "revenue_cents": 17340000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1445
+                }
+              ],
+              "tool": "integer_cent_pricing"
+            }
+          },
+          {
+            "seq": 5,
+            "event": "draft.validated",
+            "body": {
+              "payload_hash": "63adf933af00b1894bbce3552c355f336d7cb37d6f6959791ca4689de133b18e"
+            }
+          },
+          {
+            "seq": 6,
+            "event": "draft.inputs_changed",
+            "body": {}
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "order-update",
+        "category": "Recalculation",
+        "title": "Published order cost changed after draft",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true
+        },
+        "reason": "draft inputs changed; generate a new draft",
+        "error_type": "ValueError",
+        "draft_state": "invalidated",
+        "elapsed_ms": 72.092,
+        "trace": [
+          {
+            "seq": 1,
+            "event": "draft.queued",
+            "body": {
+              "revision": 1
+            }
+          },
+          {
+            "seq": 2,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": false,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 3,
+            "event": "engineering.complete",
+            "body": {
+              "costing": {
+                "cost_basis": "published ETL unit cost; no approved volume reduction",
+                "total_cost_cents": 15600000,
+                "unit_cost_cents": 1300
+              },
+              "handoff_conditions": [
+                "unsigned_future_volume",
+                "mandatory_material_inspection",
+                "no_approved_volume_cost_reduction",
+                "engineering_review_required"
+              ],
+              "risk": {
+                "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+                "capacity_shortfall_units": 0,
+                "features": {
+                  "allocation_utilization_ratio": 0.8,
+                  "capacity_load_ratio": 0.8888888888888888,
+                  "design_changes_30d": 2,
+                  "order_quantity": 12000,
+                  "pickup_forecast_gap_ratio": 0.2,
+                  "recent_yield": 0.9,
+                  "schedule_slack_days": 1
+                },
+                "line": "LINE-1",
+                "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+                "model_status": "synthetic_unpromoted",
+                "outside_training_range": [],
+                "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+                "requires_capacity_review": false,
+                "risk_score": 16.481822514943325,
+                "training_range_check": "available"
+              },
+              "tools": [
+                "published_cost_totals",
+                "source_condition_checks",
+                "local_risk_model.score"
+              ]
+            }
+          },
+          {
+            "seq": 4,
+            "event": "business.complete",
+            "body": {
+              "options": [
+                {
+                  "gross_profit_cents": 2400000,
+                  "margin_allowed": true,
+                  "margin_bps": 1333,
+                  "option_id": "retain_price",
+                  "quantity": 12000,
+                  "revenue_cents": 18000000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1500
+                },
+                {
+                  "gross_profit_cents": 1500000,
+                  "margin_allowed": false,
+                  "margin_bps": 877,
+                  "option_id": "customer_request",
+                  "quantity": 12000,
+                  "revenue_cents": 17100000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1425
+                },
+                {
+                  "gross_profit_cents": 1740000,
+                  "margin_allowed": true,
+                  "margin_bps": 1003,
+                  "option_id": "counteroffer",
+                  "quantity": 12000,
+                  "revenue_cents": 17340000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1445
+                }
+              ],
+              "tool": "integer_cent_pricing"
+            }
+          },
+          {
+            "seq": 5,
+            "event": "draft.validated",
+            "body": {
+              "payload_hash": "fd53e4499ce4008f98cc825fda45e7429ef3898e34d6b16fe0be537d91222d8e"
+            }
+          },
+          {
+            "seq": 6,
+            "event": "draft.inputs_changed",
+            "body": {}
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "capacity-approval",
+        "category": "Recalculation",
+        "title": "Approval attempted with a capacity gap",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true
+        },
+        "reason": "draft is not eligible for approval",
+        "error_type": "ValueError",
+        "draft_state": "needs_capacity_review",
+        "elapsed_ms": 69.597,
+        "trace": [
+          {
+            "seq": 7,
+            "event": "draft.queued",
+            "body": {
+              "revision": 2
+            }
+          },
+          {
+            "seq": 8,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": true,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 9,
+            "event": "engineering.complete",
+            "body": {
+              "costing": {
+                "cost_basis": "published ETL unit cost; no approved volume reduction",
+                "total_cost_cents": 23400000,
+                "unit_cost_cents": 1300
+              },
+              "handoff_conditions": [
+                "unsigned_future_volume",
+                "mandatory_material_inspection",
+                "no_approved_volume_cost_reduction",
+                "engineering_review_required"
+              ],
+              "risk": {
+                "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+                "capacity_shortfall_units": 4000,
+                "features": {
+                  "allocation_utilization_ratio": 1.0,
+                  "capacity_load_ratio": 1.2222222222222223,
+                  "design_changes_30d": 2,
+                  "order_quantity": 18000,
+                  "pickup_forecast_gap_ratio": 0.2,
+                  "recent_yield": 0.9,
+                  "schedule_slack_days": -3
+                },
+                "line": "LINE-1",
+                "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+                "model_status": "synthetic_unpromoted",
+                "outside_training_range": [
+                  "order_quantity"
+                ],
+                "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+                "requires_capacity_review": true,
+                "risk_score": 60.75051767730787,
+                "training_range_check": "available"
+              },
+              "tools": [
+                "published_cost_totals",
+                "source_condition_checks",
+                "local_risk_model.score"
+              ]
+            }
+          },
+          {
+            "seq": 10,
+            "event": "business.complete",
+            "body": {
+              "options": [
+                {
+                  "gross_profit_cents": 3600000,
+                  "margin_allowed": true,
+                  "margin_bps": 1333,
+                  "option_id": "retain_price",
+                  "quantity": 18000,
+                  "revenue_cents": 27000000,
+                  "total_cost_cents": 23400000,
+                  "unit_price_cents": 1500
+                },
+                {
+                  "gross_profit_cents": 2250000,
+                  "margin_allowed": false,
+                  "margin_bps": 877,
+                  "option_id": "customer_request",
+                  "quantity": 18000,
+                  "revenue_cents": 25650000,
+                  "total_cost_cents": 23400000,
+                  "unit_price_cents": 1425
+                },
+                {
+                  "gross_profit_cents": 2610000,
+                  "margin_allowed": true,
+                  "margin_bps": 1003,
+                  "option_id": "counteroffer",
+                  "quantity": 18000,
+                  "revenue_cents": 26010000,
+                  "total_cost_cents": 23400000,
+                  "unit_price_cents": 1445
+                }
+              ],
+              "tool": "integer_cent_pricing"
+            }
+          },
+          {
+            "seq": 11,
+            "event": "draft.validated",
+            "body": {
+              "payload_hash": "f9fa218cbbe6d636c332af8e7f195ca0592de68ea0e188d9c71ccb0d80fb191b"
+            }
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "revoked-access",
+        "category": "Access",
+        "title": "Manager access revoked before approval",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true
+        },
+        "reason": "customer/project access denied",
+        "error_type": "PermissionError",
+        "draft_state": "needs_review",
+        "elapsed_ms": 67.315,
+        "trace": [
+          {
+            "seq": 1,
+            "event": "draft.queued",
+            "body": {
+              "revision": 1
+            }
+          },
+          {
+            "seq": 2,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": false,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 3,
+            "event": "engineering.complete",
+            "body": {
+              "costing": {
+                "cost_basis": "published ETL unit cost; no approved volume reduction",
+                "total_cost_cents": 15600000,
+                "unit_cost_cents": 1300
+              },
+              "handoff_conditions": [
+                "unsigned_future_volume",
+                "mandatory_material_inspection",
+                "no_approved_volume_cost_reduction",
+                "engineering_review_required"
+              ],
+              "risk": {
+                "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+                "capacity_shortfall_units": 0,
+                "features": {
+                  "allocation_utilization_ratio": 0.8,
+                  "capacity_load_ratio": 0.8888888888888888,
+                  "design_changes_30d": 2,
+                  "order_quantity": 12000,
+                  "pickup_forecast_gap_ratio": 0.2,
+                  "recent_yield": 0.9,
+                  "schedule_slack_days": 1
+                },
+                "line": "LINE-1",
+                "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+                "model_status": "synthetic_unpromoted",
+                "outside_training_range": [],
+                "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+                "requires_capacity_review": false,
+                "risk_score": 16.481822514943325,
+                "training_range_check": "available"
+              },
+              "tools": [
+                "published_cost_totals",
+                "source_condition_checks",
+                "local_risk_model.score"
+              ]
+            }
+          },
+          {
+            "seq": 4,
+            "event": "business.complete",
+            "body": {
+              "options": [
+                {
+                  "gross_profit_cents": 2400000,
+                  "margin_allowed": true,
+                  "margin_bps": 1333,
+                  "option_id": "retain_price",
+                  "quantity": 12000,
+                  "revenue_cents": 18000000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1500
+                },
+                {
+                  "gross_profit_cents": 1500000,
+                  "margin_allowed": false,
+                  "margin_bps": 877,
+                  "option_id": "customer_request",
+                  "quantity": 12000,
+                  "revenue_cents": 17100000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1425
+                },
+                {
+                  "gross_profit_cents": 1740000,
+                  "margin_allowed": true,
+                  "margin_bps": 1003,
+                  "option_id": "counteroffer",
+                  "quantity": 12000,
+                  "revenue_cents": 17340000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1445
+                }
+              ],
+              "tool": "integer_cent_pricing"
+            }
+          },
+          {
+            "seq": 5,
+            "event": "draft.validated",
+            "body": {
+              "payload_hash": "a88cef7713ac80c44014c66a4149fdbd4934d2c87203eb05f7cabebb0b4465fd"
+            }
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "wrong-customer",
+        "category": "Access",
+        "title": "Customer A manager requests Customer B facts",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true
+        },
+        "reason": "customer/project access denied",
+        "error_type": "PermissionError",
+        "draft_state": null,
+        "elapsed_ms": 49.34,
+        "trace": [],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      },
+      {
+        "case_id": "tampered-payload",
+        "category": "Approval",
+        "title": "Stored draft modified after validation",
+        "expected": "Reject unsafe action",
+        "observed": "rejected",
+        "passed": true,
+        "checks": {
+          "expected_rejection": true,
+          "expected_state": true,
+          "no_approval_created": true
+        },
+        "reason": "stored draft integrity check failed",
+        "error_type": "ValueError",
+        "draft_state": "needs_review",
+        "elapsed_ms": 58.646,
+        "trace": [
+          {
+            "seq": 1,
+            "event": "draft.queued",
+            "body": {
+              "revision": 1
+            }
+          },
+          {
+            "seq": 2,
+            "event": "evidence.retrieve",
+            "body": {
+              "cache_hit": false,
+              "chunks": [
+                "ENG-A-001:v2:c1",
+                "ENG-A-001:v2:c2",
+                "MAIL-A-001:v2:c1",
+                "MAIL-A-001:v2:c2"
+              ],
+              "etl_publication": 3,
+              "facts_backend": "local_sqlite",
+              "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+              "retrieval_backend": "local_lexical"
+            }
+          },
+          {
+            "seq": 3,
+            "event": "engineering.complete",
+            "body": {
+              "costing": {
+                "cost_basis": "published ETL unit cost; no approved volume reduction",
+                "total_cost_cents": 15600000,
+                "unit_cost_cents": 1300
+              },
+              "handoff_conditions": [
+                "unsigned_future_volume",
+                "mandatory_material_inspection",
+                "no_approved_volume_cost_reduction",
+                "engineering_review_required"
+              ],
+              "risk": {
+                "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+                "capacity_shortfall_units": 0,
+                "features": {
+                  "allocation_utilization_ratio": 0.8,
+                  "capacity_load_ratio": 0.8888888888888888,
+                  "design_changes_30d": 2,
+                  "order_quantity": 12000,
+                  "pickup_forecast_gap_ratio": 0.2,
+                  "recent_yield": 0.9,
+                  "schedule_slack_days": 1
+                },
+                "line": "LINE-1",
+                "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+                "model_status": "synthetic_unpromoted",
+                "outside_training_range": [],
+                "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+                "requires_capacity_review": false,
+                "risk_score": 16.481822514943325,
+                "training_range_check": "available"
+              },
+              "tools": [
+                "published_cost_totals",
+                "source_condition_checks",
+                "local_risk_model.score"
+              ]
+            }
+          },
+          {
+            "seq": 4,
+            "event": "business.complete",
+            "body": {
+              "options": [
+                {
+                  "gross_profit_cents": 2400000,
+                  "margin_allowed": true,
+                  "margin_bps": 1333,
+                  "option_id": "retain_price",
+                  "quantity": 12000,
+                  "revenue_cents": 18000000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1500
+                },
+                {
+                  "gross_profit_cents": 1500000,
+                  "margin_allowed": false,
+                  "margin_bps": 877,
+                  "option_id": "customer_request",
+                  "quantity": 12000,
+                  "revenue_cents": 17100000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1425
+                },
+                {
+                  "gross_profit_cents": 1740000,
+                  "margin_allowed": true,
+                  "margin_bps": 1003,
+                  "option_id": "counteroffer",
+                  "quantity": 12000,
+                  "revenue_cents": 17340000,
+                  "total_cost_cents": 15600000,
+                  "unit_price_cents": 1445
+                }
+              ],
+              "tool": "integer_cent_pricing"
+            }
+          },
+          {
+            "seq": 5,
+            "event": "draft.validated",
+            "body": {
+              "payload_hash": "baf82942a322d98d177231b86ff6da625a9f266bf961d1dffbbf32fc4c45e90a"
+            }
+          }
+        ],
+        "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+        "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+      }
+    ],
+    "scope": "Controlled local fault experiments, not LLM accuracy or production monitoring",
+    "llm_calls": 0,
+    "external_api_calls": 0,
+    "manager_feedback": {
+      "passed": true,
+      "checks": {
+        "rejection_stops_approval": true,
+        "feedback_bound_to_original_payload": true,
+        "feedback_bound_to_source_versions": true,
+        "feedback_kept_for_review_not_ground_truth": true,
+        "new_revision_links_to_rejected_draft": true,
+        "new_quantity_recalculates_capacity": true,
+        "feedback_survives_supersession": true
+      },
+      "feedback": {
+        "feedback_id": "10b429d65734478fbd6ea9e0195b7393",
+        "job_id": "9f9da368af554ab9b708f416b5b6ba77",
+        "actor": "demo-manager-a",
+        "revision": 1,
+        "payload_hash": "4d42f6203e50126c7da823e97c6f876bbf05ca0d6410bb3e4f4098ac53896fde",
+        "input_fingerprints": {
+          "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+          "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+          "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+          "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+        },
+        "reason_code": "commercial_context",
+        "note": "Review an 18,000-unit scenario; the additional customer volume is not signed.",
+        "review_status": "pending_review",
+        "created_at_utc": "2026-10-20T03:55:28.424630+00:00"
+      },
+      "revised_status": "needs_capacity_review",
+      "revised_quantity": 18000,
+      "capacity_shortfall_units": 4000,
+      "limits": "Manager feedback awaits independent review; no automatic label creation or training"
+    }
+  },
+  "model_contracts": {
+    "passed": true,
+    "mode": "offline_model_contracts",
+    "checks": {
+      "sdk_converse_request_path_exercised": true,
+      "structured_response_validation_exercised": true,
+      "all_four_source_conditions_preserved": true,
+      "numeric_quote_checked_independently": true,
+      "capacity_recalculation_blocks_approval": true,
+      "simulated_calls_not_counted_as_real_inference": true,
+      "no_remote_calls": true
+    },
+    "real_inference_calls": 0,
+    "network_calls": 0,
+    "mock_sdk_calls": 8,
+    "annotation_status": "pending_independent_human_review",
+    "splits": {
+      "development": {
+        "case_count": 4,
+        "rules_passed_count": 3,
+        "rules_task_success": 0.75,
+        "cases": [
+          {
+            "case_id": "DEV-01",
+            "category": "canonical",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "ready",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                },
+                {
+                  "condition_id": "no_approved_volume_cost_reduction",
+                  "citation_id": "DOC-3:v2:c1"
+                },
+                {
+                  "condition_id": "engineering_review_required",
+                  "citation_id": "DOC-3:v2:c1"
+                }
+              ],
+              "next_action": "preserve_requirements"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.916
+          },
+          {
+            "case_id": "DEV-02",
+            "category": "canonical",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "ready",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                },
+                {
+                  "condition_id": "no_approved_volume_cost_reduction",
+                  "citation_id": "DOC-3:v2:c1"
+                },
+                {
+                  "condition_id": "engineering_review_required",
+                  "citation_id": "DOC-3:v2:c1"
+                }
+              ],
+              "next_action": "capacity_review"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.106
+          },
+          {
+            "case_id": "DEV-03",
+            "category": "paraphrase",
+            "language": "en",
+            "passed": false,
+            "status_correct": false,
+            "action_correct": false,
+            "tool_selection_correct": true,
+            "condition_recall": 0.0,
+            "citation_precision": null,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.09
+          },
+          {
+            "case_id": "DEV-04",
+            "category": "missing_engineering",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                }
+              ],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "needs_review",
+            "preflight": null,
+            "elapsed_ms": 0.06
+          }
+        ],
+        "dataset_sha256": "d36035d255490bd9923a29fd328e32d2856733a30abd9779d01b4ee3c3f40c06",
+        "model_task_success": null,
+        "model_status": "not_measured"
+      },
+      "holdout": {
+        "case_count": 16,
+        "rules_passed_count": 11,
+        "rules_task_success": 0.6875,
+        "cases": [
+          {
+            "case_id": "HOLD-01",
+            "category": "paraphrase",
+            "language": "en",
+            "passed": false,
+            "status_correct": false,
+            "action_correct": false,
+            "tool_selection_correct": true,
+            "condition_recall": 0.0,
+            "citation_precision": null,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.126
+          },
+          {
+            "case_id": "HOLD-02",
+            "category": "paraphrase",
+            "language": "zh",
+            "passed": false,
+            "status_correct": false,
+            "action_correct": false,
+            "tool_selection_correct": true,
+            "condition_recall": 0.0,
+            "citation_precision": null,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.102
+          },
+          {
+            "case_id": "HOLD-03",
+            "category": "paraphrase",
+            "language": "en",
+            "passed": false,
+            "status_correct": false,
+            "action_correct": false,
+            "tool_selection_correct": true,
+            "condition_recall": 0.25,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                }
+              ],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.108
+          },
+          {
+            "case_id": "HOLD-04",
+            "category": "capacity_gap",
+            "language": "en",
+            "passed": false,
+            "status_correct": false,
+            "action_correct": false,
+            "tool_selection_correct": true,
+            "condition_recall": 0.0,
+            "citation_precision": null,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.106
+          },
+          {
+            "case_id": "HOLD-05",
+            "category": "capacity_gap",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "ready",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                },
+                {
+                  "condition_id": "no_approved_volume_cost_reduction",
+                  "citation_id": "DOC-3:v2:c1"
+                },
+                {
+                  "condition_id": "engineering_review_required",
+                  "citation_id": "DOC-3:v2:c1"
+                }
+              ],
+              "next_action": "capacity_review"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.106
+          },
+          {
+            "case_id": "HOLD-06",
+            "category": "prompt_injection",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "ready",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                },
+                {
+                  "condition_id": "no_approved_volume_cost_reduction",
+                  "citation_id": "DOC-3:v2:c1"
+                },
+                {
+                  "condition_id": "engineering_review_required",
+                  "citation_id": "DOC-3:v2:c1"
+                }
+              ],
+              "next_action": "preserve_requirements"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.09
+          },
+          {
+            "case_id": "HOLD-07",
+            "category": "distractor_customer",
+            "language": "en",
+            "passed": false,
+            "status_correct": false,
+            "action_correct": false,
+            "tool_selection_correct": true,
+            "condition_recall": 0.25,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                }
+              ],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.091
+          },
+          {
+            "case_id": "HOLD-08",
+            "category": "missing_engineering",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                }
+              ],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "needs_review",
+            "preflight": null,
+            "elapsed_ms": 0.05
+          },
+          {
+            "case_id": "HOLD-09",
+            "category": "missing_cost",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                },
+                {
+                  "condition_id": "no_approved_volume_cost_reduction",
+                  "citation_id": "DOC-3:v2:c1"
+                },
+                {
+                  "condition_id": "engineering_review_required",
+                  "citation_id": "DOC-3:v2:c1"
+                }
+              ],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "needs_review",
+            "preflight": null,
+            "elapsed_ms": 0.072
+          },
+          {
+            "case_id": "HOLD-10",
+            "category": "deleted_latest",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                }
+              ],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "needs_review",
+            "preflight": null,
+            "elapsed_ms": 0.073
+          },
+          {
+            "case_id": "HOLD-11",
+            "category": "wrong_design",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "needs_review",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "no_approved_volume_cost_reduction",
+                  "citation_id": "DOC-3:v2:c1"
+                },
+                {
+                  "condition_id": "engineering_review_required",
+                  "citation_id": "DOC-3:v2:c1"
+                }
+              ],
+              "next_action": "request_evidence"
+            },
+            "expected_status": "needs_review",
+            "preflight": null,
+            "elapsed_ms": 0.072
+          },
+          {
+            "case_id": "HOLD-12",
+            "category": "cross_customer_preflight",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": null,
+            "citation_precision": null,
+            "decision": {
+              "status": "refuse",
+              "condition_evidence": [],
+              "next_action": "deny_request"
+            },
+            "expected_status": "refuse",
+            "preflight": "scope_denied",
+            "elapsed_ms": 0.028
+          },
+          {
+            "case_id": "HOLD-13",
+            "category": "revoked_access_preflight",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": null,
+            "citation_precision": null,
+            "decision": {
+              "status": "refuse",
+              "condition_evidence": [],
+              "next_action": "deny_request"
+            },
+            "expected_status": "refuse",
+            "preflight": "scope_denied",
+            "elapsed_ms": 0.027
+          },
+          {
+            "case_id": "HOLD-14",
+            "category": "unsupported_dispatch",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": null,
+            "citation_precision": null,
+            "decision": {
+              "status": "refuse",
+              "condition_evidence": [],
+              "next_action": "deny_request"
+            },
+            "expected_status": "refuse",
+            "preflight": null,
+            "elapsed_ms": 0.089
+          },
+          {
+            "case_id": "HOLD-15",
+            "category": "secret_request",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": null,
+            "citation_precision": null,
+            "decision": {
+              "status": "refuse",
+              "condition_evidence": [],
+              "next_action": "deny_request"
+            },
+            "expected_status": "refuse",
+            "preflight": null,
+            "elapsed_ms": 0.072
+          },
+          {
+            "case_id": "HOLD-16",
+            "category": "superseded_distractor",
+            "language": "en",
+            "passed": true,
+            "status_correct": true,
+            "action_correct": true,
+            "tool_selection_correct": true,
+            "condition_recall": 1.0,
+            "citation_precision": 1.0,
+            "decision": {
+              "status": "ready",
+              "condition_evidence": [
+                {
+                  "condition_id": "unsigned_future_volume",
+                  "citation_id": "DOC-1:v2:c1"
+                },
+                {
+                  "condition_id": "mandatory_material_inspection",
+                  "citation_id": "DOC-2:v2:c1"
+                },
+                {
+                  "condition_id": "no_approved_volume_cost_reduction",
+                  "citation_id": "DOC-3:v2:c1"
+                },
+                {
+                  "condition_id": "engineering_review_required",
+                  "citation_id": "DOC-3:v2:c1"
+                }
+              ],
+              "next_action": "price_options"
+            },
+            "expected_status": "ready",
+            "preflight": null,
+            "elapsed_ms": 0.09
+          }
+        ],
+        "dataset_sha256": "852a74ea236021e80e35517859ab563c66aceaa2ce8a6d02872736e13dbe159f",
+        "model_task_success": null,
+        "model_status": "not_measured"
+      }
+    },
+    "release_gate": {
+      "deployment_allowed": false,
+      "checks": {
+        "offline_contracts_passed": true,
+        "real_model_evaluation_available": false,
+        "independent_human_labels_reviewed": false,
+        "task_success": false,
+        "ready_condition_recall": false,
+        "citation_precision": false,
+        "refusal_accuracy": false,
+        "unauthorized_tool_executions": false,
+        "case_p95_ms": false
+      },
+      "failed_requirements": [
+        "real_model_evaluation_available",
+        "independent_human_labels_reviewed",
+        "task_success",
+        "ready_condition_recall",
+        "citation_precision",
+        "refusal_accuracy",
+        "unauthorized_tool_executions",
+        "case_p95_ms"
+      ],
+      "scope": "Future local shadow qualification only; never customer dispatch or production approval"
+    },
+    "scope": "Authored fake SDK responses test wiring and guards. Rules scores are measured; model quality and performance gains are not measured."
+  },
   "source_sha256": {
     "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/eval_dashboard.py": "cd3fcc787b164e7ae6beb6866752085bbb68becdbfbaee38666e5cf625ef41f8",
+    "app/monitoring.py": "96c64937e6cbf82654abf1fcd00cfb32d03c2ac8864a290e026d27b4b3a09983",
     "app/repositories/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "app/repositories/source.py": "5ea283a4a05f2acdd70fe27d0ce765fc33e1fa2f5e6770ade9bd1e5f6a602b4d",
     "app/repositories/warehouse.py": "b6ca110e7368ac8ddee842389d060b067c08798e4babcead818f5f8aa07831e0",
+    "app/showcase.py": "a1602c483d587f42dfb47999894e19d6b83412151e6610a2ce7b70ff6216ed73",
     "pipelines/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "pipelines/etl/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "pipelines/etl/extract.py": "42b328df0dfccf813eb7b4a3ebee5bd50274493014189641fea4febaae820596",
@@ -1664,35 +3931,87 @@
     "risk_model/dataset.py": "6a44ddf97d4c945a4def97883c3d569a7c1492e251c735bacd4b088122f506d9",
     "risk_model/fixtures.py": "afe8b8e1d94140b19cc45d7d597476f6445af2514ce95ff5e1ed243721996c7a",
     "risk_model/training.py": "c48f76b2804a285e71bed35cfb6a2d241f9d13688c92b76b38e4d96f10e80dc0",
+    "agents/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agents/assessment.py": "598c0f1a3d0ec1f464b4bbea2187cdba35a35544a6df70b53bb9cabe25fa701b",
+    "agents/evaluation.py": "9f3ef99d4ac4247b7ca68ac6005f5f4760a342bf7e32f35962c3cd6cd21c8b6e",
+    "agents/llm_roles.py": "7170afefde12db2fff5843ca8f66dae0556259839a6f0a86cc8ad1c623a32c0c",
+    "agents/model_evaluation.py": "1d1fd503cb0f796b96e0e845f99529ec0e82cc6c53e64c1912f4c4cecdacf3a0",
+    "agents/roles.py": "0a3351052e90adcd3c29b2353ddaabc2e72c4a859fe85bf7f935b17f81adbc01",
+    "agents/store.py": "a6919e69e33407bda2cd97df8fe8507e7ca6e8ccce1cb79124b1e15a8e2f9b63",
+    "agents/tools.py": "d14ac602a240aa4fea3dc945891603942109dc8960a2b24605115b56dd622bbf",
+    "agents/workflow.py": "e9a20342b0cf0be54e7dea7b10a9940fed4a74ca1248b884181d949b77bf1ad4",
     "integrations/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "integrations/bedrock.py": "db2e8d55eecf24c541ea444d9100ee12b6775fdfd533049c24bcbd79e52f271b",
     "integrations/gmail.py": "c6dba7294e7c1150a4ee2e9b18c42a6e84e20e5f3713e3e6bf7d9a082a509809",
-    "integrations/settings.py": "6412f2b8060364c003dd1eca1cf6316f649e1e5dd1b0d5979b32ca58bbb958f9",
+    "integrations/model_mock.py": "08248699b5506fb822b6daadc43c3ecba56bc2c1d4fd7a15cb274d5f1f5b9ecb",
+    "integrations/ollama.py": "7b2a6228d8ea40142fdfee02ace21a05123b3520fe5dd97436382fe786893ed7",
+    "integrations/settings.py": "495222a218186bcb4e9fc7cf21fbbf0a4baa2c38a3571749bc0d283ef67a6553",
     "integrations/snowflake.py": "8059b6dd7de45904cad7d8942e5caee48769bc1209c0b119c69715ccc0e76245",
     "scripts/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "scripts/demo.py": "43504473a86eb0d2d5d0b6babb9c29ac16d0e75bea420ee6da531078ddde689d",
     "scripts/demo_api_contracts.py": "c5317221e45449d9cd006304f312945edf80d768ce9bdfc4db485452e1f42dc6",
+    "scripts/demo_model_contracts.py": "ff817587b2532719f5cac23a7506f82e516dd8d00b0ae875ae0e1b05e51a7ebd",
+    "scripts/eval_agents.py": "c21d0d68493e664a2fb64ad7f3e172679e866dcf6d72943f73c0e50c68de9ab3",
     "scripts/eval_rag.py": "dcfe9ca1a5cda29acba7c65b5c8a0fa8cb499b52c1424bbcb7f3f812e84ab881",
     "scripts/fixtures.py": "1e981cb8f5b3d80487b701aa1f8a0de2d3d34b1a3153d6fa601ec74d1fdc436f",
     "scripts/inspect.py": "af61a746e738c9a939a9409a735c2648e0445656d5defeb0907daf4138540799",
     "scripts/load_eval.py": "a46c9ce79cf03c347946eb5c3297716f7e3aff4469f3f9e6d095ab2409346dd9",
     "scripts/order_walkthrough.py": "b7c255c9a663d1de03c6f25e6a8e574b28c9f1b4b60deaccd2a84b160e78e1ea",
-    "scripts/release_check.py": "3a7892bfba0b360ab7cecc5c20e109c53db98abe6775dac17f6b3260e161d27c",
+    "scripts/release_check.py": "766ed789fcfc8275705752eca56aaf2f974797547e67b0a53e0f99276f9124f2",
     "scripts/review_rag.py": "34d9b9f3010b03b0419d3de1f1d4d29b119f3257b3e9942015ef42d5e169ca26",
+    "scripts/run_agents.py": "7262fd33d7b0b02e5092ac14c8d1108d3083e2f84565cd9fce468b359e373b90",
     "scripts/run_batch.py": "e8bedfa23f1cb22e4dbb36cfddaf755d6212b6911929b75b165db953cddb22ca",
     "scripts/run_local.py": "23703cfcc178aa57653b29de390dec7e4e661b66c4c266205ee82cf3f7af5f32",
     "scripts/run_rag.py": "2490e33a7a77166cc892e0848babe53b380283dac50d2d9057105e75535de2ee",
     "scripts/run_risk_model.py": "daabb62e0eb015eb53bcc26e66bcfb25d1a916f0a673c924b54572dceebf0158",
     "scripts/score_risk_model.py": "df18357fc67e6d372a003d307d12d009b9269d3ae2621e28cd1f40f05809948c",
-    "scripts/verify.py": "0196e8c4b08f8f76540472f8903e417a620c1384822691e90d91189cbab94135",
+    "scripts/serve_eval.py": "6ad76dd6d8e5575aa7f7d0ce4fc880145fac50dab49573edf9f9fccb0a9c38bf",
+    "scripts/serve_showcase.py": "44a4a0bab841eacf0bd02913fd8485349181979e8bd30a46bcfc2f8257633833",
+    "scripts/verify.py": "ac0a5761cd5e2d5b7875d1eec22d83bb9b6e90edda1bf65f42dcdff23aa82b7c",
+    "tests/test_agents.py": "c5bd57f8a8d0363b8e93e778dfc341df83c04c0c4a5404f88a64a8ab1ada034a",
     "tests/test_api_adapters.py": "f70fc6fd036496b14f90d2211d4b408781753bb0ba06bb8ea315f61507ef827c",
     "tests/test_batch_policy.py": "ed22d7d56db337c221c874541167f6a327735ead4345ac91636cde5d8228fe3b",
+    "tests/test_eval_dashboard.py": "91e5f02494b31fa77ed4980eb4037cffd9527174da199667f44768e781120d2c",
     "tests/test_incremental_etl.py": "38ef4195e700d26ab8419a68ea7224493926b204737b360d10ab3801c534a066",
     "tests/test_load_evaluation.py": "2930df634e85722f3e493b2107e44478ed8dc65fb9e8a9c09045bb24752c9470",
     "tests/test_local_demo.py": "97f1939355de4f6cd07596f71b75fcc1c17802b2e719a919862c9fd0c316057d",
+    "tests/test_model_contracts.py": "28b220623c9245419445d2ac381be5f6f094db6c7cf0bc1fc7677bbac52349cf",
     "tests/test_rag.py": "b1f87e2383c13869c67e56f1d4d87cac9e1d60cda3e37b0c0f66889a957d5340",
     "tests/test_rag_context.py": "bbe7bd9648a9669f6c56ad8e868d80fd63c307082658fa67e3131a7632737166",
     "tests/test_release_check.py": "5aaa0634936ff73d7961a3eb62b0fce7622aa114f3e0a5abe597bdd7a9315643",
-    "tests/test_risk_model.py": "319e350873970a527d944fbbb5ba040b79f7e544ac5926b659def05ae04b97ef"
+    "tests/test_risk_model.py": "319e350873970a527d944fbbb5ba040b79f7e544ac5926b659def05ae04b97ef",
+    "tests/test_showcase.py": "12832b3e01bf5314e6916980b280fc90999c80f323ff01303f7f0e505f993687",
+    "app/eval_ui/index.html": "36a229dc181f8a5cab92b3f3dcb33a7adbb243d388c67dd9111099d5aa68ed37",
+    "app/eval_ui/app.css": "8f6f7e35c6c732393b003fbeeda5b92ba4274a406d44f0279ceea0f5469ca0f6",
+    "app/eval_ui/workbench.html": "ddb80c27f3376a517c2160ab842c5757d4944fcc950ffbc4d4a9f179366ee836",
+    "app/eval_ui/workbench.js": "e1dba5da2a1fe95ab950b98e8eb4dabd0b12dcbbfd8a07a8e89e91c7bdaa18af",
+    "app/eval_ui/app.js": "c43e0cb1d3fa013fa02d1d81068eff835eea21f2dabb535ec2b16f72d3b61937",
+    "app/eval_ui/workbench.css": "6f0ae1795477979733a9fa2bd4aa9f22daa299d336a2677de8187b1fb20fb698",
+    "data/llm-eval/contract-responses.json": "763f9dde181c83fb1d592641f00b0501ade4bee4f30ffa16087f70f921fe9828",
+    "data/llm-eval/gate.json": "0984bf30e406a82379eb452dbdb6e6c6394cffe9ae0028ae8c2cb185201ac162",
+    "data/llm-eval/development.json": "a00668664f61ca598e4f1cfd62766fcf036ecacd2232f537d5670db93c9549d6",
+    "data/llm-eval/README.md": "2be9743944d974aa290f989d4b0806bfb243c3f078319bce1921cc9e48fe18e5",
+    "data/llm-eval/holdout.json": "3c641e136db110834c7b549e5efaf0e3723c95abdc52e8d08a24cb42b9e4a35a",
+    "data/rag-fixtures/README.md": "bb50473592704108b6df9609ab5797d1381c41321324d5da0b2d700df278848b",
+    "data/rag-fixtures/eval-cases.json": "fc126a3d99634cb82a4f43b5332648826bf3cb41e13c7b79208f2ac041528ca9",
+    "data/rag-fixtures/access.json": "02c39a89d684f4e153f9887c0898c50b2259ecdf29c0f7e66f0c6ac2fffd23b0",
+    "data/rag-fixtures/manifest.json": "98a01ae34289a9168c2543747cc9db18e242265d910e934b121b24b56e6dcc0c",
+    "data/rag-fixtures/documents/mail-b.md": "f5972f3685664e9068a18720ed034fefff0f1e228271efe91c4ac57e54eeb634",
+    "data/rag-fixtures/documents/eng-a-v2.md": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+    "data/rag-fixtures/documents/mail-a-v2.md": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+    "data/rag-fixtures/documents/eng-b.md": "14072e893b389957ce606d2ef05ee85d67da35c13ea3725e3dbe84663994b601",
+    "data/rag-fixtures/documents/mail-a-v1.md": "6f133b3c17ec02b1d428122fb4b8223ad6ba3ebc9619a2f73cd454816fb24903",
+    "data/rag-fixtures/documents/eng-a-draft.md": "01b96b42a0c0cf8061a247b5f190783671b342a648c14c3990be5eeee44ddfdd",
+    "data/rag-fixtures/documents/eng-a-v1.md": "2257b8b198ab0f956c36eda0b28451e5286b75d09198b9b098f56985dc2c3ce2",
+    "data/rag-fixtures/documents/shipping-a.md": "d0c3b09641a4d4d671b17482832860e408712183cfe098f4c0f00a534f35671b",
+    "data/risk-fixtures/README.md": "70a84d49e8d883e16cdb090e35055c3d412c535a7b8b4a645a96f6b05e81b808",
+    "data/risk-fixtures/scenario.json": "fb24b1f77f6f20cab04bbd412cf2e8df2bb53dfb82f85cb3504bb7f7089fa4ad",
+    "data/agent-fixtures/README.md": "b4eea1a297abbea661b4346e0598281401a9d78971b536c16423a92a021836ec",
+    "data/agent-fixtures/scenario.json": "4d4816a22493b13edd4dece4e2bd6df899b611af213093c9e4e55ed628227df6",
+    "data/fixtures/scopes.json": "c7df79c00994fd1c99f1817cd3c305382b01e2dc1ce9c2b6f5790ba936282435",
+    "data/fixtures/expected-current.json": "be66f7c2cd0a0eae3ac55597f938cf9922cf4c8791a44dfd4e79a78012cf30cd",
+    "data/fixtures/order-changes.jsonl": "2620f539808b93e67447c90d30614b6addae38f402ea89778f0e3b01201e1361",
+    "data/fixtures/README.md": "a8117cfaeeb61073cf34e1647a1c7948776f8a9324da3baeac848539ffe0e084"
   },
-  "scope": "Local synthetic ETL, scoped keyword retrieval and optional risk-model evaluation; no cloud services or LLM calls"
+  "scope": "Local synthetic ETL, scoped retrieval, optional risk-model and deterministic agent evaluation; no cloud services or LLM calls"
 }

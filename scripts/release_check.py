@@ -58,6 +58,8 @@ def example_findings(text: str) -> list[dict]:
     failures = []
     if values.get("ALLOW_LIVE_SERVICES") != "false":
         failures.append({"file": ".env.example", "rule": "live_services_not_disabled"})
+    if values.get("ALLOW_LIVE_MODEL_CALLS", "false") != "false":
+        failures.append({"file": ".env.example", "rule": "live_model_calls_not_disabled"})
     for key, value in values.items():
         if key.endswith(("_TOKEN", "_KEY", "_PASSWORD", "_ACCOUNT", "_USER")) and value:
             failures.append({"file": ".env.example", "rule": "example_contains_credential_value"})

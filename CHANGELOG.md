@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0
+
+- Add disabled-by-default Bedrock/Ollama adapters, offline SDK contract tests, separate development/acceptance inputs, model release checks and session monitoring without real model inference.
+- Add deterministic engineering/business quote drafting, validated cent arithmetic, version-bound internal approval and manager quantity revisions.
+- Add a local Decision Workspace with queued generation, guided follow-ups, structured rejection and pending-review feedback tied to exact source versions.
+- Add read-only Evaluation Studio, nine controlled faults and a separate manager-feedback/recalculation experiment.
+- Make approval and feedback retries idempotent and keep same-quantity what-ifs uncommitted.
+- Add the system overview to a business-focused README, simplify Evaluation Studio and provide reproducible interview walkthroughs. No live LLM integration, cloud deployment or production business uplift is claimed.
+
 ## 0.2.0
 
 - Add synthetic delivery-risk training on the existing incremental ETL, with shared-line capacity and planning snapshots.

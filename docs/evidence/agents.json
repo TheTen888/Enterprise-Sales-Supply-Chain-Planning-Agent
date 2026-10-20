@@ -1,0 +1,726 @@
+{
+  "passed": true,
+  "checks": {
+    "draft_generation_is_queued": true,
+    "current_etl_and_four_rag_conditions_used": true,
+    "requested_five_percent_below_demo_margin_floor": true,
+    "counteroffer_1445_cents_passes": true,
+    "approval_bound_to_payload": true,
+    "revision_invalidates_old_approval": true,
+    "hypothetical_volume_is_not_customer_commitment": true,
+    "unit_cost_does_not_fall_without_approved_evidence": true,
+    "revised_cost_and_counteroffer_recomputed": true,
+    "shared_capacity_shortfall_blocks_approval": true,
+    "stale_and_infeasible_approvals_rejected": true,
+    "what_if_does_not_modify_etl": true,
+    "same_model_reused_without_retraining": true,
+    "no_paid_calls_or_customer_send": true
+  },
+  "initial": {
+    "job_id": "42dfea10bab04d35a0e825c73d8b9ef5",
+    "status": "needs_review",
+    "revision": 1,
+    "parent_id": null,
+    "draft": {
+      "business": {
+        "conditions": [
+          "unsigned_future_volume",
+          "mandatory_material_inspection",
+          "no_approved_volume_cost_reduction",
+          "engineering_review_required"
+        ],
+        "discount_request": {
+          "chunk_id": "MAIL-A-001:v2:c1",
+          "discount_bps": 500
+        },
+        "next_action": "Manager reviews pricing options; no automatic customer send",
+        "options": [
+          {
+            "gross_profit_cents": 2400000,
+            "margin_allowed": true,
+            "margin_bps": 1333,
+            "option_id": "retain_price",
+            "quantity": 12000,
+            "revenue_cents": 18000000,
+            "total_cost_cents": 15600000,
+            "unit_price_cents": 1500
+          },
+          {
+            "gross_profit_cents": 1500000,
+            "margin_allowed": false,
+            "margin_bps": 877,
+            "option_id": "customer_request",
+            "quantity": 12000,
+            "revenue_cents": 17100000,
+            "total_cost_cents": 15600000,
+            "unit_price_cents": 1425
+          },
+          {
+            "gross_profit_cents": 1740000,
+            "margin_allowed": true,
+            "margin_bps": 1003,
+            "option_id": "counteroffer",
+            "quantity": 12000,
+            "revenue_cents": 17340000,
+            "total_cost_cents": 15600000,
+            "unit_price_cents": 1445
+          }
+        ],
+        "recommended_option_id": "counteroffer",
+        "requires_capacity_review": false,
+        "role": "business"
+      },
+      "customer_send_enabled": false,
+      "customer_volume_committed": true,
+      "engineering": {
+        "constraints": [
+          {
+            "chunk_id": "MAIL-A-001:v2:c2",
+            "document_id": "MAIL-A-001",
+            "id": "unsigned_future_volume",
+            "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+            "text": "no additional quantity commitment has been signed.",
+            "version": 2
+          },
+          {
+            "chunk_id": "ENG-A-001:v2:c1",
+            "document_id": "ENG-A-001",
+            "id": "mandatory_material_inspection",
+            "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+            "text": "Preserve both requirements when discussing a customer price discount.",
+            "version": 2
+          },
+          {
+            "chunk_id": "ENG-A-001:v2:c2",
+            "document_id": "ENG-A-001",
+            "id": "no_approved_volume_cost_reduction",
+            "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+            "text": "No approved volume-based cost reduction has been provided.",
+            "version": 2
+          },
+          {
+            "chunk_id": "ENG-A-001:v2:c2",
+            "document_id": "ENG-A-001",
+            "id": "engineering_review_required",
+            "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+            "text": "Any simplification needs a separate engineering review.",
+            "version": 2
+          }
+        ],
+        "costing": {
+          "cost_basis": "published ETL unit cost; no approved volume reduction",
+          "total_cost_cents": 15600000,
+          "unit_cost_cents": 1300
+        },
+        "recommendation": "Preserve material and inspection; seek separate engineering review for design simplification",
+        "risk": {
+          "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+          "capacity_shortfall_units": 0,
+          "features": {
+            "allocation_utilization_ratio": 0.8,
+            "capacity_load_ratio": 0.8888888888888888,
+            "design_changes_30d": 2,
+            "order_quantity": 12000,
+            "pickup_forecast_gap_ratio": 0.2,
+            "recent_yield": 0.9,
+            "schedule_slack_days": 1
+          },
+          "line": "LINE-1",
+          "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+          "model_status": "synthetic_unpromoted",
+          "outside_training_range": [],
+          "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+          "requires_capacity_review": false,
+          "risk_score": 16.481822514943325,
+          "training_range_check": "available"
+        },
+        "role": "engineering"
+      },
+      "external_api_calls": 0,
+      "facts": {
+        "business_version": 3,
+        "currency": "USD",
+        "customer_id": "CUSTOMER-A",
+        "design_version": "D2",
+        "entity_id": "ORDER-A001-L1",
+        "extended_cost_cents": 15600000,
+        "extended_price_cents": 18000000,
+        "project_id": "PROJECT-A",
+        "publication_id": 3,
+        "quantity": 12000,
+        "source": "internal-db",
+        "unit_cost_cents": 1300,
+        "unit_price_cents": 1500
+      },
+      "input_fingerprints": {
+        "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+        "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+        "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+        "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+      },
+      "job_id": "42dfea10bab04d35a0e825c73d8b9ef5",
+      "llm_calls": 0,
+      "mock_model_calls": 0,
+      "mode": "deterministic_two_role_workflow",
+      "quantity": 12000,
+      "recalculated": [
+        "total_cost",
+        "quote_totals",
+        "capacity_load",
+        "schedule_slack",
+        "allocation_utilization",
+        "risk_score"
+      ],
+      "reused": [
+        "published_unit_cost",
+        "frozen_model_parameters",
+        "source_document_versions_when_unchanged"
+      ],
+      "revision": 1,
+      "runtime_identity": {
+        "business": {
+          "provider": "deterministic",
+          "role": "business"
+        },
+        "engineering": {
+          "provider": "deterministic",
+          "role": "engineering"
+        }
+      },
+      "scenario_kind": "published_order",
+      "scope": {
+        "customer_id": "CUSTOMER-A",
+        "entity_id": "ORDER-A001-L1",
+        "project_id": "PROJECT-A"
+      }
+    },
+    "approval": null,
+    "approval_valid": false,
+    "feedback": []
+  },
+  "manager_follow_up": {
+    "topic": "discount_limit",
+    "answer": {
+      "requested": {
+        "gross_profit_cents": 1500000,
+        "margin_allowed": false,
+        "margin_bps": 877,
+        "option_id": "customer_request",
+        "quantity": 12000,
+        "revenue_cents": 17100000,
+        "total_cost_cents": 15600000,
+        "unit_price_cents": 1425
+      },
+      "counteroffer": {
+        "gross_profit_cents": 1740000,
+        "margin_allowed": true,
+        "margin_bps": 1003,
+        "option_id": "counteroffer",
+        "quantity": 12000,
+        "revenue_cents": 17340000,
+        "total_cost_cents": 15600000,
+        "unit_price_cents": 1445
+      },
+      "minimum_margin_bps": 1000,
+      "reason": "Current published cost sets the margin floor; unsigned volume does not authorize cost savings"
+    },
+    "citations": [
+      {
+        "chunk_id": "MAIL-A-001:v2:c2",
+        "document_id": "MAIL-A-001",
+        "id": "unsigned_future_volume",
+        "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+        "text": "no additional quantity commitment has been signed.",
+        "version": 2
+      },
+      {
+        "chunk_id": "ENG-A-001:v2:c1",
+        "document_id": "ENG-A-001",
+        "id": "mandatory_material_inspection",
+        "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+        "text": "Preserve both requirements when discussing a customer price discount.",
+        "version": 2
+      },
+      {
+        "chunk_id": "ENG-A-001:v2:c2",
+        "document_id": "ENG-A-001",
+        "id": "no_approved_volume_cost_reduction",
+        "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+        "text": "No approved volume-based cost reduction has been provided.",
+        "version": 2
+      },
+      {
+        "chunk_id": "ENG-A-001:v2:c2",
+        "document_id": "ENG-A-001",
+        "id": "engineering_review_required",
+        "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+        "text": "Any simplification needs a separate engineering review.",
+        "version": 2
+      }
+    ]
+  },
+  "initial_internal_approval": {
+    "actor": "demo-manager-a",
+    "input_fingerprints": {
+      "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+      "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+      "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+      "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+    },
+    "option_id": "counteroffer",
+    "payload_hash": "98716404216daace3b30b705e3f54c657350bf025fbdae6626313b006c2c1e77",
+    "revision": 1,
+    "scope": "internal review only; not customer dispatch"
+  },
+  "superseded_status": "superseded",
+  "revised": {
+    "job_id": "cb8831fc45ae492cae05790662e9ed90",
+    "status": "needs_capacity_review",
+    "revision": 2,
+    "parent_id": "42dfea10bab04d35a0e825c73d8b9ef5",
+    "draft": {
+      "business": {
+        "conditions": [
+          "unsigned_future_volume",
+          "mandatory_material_inspection",
+          "no_approved_volume_cost_reduction",
+          "engineering_review_required"
+        ],
+        "discount_request": {
+          "chunk_id": "MAIL-A-001:v2:c1",
+          "discount_bps": 500
+        },
+        "next_action": "Planner must resolve capacity before approval",
+        "options": [
+          {
+            "gross_profit_cents": 3600000,
+            "margin_allowed": true,
+            "margin_bps": 1333,
+            "option_id": "retain_price",
+            "quantity": 18000,
+            "revenue_cents": 27000000,
+            "total_cost_cents": 23400000,
+            "unit_price_cents": 1500
+          },
+          {
+            "gross_profit_cents": 2250000,
+            "margin_allowed": false,
+            "margin_bps": 877,
+            "option_id": "customer_request",
+            "quantity": 18000,
+            "revenue_cents": 25650000,
+            "total_cost_cents": 23400000,
+            "unit_price_cents": 1425
+          },
+          {
+            "gross_profit_cents": 2610000,
+            "margin_allowed": true,
+            "margin_bps": 1003,
+            "option_id": "counteroffer",
+            "quantity": 18000,
+            "revenue_cents": 26010000,
+            "total_cost_cents": 23400000,
+            "unit_price_cents": 1445
+          }
+        ],
+        "recommended_option_id": "counteroffer",
+        "requires_capacity_review": true,
+        "role": "business"
+      },
+      "customer_send_enabled": false,
+      "customer_volume_committed": false,
+      "engineering": {
+        "constraints": [
+          {
+            "chunk_id": "MAIL-A-001:v2:c2",
+            "document_id": "MAIL-A-001",
+            "id": "unsigned_future_volume",
+            "source_hash": "f8727861d3300f8790e078f53d59e1f746cdfbb1757dc3b3d7990b49f99e07f4",
+            "text": "no additional quantity commitment has been signed.",
+            "version": 2
+          },
+          {
+            "chunk_id": "ENG-A-001:v2:c1",
+            "document_id": "ENG-A-001",
+            "id": "mandatory_material_inspection",
+            "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+            "text": "Preserve both requirements when discussing a customer price discount.",
+            "version": 2
+          },
+          {
+            "chunk_id": "ENG-A-001:v2:c2",
+            "document_id": "ENG-A-001",
+            "id": "no_approved_volume_cost_reduction",
+            "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+            "text": "No approved volume-based cost reduction has been provided.",
+            "version": 2
+          },
+          {
+            "chunk_id": "ENG-A-001:v2:c2",
+            "document_id": "ENG-A-001",
+            "id": "engineering_review_required",
+            "source_hash": "a6a99a3b159ec13c4778f9f11a1cfff57a9da9a82ce1c185e3162af3ae0b5fa5",
+            "text": "Any simplification needs a separate engineering review.",
+            "version": 2
+          }
+        ],
+        "costing": {
+          "cost_basis": "published ETL unit cost; no approved volume reduction",
+          "total_cost_cents": 23400000,
+          "unit_cost_cents": 1300
+        },
+        "recommendation": "Preserve material and inspection; seek separate engineering review for design simplification",
+        "risk": {
+          "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+          "capacity_shortfall_units": 4000,
+          "features": {
+            "allocation_utilization_ratio": 1.0,
+            "capacity_load_ratio": 1.2222222222222223,
+            "design_changes_30d": 2,
+            "order_quantity": 18000,
+            "pickup_forecast_gap_ratio": 0.2,
+            "recent_yield": 0.9,
+            "schedule_slack_days": -3
+          },
+          "line": "LINE-1",
+          "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+          "model_status": "synthetic_unpromoted",
+          "outside_training_range": [
+            "order_quantity"
+          ],
+          "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+          "requires_capacity_review": true,
+          "risk_score": 60.75051767730787,
+          "training_range_check": "available"
+        },
+        "role": "engineering"
+      },
+      "external_api_calls": 0,
+      "facts": {
+        "business_version": 3,
+        "currency": "USD",
+        "customer_id": "CUSTOMER-A",
+        "design_version": "D2",
+        "entity_id": "ORDER-A001-L1",
+        "extended_cost_cents": 15600000,
+        "extended_price_cents": 18000000,
+        "project_id": "PROJECT-A",
+        "publication_id": 3,
+        "quantity": 12000,
+        "source": "internal-db",
+        "unit_cost_cents": 1300,
+        "unit_price_cents": 1500
+      },
+      "input_fingerprints": {
+        "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+        "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+        "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+        "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+      },
+      "job_id": "cb8831fc45ae492cae05790662e9ed90",
+      "llm_calls": 0,
+      "mock_model_calls": 0,
+      "mode": "deterministic_two_role_workflow",
+      "quantity": 18000,
+      "recalculated": [
+        "total_cost",
+        "quote_totals",
+        "capacity_load",
+        "schedule_slack",
+        "allocation_utilization",
+        "risk_score"
+      ],
+      "reused": [
+        "published_unit_cost",
+        "frozen_model_parameters",
+        "source_document_versions_when_unchanged"
+      ],
+      "revision": 2,
+      "runtime_identity": {
+        "business": {
+          "provider": "deterministic",
+          "role": "business"
+        },
+        "engineering": {
+          "provider": "deterministic",
+          "role": "engineering"
+        }
+      },
+      "scenario_kind": "manager_what_if",
+      "scope": {
+        "customer_id": "CUSTOMER-A",
+        "entity_id": "ORDER-A001-L1",
+        "project_id": "PROJECT-A"
+      }
+    },
+    "approval": null,
+    "approval_valid": false,
+    "feedback": []
+  },
+  "traces": {
+    "initial": [
+      {
+        "seq": 1,
+        "event": "draft.queued",
+        "body": {
+          "revision": 1
+        }
+      },
+      {
+        "seq": 2,
+        "event": "evidence.retrieve",
+        "body": {
+          "cache_hit": false,
+          "chunks": [
+            "ENG-A-001:v2:c1",
+            "ENG-A-001:v2:c2",
+            "MAIL-A-001:v2:c1",
+            "MAIL-A-001:v2:c2"
+          ],
+          "etl_publication": 3,
+          "facts_backend": "local_sqlite",
+          "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+          "retrieval_backend": "local_lexical"
+        }
+      },
+      {
+        "seq": 3,
+        "event": "engineering.complete",
+        "body": {
+          "costing": {
+            "cost_basis": "published ETL unit cost; no approved volume reduction",
+            "total_cost_cents": 15600000,
+            "unit_cost_cents": 1300
+          },
+          "handoff_conditions": [
+            "unsigned_future_volume",
+            "mandatory_material_inspection",
+            "no_approved_volume_cost_reduction",
+            "engineering_review_required"
+          ],
+          "risk": {
+            "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+            "capacity_shortfall_units": 0,
+            "features": {
+              "allocation_utilization_ratio": 0.8,
+              "capacity_load_ratio": 0.8888888888888888,
+              "design_changes_30d": 2,
+              "order_quantity": 12000,
+              "pickup_forecast_gap_ratio": 0.2,
+              "recent_yield": 0.9,
+              "schedule_slack_days": 1
+            },
+            "line": "LINE-1",
+            "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+            "model_status": "synthetic_unpromoted",
+            "outside_training_range": [],
+            "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+            "requires_capacity_review": false,
+            "risk_score": 16.481822514943325,
+            "training_range_check": "available"
+          },
+          "tools": [
+            "published_cost_totals",
+            "source_condition_checks",
+            "local_risk_model.score"
+          ]
+        }
+      },
+      {
+        "seq": 4,
+        "event": "business.complete",
+        "body": {
+          "options": [
+            {
+              "gross_profit_cents": 2400000,
+              "margin_allowed": true,
+              "margin_bps": 1333,
+              "option_id": "retain_price",
+              "quantity": 12000,
+              "revenue_cents": 18000000,
+              "total_cost_cents": 15600000,
+              "unit_price_cents": 1500
+            },
+            {
+              "gross_profit_cents": 1500000,
+              "margin_allowed": false,
+              "margin_bps": 877,
+              "option_id": "customer_request",
+              "quantity": 12000,
+              "revenue_cents": 17100000,
+              "total_cost_cents": 15600000,
+              "unit_price_cents": 1425
+            },
+            {
+              "gross_profit_cents": 1740000,
+              "margin_allowed": true,
+              "margin_bps": 1003,
+              "option_id": "counteroffer",
+              "quantity": 12000,
+              "revenue_cents": 17340000,
+              "total_cost_cents": 15600000,
+              "unit_price_cents": 1445
+            }
+          ],
+          "tool": "integer_cent_pricing"
+        }
+      },
+      {
+        "seq": 5,
+        "event": "draft.validated",
+        "body": {
+          "payload_hash": "98716404216daace3b30b705e3f54c657350bf025fbdae6626313b006c2c1e77"
+        }
+      },
+      {
+        "seq": 6,
+        "event": "manager.follow_up",
+        "body": {
+          "topic": "discount_limit"
+        }
+      },
+      {
+        "seq": 7,
+        "event": "manager.approved_internal",
+        "body": {
+          "actor": "demo-manager-a",
+          "input_fingerprints": {
+            "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+            "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+            "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+          },
+          "option_id": "counteroffer",
+          "payload_hash": "98716404216daace3b30b705e3f54c657350bf025fbdae6626313b006c2c1e77",
+          "revision": 1,
+          "scope": "internal review only; not customer dispatch"
+        }
+      },
+      {
+        "seq": 8,
+        "event": "manager.revision_invalidates_approval",
+        "body": {
+          "next_revision": 2
+        }
+      }
+    ],
+    "revised": [
+      {
+        "seq": 9,
+        "event": "draft.queued",
+        "body": {
+          "revision": 2
+        }
+      },
+      {
+        "seq": 10,
+        "event": "evidence.retrieve",
+        "body": {
+          "cache_hit": true,
+          "chunks": [
+            "ENG-A-001:v2:c1",
+            "ENG-A-001:v2:c2",
+            "MAIL-A-001:v2:c1",
+            "MAIL-A-001:v2:c2"
+          ],
+          "etl_publication": 3,
+          "facts_backend": "local_sqlite",
+          "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+          "retrieval_backend": "local_lexical"
+        }
+      },
+      {
+        "seq": 11,
+        "event": "engineering.complete",
+        "body": {
+          "costing": {
+            "cost_basis": "published ETL unit cost; no approved volume reduction",
+            "total_cost_cents": 23400000,
+            "unit_cost_cents": 1300
+          },
+          "handoff_conditions": [
+            "unsigned_future_volume",
+            "mandatory_material_inspection",
+            "no_approved_volume_cost_reduction",
+            "engineering_review_required"
+          ],
+          "risk": {
+            "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+            "capacity_shortfall_units": 4000,
+            "features": {
+              "allocation_utilization_ratio": 1.0,
+              "capacity_load_ratio": 1.2222222222222223,
+              "design_changes_30d": 2,
+              "order_quantity": 18000,
+              "pickup_forecast_gap_ratio": 0.2,
+              "recent_yield": 0.9,
+              "schedule_slack_days": -3
+            },
+            "line": "LINE-1",
+            "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+            "model_status": "synthetic_unpromoted",
+            "outside_training_range": [
+              "order_quantity"
+            ],
+            "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+            "requires_capacity_review": true,
+            "risk_score": 60.75051767730787,
+            "training_range_check": "available"
+          },
+          "tools": [
+            "published_cost_totals",
+            "source_condition_checks",
+            "local_risk_model.score"
+          ]
+        }
+      },
+      {
+        "seq": 12,
+        "event": "business.complete",
+        "body": {
+          "options": [
+            {
+              "gross_profit_cents": 3600000,
+              "margin_allowed": true,
+              "margin_bps": 1333,
+              "option_id": "retain_price",
+              "quantity": 18000,
+              "revenue_cents": 27000000,
+              "total_cost_cents": 23400000,
+              "unit_price_cents": 1500
+            },
+            {
+              "gross_profit_cents": 2250000,
+              "margin_allowed": false,
+              "margin_bps": 877,
+              "option_id": "customer_request",
+              "quantity": 18000,
+              "revenue_cents": 25650000,
+              "total_cost_cents": 23400000,
+              "unit_price_cents": 1425
+            },
+            {
+              "gross_profit_cents": 2610000,
+              "margin_allowed": true,
+              "margin_bps": 1003,
+              "option_id": "counteroffer",
+              "quantity": 18000,
+              "revenue_cents": 26010000,
+              "total_cost_cents": 23400000,
+              "unit_price_cents": 1445
+            }
+          ],
+          "tool": "integer_cent_pricing"
+        }
+      },
+      {
+        "seq": 13,
+        "event": "draft.validated",
+        "body": {
+          "payload_hash": "ddcb96e024064b48bf4f64fa49db0fcc83fa3da88ec9e82ca83659fbde0c7c73"
+        }
+      }
+    ]
+  },
+  "limits": "Deterministic two-role workflow with reviewed extraction rules; no LLM, LangGraph, AgentCore, real authentication or customer dispatch. Model scores are synthetic and unpromoted."
+}

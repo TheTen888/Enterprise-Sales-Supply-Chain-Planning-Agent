@@ -1,6 +1,6 @@
 {
-  "verified_at_utc": "2026-10-20T02:37:10.365862+00:00",
-  "workspace": "artifacts/rag-eval-tc3x1xk8",
+  "verified_at_utc": "2026-10-20T03:55:24.505017+00:00",
+  "workspace": "artifacts/rag-eval-tlr57swl",
   "passed": true,
   "retrieval": {
     "passed": true,
@@ -30,7 +30,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 2.798,
+        "elapsed_ms": 2.847,
         "condition_checks": [
           {
             "condition_id": "unsigned_future_volume",
@@ -79,7 +79,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 2.352,
+        "elapsed_ms": 2.182,
         "condition_checks": [
           {
             "condition_id": "unsigned_future_volume",
@@ -128,7 +128,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 1.912,
+        "elapsed_ms": 1.911,
         "condition_checks": [],
         "condition_coverage": null,
         "single_passage_condition_coverage": null,
@@ -158,7 +158,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 1.673,
+        "elapsed_ms": 1.503,
         "condition_checks": [
           {
             "condition_id": "mandatory_material_inspection",
@@ -201,7 +201,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 1.505,
+        "elapsed_ms": 2.047,
         "condition_checks": [
           {
             "condition_id": "mandatory_material_inspection",
@@ -244,7 +244,7 @@
         ],
         "recall_at_k": 1.0,
         "precision_at_k": 1.0,
-        "elapsed_ms": 2.098,
+        "elapsed_ms": 1.794,
         "condition_checks": [],
         "condition_coverage": null,
         "single_passage_condition_coverage": null,
@@ -270,7 +270,7 @@
         "actual_documents": [],
         "recall_at_k": null,
         "precision_at_k": null,
-        "elapsed_ms": 1.446,
+        "elapsed_ms": 1.395,
         "condition_checks": [],
         "condition_coverage": null,
         "single_passage_condition_coverage": null,

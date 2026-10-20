@@ -3,12 +3,16 @@ import ast
 import hashlib
 import io
 import json
+import os
 import re
 import subprocess
 import sys
+import tempfile
 import tokenize
 from datetime import UTC, datetime
 from pathlib import Path
+
+from app.eval_dashboard import source_inventory
 
 
 def main():
@@ -18,12 +22,23 @@ def main():
     parser.add_argument("--output", type=Path, default=Path("artifacts"))
     parser.add_argument("--full", action="store_true")
     parser.add_argument("--risk", action="store_true")
+    parser.add_argument("--agents", action="store_true")
     args = parser.parse_args()
+    args.risk = args.risk or args.agents
     root = Path(__file__).resolve().parent.parent
     output = args.output if args.output.is_absolute() else root / args.output
     output.mkdir(parents=True, exist_ok=True)
     comments, docstrings, hashes = [], [], {}
-    for directory in ["app", "pipelines", "rag", "risk_model", "integrations", "scripts", "tests"]:
+    for directory in [
+        "app",
+        "pipelines",
+        "rag",
+        "risk_model",
+        "agents",
+        "integrations",
+        "scripts",
+        "tests",
+    ]:
         for path in sorted((root / directory).rglob("*.py")):
             source = path.read_text()
             name = str(path.relative_to(root))
@@ -38,6 +53,8 @@ def main():
                     docstrings.append(name)
     if comments or docstrings:
         raise RuntimeError("code comments/docstrings found")
+    for name, path in source_inventory(root).items():
+        hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
     tests = subprocess.run(
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
         cwd=root,
@@ -156,6 +173,67 @@ def main():
             raise SystemExit(completed.returncode)
         risk_run = json.loads(completed.stdout)
         additional["risk_model"] = json.loads(Path(risk_run["report"]).read_text())
+    if args.agents:
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "scripts.run_agents",
+                "--output",
+                str(output),
+                "--model",
+                str(Path(risk_run["report"]).parent / "model.json"),
+            ],
+            cwd=root,
+            capture_output=True,
+            text=True,
+        )
+        if completed.returncode:
+            print(completed.stderr, file=sys.stderr)
+            raise SystemExit(completed.returncode)
+        additional["agents"] = json.loads(Path(json.loads(completed.stdout)["report"]).read_text())
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "scripts.eval_agents",
+                "--output",
+                str(output),
+                "--model",
+                str(Path(risk_run["report"]).parent / "model.json"),
+            ],
+            cwd=root,
+            capture_output=True,
+            text=True,
+        )
+        if completed.returncode:
+            print(completed.stderr, file=sys.stderr)
+            print(completed.stdout, file=sys.stderr)
+            raise SystemExit(completed.returncode)
+        additional["agent_eval"] = json.loads(
+            Path(json.loads(completed.stdout)["report"]).read_text()
+        )
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "scripts.demo_model_contracts",
+                "--output",
+                str(output),
+                "--model",
+                str(Path(risk_run["report"]).parent / "model.json"),
+            ],
+            cwd=root,
+            capture_output=True,
+            text=True,
+        )
+        if completed.returncode:
+            print(completed.stderr, file=sys.stderr)
+            print(completed.stdout, file=sys.stderr)
+            raise SystemExit(completed.returncode)
+        additional["model_contracts"] = json.loads(
+            Path(json.loads(completed.stdout)["report"]).read_text()
+        )
     result = {
         "passed": True,
         "verified_at_utc": datetime.now(UTC).isoformat(),
@@ -175,11 +253,10 @@ def main():
         "rag_evaluation": rag_evaluation,
         **additional,
         "source_sha256": hashes,
-        "scope": "Local synthetic ETL, scoped keyword retrieval and optional risk-model evaluation; no cloud services or LLM calls",
+        "scope": "Local synthetic ETL, scoped retrieval, optional risk-model and deterministic agent evaluation; no cloud services or LLM calls",
     }
     destination = root / "docs/evidence/verification.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(result, indent=2) + "\n")
     (destination.parent / "rag-evaluation.json").write_text(
         json.dumps(rag_evaluation, indent=2) + "\n"
     )
@@ -187,6 +264,13 @@ def main():
         (destination.parent / (name.replace("_", "-") + ".json")).write_text(
             json.dumps(value, indent=2) + "\n"
         )
+    with tempfile.NamedTemporaryFile(
+        mode="w", dir=destination.parent, suffix=".tmp", delete=False
+    ) as handle:
+        json.dump(result, handle, indent=2)
+        handle.write("\n")
+        temporary_path = handle.name
+    os.replace(temporary_path, destination)
     if args.full:
         print(json.dumps(result, indent=2))
     else:
@@ -217,6 +301,15 @@ def main():
                     "code_comments": len(comments),
                     "code_docstrings": len(docstrings),
                     "risk_model": "risk_model" in additional,
+                    "agents": "agents" in additional,
+                    "agent_fault_cases": additional.get("agent_eval", {}).get("case_count"),
+                    "manager_feedback_evaluation": additional.get("agent_eval", {})
+                    .get("manager_feedback", {})
+                    .get("passed"),
+                    "offline_model_contracts": additional.get("model_contracts", {}).get("passed"),
+                    "real_model_inference_calls": additional.get("model_contracts", {}).get(
+                        "real_inference_calls"
+                    ),
                     "evidence": str(destination.relative_to(root)),
                     "demo_report": str(Path(result["local_demo"]["workspace"]) / "report.json"),
                     "rag_report": str(

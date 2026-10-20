@@ -1,140 +1,126 @@
 # Enterprise Sales & Supply Chain Planning Agent
 
-[![Local verification](https://github.com/TheTen888/Enterprise-Sales-Supply-Chain-Planning-Agent/actions/workflows/ci.yml/badge.svg)](https://github.com/TheTen888/Enterprise-Sales-Supply-Chain-Planning-Agent/actions/workflows/ci.yml)
+[![Verification](https://github.com/TheTen888/Enterprise-Sales-Supply-Chain-Planning-Agent/actions/workflows/ci.yml/badge.svg)](https://github.com/TheTen888/Enterprise-Sales-Supply-Chain-Planning-Agent/actions/workflows/ci.yml)
 
-**v0.2 — local incremental ETL, scoped RAG and delivery-risk modeling for manufacturing sales.**
+**Help manufacturing sales managers spot delivery risks and prepare customer quotes they can explain.**
 
-A sales manager needs to know which orders may miss their delivery commitments and what evidence matters when a customer asks for a discount. This prototype provides two runnable workflows:
+When a customer asks for a lower price or changes an order, sales needs answers from engineering and supply planning: What does the change cost? Can the shared production line deliver? Which conditions must stay in the quote? This system brings those facts into one reviewable proposal.
 
-- Predict delivery risk from historical order, capacity and planning snapshots, then compare the model with fixed rules.
-- Assemble current order facts, fictional customer emails and engineering constraints into a cited evidence report without mixing customers or silently dropping pricing conditions.
+**v0.3 is a runnable, zero-cost local prototype.** It uses invented data, deterministic business and engineering roles, and a small delivery-risk model. Cloud services in the architecture are target integrations; no language model or paid API is required.
 
-All data is invented. The default ETL/RAG runtime uses Python 3.11 and SQLite; optional local training adds scikit-learn. No API key, cloud account, model download or paid service is required. Quote generation, multi-agent drafting and production cloud deployment remain planned.
+## What business problem does it solve?
 
-## Run locally
+| Business question | How the system helps |
+|---|---|
+| **Can we deliver this order on time?** | Combine order quantity, shared capacity, schedule slack, yield, design changes, allocation and pickup gaps into risk scores and capacity checks. Compare the model with rules before relying on it. |
+| **Can we justify our quote to the customer?** | Bring current order costs together with customer emails and engineering documents. Prepare keep-price, requested-discount and counteroffer options with the conditions that support them. |
+| **What changes when the manager revises the plan?** | Recalculate quote totals and capacity, save a new draft, and require a fresh decision. A what-if quantity never silently becomes a customer commitment. |
+| **Can we trust the proposal?** | Check customer access, source versions, evidence conditions and arithmetic. Record manager feedback and block approval when inputs are stale or capacity is insufficient. |
 
-From the repository root:
+The intended benefit is less time assembling information and fewer decisions made from inconsistent facts. Revenue growth, cost savings and avoided delays have not been measured.
+
+## System overview
+
+[![Enterprise AI Agent Sales & Risk System Architecture](architecture/overview.svg)](architecture/overview.svg)
+
+**Target architecture:** S3 retains raw inputs. Existing CRM data, business tables, RAG, daily batch scoring and dashboards stay in Snowflake; SageMaker handles training. Multi-Agent Analysis prepares drafts for manager review, with evaluation and access controls shared across the system.
+
+**Current runtime:** Python, SQLite, local keyword retrieval and a portable numeric model implement the core contracts below. The diagram describes the cloud design, not an already deployed cloud system. [Explore module boundaries and technology choices →](architecture/README.md)
+
+## Walk through one customer request
+
+A fictional customer asks for **5% off a 12,000-unit order**.
+
+1. **Get the current facts.** ETL publishes the latest valid order. Scoped retrieval returns customer email and engineering evidence: future volume is unsigned, required inspection cannot be removed, and no volume-based cost reduction is approved.
+2. **Build the options.** Engineering confirms a **$13.00 unit cost**. Business compares the $15.00 current price, the customer's $14.25 request and a $14.45 counteroffer. The requested price falls below the fictional 10% margin floor; the counteroffer clears it. Calculations use integer cents.
+3. **Test the manager's change.** Increasing the scenario to **18,000 units** raises total cost from **$156,000 to $234,000** and creates a **4,000-unit capacity gap**. Approval is blocked, the previous approval cannot carry over, and the published order remains 12,000 units.
+4. **Review the decision.** Managers compare options, ask guided follow-ups, approve an eligible internal draft or reject it with a reason. Feedback keeps its draft and evidence versions and waits for review before it can become an evaluation label.
+
+[Five-minute walkthrough](docs/showcase.md) · [Quote and approval rules](docs/multi-agent-review.md) · [Evidence retrieval example](docs/rag-audit-walkthrough.md)
+
+## Run the showcase
+
+Requires Python 3.11. No credentials, cloud account or language-model download.
 
 ```bash
 python3.11 -m venv .venv
+.venv/bin/python -m pip install -r requirements-ci.txt -r requirements-risk.txt
+.venv/bin/python -m scripts.verify --agents
+.venv/bin/python -m scripts.serve_showcase
+```
+
+Open **[Decision Workspace](http://127.0.0.1:8769/workbench)** to generate and revise a proposal. Open **[Evaluation Studio](http://127.0.0.1:8769/#agents)** to inspect test results and the workflow event sequence. Both run locally; the links work after starting the server.
+
+Each session saves its synthetic state under ignored `artifacts/`. Stop with Ctrl-C; see [session and resume instructions](docs/showcase.md). Customer sending is disabled.
+
+<details>
+<summary>Run individual modules</summary>
+
+```bash
 .venv/bin/python -m scripts.run_local
 .venv/bin/python -m scripts.review_rag
-```
-
-These commands need no package installation. Each run creates a fresh workspace under ignored `artifacts/`; re-running does not reset previous demos.
-
-For the delivery-risk model and full verification:
-
-```bash
-.venv/bin/python -m pip install -r requirements-ci.txt -r requirements-risk.txt
 .venv/bin/python -m scripts.run_risk_model
-.venv/bin/python -m scripts.verify --risk
+.venv/bin/python -m scripts.run_agents
+.venv/bin/python -m scripts.demo_model_contracts
 ```
 
-Training prints its report path. Inspect `report.json`, `dataset.json`, `model.json`, `scoring-input.json` and `scores.json` in that workspace. To reproduce inference without installed ML packages, replace RUN with the printed workspace:
+ETL and RAG need only Python's standard library. Training and full verification use the installed test/ML dependencies. Model-adapter demonstrations inject fake SDK responses; they never start local LLM inference or connect to a real model API.
 
-```bash
-.venv/bin/python -S -m scripts.score_risk_model \
-  --model RUN/model.json --input RUN/scoring-input.json --output RUN/rescored.json
-```
+</details>
 
-## Data flow
+## How do we know it works?
 
-```text
-Synthetic order changes -> incremental ETL -> versioned published facts
-Synthetic documents -> scoped retrieval + order facts -> cited evidence report
-Historical facts + capacity/planning snapshots -> temporal training and evaluation
-Numeric JSON model + label-free features -> local batch risk scores
-```
+The [recorded verification](docs/evidence/verification.json) contains **230 passing tests, zero skips**, and reproducible synthetic experiments:
 
-| Module | Runnable behavior |
+| Concern | Evidence |
 |---|---|
-| Incremental ETL | Pin raw input, validate trusted ownership, calculate integer-cent amounts, stage, publish atomically and acknowledge progress |
-| Recovery | Deduplicate events, reject conflicting versions, preserve newer state and resume after injected failures |
-| Scoped RAG | Check demo grants before SQL/search and return; filter source version, design, status, deletion and access |
-| Evidence context | Rank documents, then expand same-version canonical chunks under an explicit budget |
-| Risk data | Reuse ETL order history; join shared-line planning/capacity using effective, observed and simulated availability dates |
-| Model training | Train-only preprocessing, fixed chronological partitions, immature-label purging and validation-only model selection |
-| Risk evaluation | Fixed rules versus logistic regression at the same alert budget, with pending outcomes accounted for |
-| Optional adapters | Snowflake SQL, Cortex Search and read-only Gmail call paths verified with fake SDK clients |
+| Lost or duplicated updates | Five ETL failure/recovery experiments and four load scenarios, checked against independent reconciliation |
+| Wrong customer or stale evidence | Nine RAG query cases and five update, deletion and permission experiments |
+| Incorrect quotes or unsafe approval | 14 workflow checks, nine controlled failures and seven manager-feedback checks |
+| Delivery-risk prediction | Chronological holdout, point-in-time features, frozen commitments, pending labels and the same alert budget for rules and ML |
+| Future model integration | Eight mock SDK calls exercise guarded tool selection and response checks; 4 development and 16 acceptance cases await independent label review |
 
-## Review one delivery-risk prediction
+**The risk model is not promoted.** Rules and logistic regression each find 25 of 46 known late orders: **54.3% recall at the same 36-alert budget**. Better ranking scores alone do not justify replacing the baseline. These are synthetic results, not production accuracy.
 
-The [synthetic scenario](data/risk-fixtures/README.md) generates 624 order lines and replays 1,248 changes through the existing ETL. Seven numeric features cover quantity, shared-line load, schedule slack, prior yield, design changes, quarterly allocation and pickup gaps.
+Real LLM quality, latency and cost remain **unmeasured**. Model qualification stays blocked. Evaluation Studio separates those limits from passing local correctness checks.
 
-For `ORDER-41-05`, the October 20 prediction freezes 12,000 units due November 3. The known plan finishes November 8, five days behind the promise. The order ultimately finishes November 4: label = 1. A later negotiated November 10 deadline cannot rewrite that historical label. A retroactive quantity change first received after prediction is also excluded from its features.
+[Evaluation design](docs/eval-ui.md) · [Labels, features and leakage controls](docs/risk-model-review.md) · [Offline model interfaces](docs/model-adapters.md)
 
-A small logistic model is selected on validation, then evaluated on later dates. The test period has 144 predictions: 138 mature labels, including 46 known late orders, and six pending outcomes. Both systems select their weekly top 25% before labels are matched.
+## What is implemented?
 
-| Synthetic holdout metric | Rules | Logistic model |
-|---|---:|---:|
-| Alerts | 36 | 36 |
-| Alerts awaiting labels | 2 | 1 |
-| Known late orders detected | 25 / 46 | 25 / 46 |
-| Recall among known late orders | 54.3% | 54.3% |
-| Precision on labeled alerts | 73.5% | 71.4% |
-| Average precision on mature outcomes | 0.6611 | 0.7207 |
+| Runs in this repository | Still requires integration and validation |
+|---|---|
+| Incremental ETL, deduplication, versioning and atomic local publication | Live database/Gmail ingestion, S3, Airflow and Snowflake/dbt execution |
+| Customer/project-scoped retrieval, bounded context, citations and lifecycle checks | Cortex Search deployment, semantic quality and production identity |
+| Synthetic risk training, temporal evaluation and portable batch scoring | Real labels, intervention-aware evaluation, SageMaker training and Snowflake scoring |
+| Deterministic engineering/business roles, quote tools, draft revisions and internal review | LLM-backed LangGraph/AgentCore execution and general chatbot conversations |
+| Decision Workspace, Evaluation Studio, persisted events and local session metrics | Distributed workers, live CloudWatch telemetry and a controlled production rollout |
+| Disabled-by-default Snowflake, Gmail and Bedrock adapter call paths | Real credentials, service compatibility and cloud deployment |
 
-**The model has not beaten rules at the operating budget and is not promoted.** Unknown alerts are not counted as false positives or successes. Full reports include precision bounds and label coverage. These are one-seed simulator results, not production accuracy or business impact.
+[Implementation status](docs/implementation-status.md) documents the exact boundaries. [Architecture contracts](architecture/README.md) explain why engineering checks costs before business prices options and why manager disagreement is not automatically ground truth.
 
-See [Risk Model review](docs/risk-model-review.md) for label/feature formulas, the complete order walkthrough, temporal boundaries, exclusions, leakage tests and limitations. Exported JSON inference is checked against the fitted pipeline; no live SageMaker, Snowflake scoring or Model Registry is claimed.
-
-## Review the discount evidence
-
-```bash
-.venv/bin/python -m scripts.review_rag
-.venv/bin/python -m scripts.eval_rag
-.venv/bin/python -m scripts.demo_api_contracts
-```
-
-The customer requests 5% off. The evidence report returns two current documents and four passages showing that future volume is unsigned, required material and inspection cannot be removed, no volume-based cost reduction is approved, and simplification needs engineering review. The one-passage baseline covers one of four annotated conditions; bounded document expansion covers all four in this fixed example. This is fixture coverage, not an approved discount or LLM answer-quality score.
-
-Default limits are 6,000 context characters and 16 passages. A selected document either fits in full or is omitted with `incomplete_context`. Running `scripts.run_rag --max-context-chunks 1` intentionally returns exit code 2 rather than silently truncating evidence. Updates, deletion and revoked access invalidate cached evidence. Retained canonical history and exported reports are not physically erased.
-
-## Verification and CI
-
-```bash
-.venv/bin/python -m ruff check --no-cache app pipelines rag risk_model integrations scripts tests
-.venv/bin/python -m scripts.verify --risk
-.venv/bin/python -m scripts.release_check
-```
-
-Full verification covers unit tests, five ETL fault experiments, four finite-backlog scenarios, nine RAG query cases, five RAG lifecycle experiments, adapter contracts, the discount walkthrough, risk training and eight dataset audits. Model tests include late-arrival exclusion, frozen labels, temporal purging, holdout independence, pending-label alert accounting, invalid business inputs and inference without site packages. `--risk` requires zero skipped tests. Standard-library-only `scripts.verify` explicitly skips optional training tests when scikit-learn is absent.
-
-[Recorded evidence](docs/evidence/verification.json) includes timestamps, source hashes and actual counts. The [workflow](.github/workflows/ci.yml) installs public test tooling, runs synthetic local checks and scans release files. It uses pinned Action commits, read-only repository permissions and no cloud secrets or deployment step. The status badge links to actual hosted runs; local evidence alone does not prove hosted CI or live integration has passed.
-
-## Release scope and credentials
-
-[release-files.txt](release-files.txt) is the exact release manifest. The release checker scans candidate text and Git-indexed blobs, checks local links and rejects private/generated files. Before a commit, stage only reviewed manifest files and rerun the checker. [v0.1 first-commit notes](docs/first-commit.md) remain as a historical preparation record; [Changelog](CHANGELOG.md) describes subsequent changes.
-
-`.env.example` has empty credentials and disables live services. `.env`, OAuth tokens, keys, databases, caches, runtime artifacts and local interview notes are excluded. Known-pattern and private deny-term scans reduce exposure risk without guaranteeing detection of every secret or confidential fact.
-
-Optional cloud factories require explicit opt-in and are never invoked by default demos or CI. Their SDKs are separate extras. See [API contracts and setup](docs/api-adapters.md).
-
-## Implemented versus planned
-
-Implemented: local ETL, scoped English keyword retrieval, deterministic evidence reports, synthetic risk training/scoring and offline API contracts. Demo actors are not production authentication; evidence readiness is not approval to send a proposal. Atomic publication and replay tests establish a local contract, not a universal exactly-once guarantee.
-
-Planned: real CDC/Gmail/S3 ingestion, Airflow/dbt execution, semantic retrieval, production identity and retention controls, real-data model validation/calibration, cloud training/scoring, multi-agent drafting, version-bound manager approval, UI and operational monitoring. No revenue, deal-win, avoided-delay or cost-saving results are claimed.
-
-The target architecture retains originals in S3 and existing CRM/business tables, RAG, daily scoring and dashboards in Snowflake, with SageMaker for training. Those services are target integrations, not the runtime of this local prototype.
+## Repository guide
 
 ```text
-app/repositories/   Local source and warehouse persistence
-pipelines/etl/     Extract, validate, transform, stage, publish and recover
-rag/               Document lifecycle, scoped retrieval and evidence evaluation
-risk_model/        Historical features, labels, temporal training and scoring
-integrations/      Optional SDK adapters and fake-client contracts
-scripts/           Demos, independent scoring, verification and release checks
-data/              Invented fixtures and reproducible scenario configuration
-tests/             Business boundaries, reconciliation and negative tests
-docs/              Design, implementation boundaries and measured evidence
+architecture/   System overview and module contracts
+pipelines/etl/  Incremental data publication and recovery
+rag/           Scoped evidence retrieval and document lifecycle
+risk_model/    Historical features, labels, training and scoring
+agents/        Quote workflow, revisions, checks and evaluation
+app/           Decision Workspace and Evaluation Studio
+integrations/  Optional service adapters and offline call contracts
+scripts/       Runnable demos, verification and release checks
+data/          Invented fixtures and evaluation cases
+tests/         Business, data, recovery and access boundaries
+docs/          Walkthroughs, trade-offs and measured evidence
 ```
 
-- [Implementation status](docs/implementation-status.md)
-- [ETL design and trade-offs](docs/design.md)
-- [RAG design and limits](docs/rag-review.md)
-- [Discount and lifecycle walkthrough](docs/rag-audit-walkthrough.md)
-- [Risk Model walkthrough and evaluation](docs/risk-model-review.md)
+## CI, data and credentials
 
-The ETL layering and local-first approach were inspired by John Data Lab's `enterprise-ai-agent`. The upstream [MIT notice](LICENSES/JohnDataLab-MIT.txt) is retained alongside this project's [license](LICENSE).
+[GitHub Actions](.github/workflows/ci.yml) runs lint, full local verification and release-file checks with live services disabled. The badge links to actual hosted results. Local test success alone is not evidence of cloud deployment.
+
+[release-files.txt](release-files.txt) defines the reviewed source set. `.env.example` contains no credentials and disables live access. Keys, OAuth tokens, databases, generated model artifacts, caches and local interview notes are excluded. All customer, email, order and engineering examples are fictional. Demo actors are not production authentication; logical deletion is not complete privacy erasure.
+
+[Changelog](CHANGELOG.md) · [ETL trade-offs](docs/design.md) · [RAG design](docs/rag-review.md) · [API contracts](docs/api-adapters.md)
+
+The ETL layering was inspired by John Data Lab's `enterprise-ai-agent`. Its [MIT notice](LICENSES/JohnDataLab-MIT.txt) is retained alongside this project's [license](LICENSE).

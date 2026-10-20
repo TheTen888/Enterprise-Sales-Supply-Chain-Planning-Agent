@@ -1,0 +1,58 @@
+{
+  "format_version": 1,
+  "synthetic": true,
+  "customer_id": "CUSTOMER-A",
+  "project_id": "PROJECT-A",
+  "entity_id": "ORDER-A001-L1",
+  "actor": "demo-manager-a",
+  "as_of": "2026-10-19",
+  "policy": {
+    "version": "DEMO-PRICING-1",
+    "minimum_margin_bps": 1000,
+    "maximum_scenario_quantity": 1000000
+  },
+  "planning": {
+    "effective_at": "2026-10-19",
+    "observed_at": "2026-10-19",
+    "available_at": "2026-10-19",
+    "design_version": "D2",
+    "base_order_quantity": 12000,
+    "line": "LINE-1",
+    "production_days_before_due": 10,
+    "gross_units_per_day": 2000,
+    "historical_yield_bps": 9000,
+    "yield_window_end": "2026-10-18",
+    "other_committed_units": 4000,
+    "design_changes_30d": 2,
+    "allocated_quarter_units": 30000,
+    "other_quarter_committed_units": 12000,
+    "forecast_pickup_units": 30000,
+    "confirmed_pickup_units": 24000
+  },
+  "reviewed_conditions": [
+    {
+      "id": "unsigned_future_volume",
+      "document_id": "MAIL-A-001",
+      "chunk_id": "MAIL-A-001:v2:c2",
+      "text": "no additional quantity commitment has been signed."
+    },
+    {
+      "id": "mandatory_material_inspection",
+      "document_id": "ENG-A-001",
+      "chunk_id": "ENG-A-001:v2:c1",
+      "text": "Preserve both requirements when discussing a customer price discount."
+    },
+    {
+      "id": "no_approved_volume_cost_reduction",
+      "document_id": "ENG-A-001",
+      "chunk_id": "ENG-A-001:v2:c2",
+      "text": "No approved volume-based cost reduction has been provided."
+    },
+    {
+      "id": "engineering_review_required",
+      "document_id": "ENG-A-001",
+      "chunk_id": "ENG-A-001:v2:c2",
+      "text": "Any simplification needs a separate engineering review."
+    }
+  ]
+}

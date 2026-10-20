@@ -4,6 +4,14 @@ Phase 1 is a local incremental ETL. Phase 2 adds minimal scoped keyword retrieva
 
 v0.2 adds a minimal delivery-risk model with optional scikit-learn. It reuses the unmodified ETL, reconstructs synthetic historical features, trains a logistic model and compares it with fixed rules on a temporal holdout. Alerts are selected across all eligible orders before matching mature labels; unknown outcomes are reported separately. See [Risk Model review](risk-model-review.md). Source publication does not constitute cloud deployment or approval to use the model in production.
 
+v0.3 adds a deterministic business/engineering workflow, cent-based quote options, a durable local Draft queue, manager follow-up, revision-bound internal approval and quantity what-if recomputation. See [Multi-Agent review](multi-agent-review.md). It reuses local ETL/RAG/risk outputs; source publication does not call an LLM or deploy cloud agents.
+
+The same version includes nine controlled Agent Eval fault experiments and a read-only [Evaluation Studio](eval-ui.md). Its six views display actual recorded ETL/RAG/risk/agent results, expandable traces, revision comparisons and separate release/approval states. Source, fixture and UI hashes flag stale evidence. No live telemetry, customer sender or production authentication is implied.
+
+A live local [Decision Workspace](showcase.md) now reuses the same workflow for queued generation, internal approval, structured rejection, quantity revision and three guided follow-ups. Feedback is revision/source-bound and waits for independent review. The Agent Eval report adds a seven-check rejection/recalculation experiment. Same-quantity what-ifs stay hypothetical, and approval/feedback retries do not duplicate their audit records. Real LLM behavior and business-impact claims are not added.
+
+This version also includes [offline model adapters](model-adapters.md), guarded model-role code, eight fake SDK calls through the real workflow, 4 development and 16 acceptance cases, a model qualification gate and a read-only session metrics API. Live inference is disabled by default and is not used by demos or CI. The cases have provisional synthetic expectations pending independent human review; no real model quality or performance improvement is measured. Production rollout remains blocked.
+
 ## Implemented and locally verifiable
 
 | Capability | Evidence |
@@ -43,7 +51,7 @@ A minimal GitHub Actions definition runs pinned Ruff, full ETL/RAG/risk verifica
 - Still planned: authoritative CDC/publication times, production label agreement and source watermarks, event-level manufacturing aggregation, real-data validation, calibration, multiple temporal windows and intervention-aware evaluation.
 - Still planned: approved cloud model registration and Snowflake daily batch scoring; SageMaker training deployment.
 - Real-mail/attachment ingestion, richer document parsing, semantic retrieval, production authorization, complete privacy erasure and historical cross-system snapshots.
-- Business/engineering agents, deterministic pricing tools, scenario recalculation and version-bound approval.
+- Implemented locally: deterministic business/engineering roles, pricing tools, scenario recalculation and version-bound internal approval. LLM generalization, production review/dispatch and distributed worker recovery remain planned.
 
 Local synthetic model results verify the replay/training/evaluation mechanics. They are not production model metrics or evidence of business impact.
 
@@ -76,4 +84,4 @@ These are target services. Only the read-adapter code described above is impleme
 
 ## Next review boundary
 
-Review the new risk-model label, features, historical joins, exclusions and rules comparison alongside existing ETL/RAG regression evidence. Agent behavior, UI, containers and real cloud integration remain separate changes. Explanations remain in documentation; Python source contains no comments or docstrings.
+Review the deterministic agents, nine controlled faults and evaluation UI alongside existing ETL/RAG/risk regression evidence. Hosted CI, containers and real cloud integration remain separate verification boundaries. Explanations remain in documentation; Python source contains no comments or docstrings.

@@ -1,0 +1,949 @@
+{
+  "passed": true,
+  "case_count": 9,
+  "passed_count": 9,
+  "cases": [
+    {
+      "case_id": "engineering-math",
+      "category": "Pricing",
+      "title": "Engineering cost changed by one cent",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true,
+        "invalid_payload_not_published": true,
+        "bad_handoff_did_not_reach_business": true
+      },
+      "reason": "engineering handoff failed source and arithmetic checks",
+      "error_type": "ValueError",
+      "draft_state": "failed",
+      "elapsed_ms": 52.626,
+      "trace": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "draft.failed",
+          "body": {
+            "error_type": "ValueError"
+          }
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "business-math",
+      "category": "Pricing",
+      "title": "Business revenue changed by one cent",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true,
+        "invalid_payload_not_published": true
+      },
+      "reason": "quote failed independent arithmetic checks",
+      "error_type": "ValueError",
+      "draft_state": "failed",
+      "elapsed_ms": 50.014,
+      "trace": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 15600000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 0,
+              "features": {
+                "allocation_utilization_ratio": 0.8,
+                "capacity_load_ratio": 0.8888888888888888,
+                "design_changes_30d": 2,
+                "order_quantity": 12000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": 1
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": false,
+              "risk_score": 16.481822514943325,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "event": "draft.failed",
+          "body": {
+            "error_type": "ValueError"
+          }
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "missing-condition",
+      "category": "Evidence",
+      "title": "Required engineering condition removed",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true,
+        "invalid_payload_not_published": true,
+        "bad_handoff_did_not_reach_business": true
+      },
+      "reason": "engineering handoff failed source and arithmetic checks",
+      "error_type": "ValueError",
+      "draft_state": "failed",
+      "elapsed_ms": 51.93,
+      "trace": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "draft.failed",
+          "body": {
+            "error_type": "ValueError"
+          }
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "document-update",
+      "category": "Evidence",
+      "title": "Source revised after draft generation",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true
+      },
+      "reason": "draft inputs changed; generate a new draft",
+      "error_type": "ValueError",
+      "draft_state": "invalidated",
+      "elapsed_ms": 60.67,
+      "trace": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 15600000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 0,
+              "features": {
+                "allocation_utilization_ratio": 0.8,
+                "capacity_load_ratio": 0.8888888888888888,
+                "design_changes_30d": 2,
+                "order_quantity": 12000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": 1
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": false,
+              "risk_score": 16.481822514943325,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "event": "business.complete",
+          "body": {
+            "options": [
+              {
+                "gross_profit_cents": 2400000,
+                "margin_allowed": true,
+                "margin_bps": 1333,
+                "option_id": "retain_price",
+                "quantity": 12000,
+                "revenue_cents": 18000000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1500
+              },
+              {
+                "gross_profit_cents": 1500000,
+                "margin_allowed": false,
+                "margin_bps": 877,
+                "option_id": "customer_request",
+                "quantity": 12000,
+                "revenue_cents": 17100000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1425
+              },
+              {
+                "gross_profit_cents": 1740000,
+                "margin_allowed": true,
+                "margin_bps": 1003,
+                "option_id": "counteroffer",
+                "quantity": 12000,
+                "revenue_cents": 17340000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1445
+              }
+            ],
+            "tool": "integer_cent_pricing"
+          }
+        },
+        {
+          "seq": 5,
+          "event": "draft.validated",
+          "body": {
+            "payload_hash": "63adf933af00b1894bbce3552c355f336d7cb37d6f6959791ca4689de133b18e"
+          }
+        },
+        {
+          "seq": 6,
+          "event": "draft.inputs_changed",
+          "body": {}
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "order-update",
+      "category": "Recalculation",
+      "title": "Published order cost changed after draft",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true
+      },
+      "reason": "draft inputs changed; generate a new draft",
+      "error_type": "ValueError",
+      "draft_state": "invalidated",
+      "elapsed_ms": 72.092,
+      "trace": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 15600000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 0,
+              "features": {
+                "allocation_utilization_ratio": 0.8,
+                "capacity_load_ratio": 0.8888888888888888,
+                "design_changes_30d": 2,
+                "order_quantity": 12000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": 1
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": false,
+              "risk_score": 16.481822514943325,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "event": "business.complete",
+          "body": {
+            "options": [
+              {
+                "gross_profit_cents": 2400000,
+                "margin_allowed": true,
+                "margin_bps": 1333,
+                "option_id": "retain_price",
+                "quantity": 12000,
+                "revenue_cents": 18000000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1500
+              },
+              {
+                "gross_profit_cents": 1500000,
+                "margin_allowed": false,
+                "margin_bps": 877,
+                "option_id": "customer_request",
+                "quantity": 12000,
+                "revenue_cents": 17100000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1425
+              },
+              {
+                "gross_profit_cents": 1740000,
+                "margin_allowed": true,
+                "margin_bps": 1003,
+                "option_id": "counteroffer",
+                "quantity": 12000,
+                "revenue_cents": 17340000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1445
+              }
+            ],
+            "tool": "integer_cent_pricing"
+          }
+        },
+        {
+          "seq": 5,
+          "event": "draft.validated",
+          "body": {
+            "payload_hash": "fd53e4499ce4008f98cc825fda45e7429ef3898e34d6b16fe0be537d91222d8e"
+          }
+        },
+        {
+          "seq": 6,
+          "event": "draft.inputs_changed",
+          "body": {}
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "capacity-approval",
+      "category": "Recalculation",
+      "title": "Approval attempted with a capacity gap",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true
+      },
+      "reason": "draft is not eligible for approval",
+      "error_type": "ValueError",
+      "draft_state": "needs_capacity_review",
+      "elapsed_ms": 69.597,
+      "trace": [
+        {
+          "seq": 7,
+          "event": "draft.queued",
+          "body": {
+            "revision": 2
+          }
+        },
+        {
+          "seq": 8,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": true,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 9,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 23400000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 4000,
+              "features": {
+                "allocation_utilization_ratio": 1.0,
+                "capacity_load_ratio": 1.2222222222222223,
+                "design_changes_30d": 2,
+                "order_quantity": 18000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": -3
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [
+                "order_quantity"
+              ],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": true,
+              "risk_score": 60.75051767730787,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 10,
+          "event": "business.complete",
+          "body": {
+            "options": [
+              {
+                "gross_profit_cents": 3600000,
+                "margin_allowed": true,
+                "margin_bps": 1333,
+                "option_id": "retain_price",
+                "quantity": 18000,
+                "revenue_cents": 27000000,
+                "total_cost_cents": 23400000,
+                "unit_price_cents": 1500
+              },
+              {
+                "gross_profit_cents": 2250000,
+                "margin_allowed": false,
+                "margin_bps": 877,
+                "option_id": "customer_request",
+                "quantity": 18000,
+                "revenue_cents": 25650000,
+                "total_cost_cents": 23400000,
+                "unit_price_cents": 1425
+              },
+              {
+                "gross_profit_cents": 2610000,
+                "margin_allowed": true,
+                "margin_bps": 1003,
+                "option_id": "counteroffer",
+                "quantity": 18000,
+                "revenue_cents": 26010000,
+                "total_cost_cents": 23400000,
+                "unit_price_cents": 1445
+              }
+            ],
+            "tool": "integer_cent_pricing"
+          }
+        },
+        {
+          "seq": 11,
+          "event": "draft.validated",
+          "body": {
+            "payload_hash": "f9fa218cbbe6d636c332af8e7f195ca0592de68ea0e188d9c71ccb0d80fb191b"
+          }
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "revoked-access",
+      "category": "Access",
+      "title": "Manager access revoked before approval",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true
+      },
+      "reason": "customer/project access denied",
+      "error_type": "PermissionError",
+      "draft_state": "needs_review",
+      "elapsed_ms": 67.315,
+      "trace": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 15600000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 0,
+              "features": {
+                "allocation_utilization_ratio": 0.8,
+                "capacity_load_ratio": 0.8888888888888888,
+                "design_changes_30d": 2,
+                "order_quantity": 12000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": 1
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": false,
+              "risk_score": 16.481822514943325,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "event": "business.complete",
+          "body": {
+            "options": [
+              {
+                "gross_profit_cents": 2400000,
+                "margin_allowed": true,
+                "margin_bps": 1333,
+                "option_id": "retain_price",
+                "quantity": 12000,
+                "revenue_cents": 18000000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1500
+              },
+              {
+                "gross_profit_cents": 1500000,
+                "margin_allowed": false,
+                "margin_bps": 877,
+                "option_id": "customer_request",
+                "quantity": 12000,
+                "revenue_cents": 17100000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1425
+              },
+              {
+                "gross_profit_cents": 1740000,
+                "margin_allowed": true,
+                "margin_bps": 1003,
+                "option_id": "counteroffer",
+                "quantity": 12000,
+                "revenue_cents": 17340000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1445
+              }
+            ],
+            "tool": "integer_cent_pricing"
+          }
+        },
+        {
+          "seq": 5,
+          "event": "draft.validated",
+          "body": {
+            "payload_hash": "a88cef7713ac80c44014c66a4149fdbd4934d2c87203eb05f7cabebb0b4465fd"
+          }
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "wrong-customer",
+      "category": "Access",
+      "title": "Customer A manager requests Customer B facts",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true
+      },
+      "reason": "customer/project access denied",
+      "error_type": "PermissionError",
+      "draft_state": null,
+      "elapsed_ms": 49.34,
+      "trace": [],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    },
+    {
+      "case_id": "tampered-payload",
+      "category": "Approval",
+      "title": "Stored draft modified after validation",
+      "expected": "Reject unsafe action",
+      "observed": "rejected",
+      "passed": true,
+      "checks": {
+        "expected_rejection": true,
+        "expected_state": true,
+        "no_approval_created": true
+      },
+      "reason": "stored draft integrity check failed",
+      "error_type": "ValueError",
+      "draft_state": "needs_review",
+      "elapsed_ms": 58.646,
+      "trace": [
+        {
+          "seq": 1,
+          "event": "draft.queued",
+          "body": {
+            "revision": 1
+          }
+        },
+        {
+          "seq": 2,
+          "event": "evidence.retrieve",
+          "body": {
+            "cache_hit": false,
+            "chunks": [
+              "ENG-A-001:v2:c1",
+              "ENG-A-001:v2:c2",
+              "MAIL-A-001:v2:c1",
+              "MAIL-A-001:v2:c2"
+            ],
+            "etl_publication": 3,
+            "facts_backend": "local_sqlite",
+            "fingerprint": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+            "retrieval_backend": "local_lexical"
+          }
+        },
+        {
+          "seq": 3,
+          "event": "engineering.complete",
+          "body": {
+            "costing": {
+              "cost_basis": "published ETL unit cost; no approved volume reduction",
+              "total_cost_cents": 15600000,
+              "unit_cost_cents": 1300
+            },
+            "handoff_conditions": [
+              "unsigned_future_volume",
+              "mandatory_material_inspection",
+              "no_approved_volume_cost_reduction",
+              "engineering_review_required"
+            ],
+            "risk": {
+              "assumption": "continuous production slots, common unit workload, aggregate line check; not a production scheduler",
+              "capacity_shortfall_units": 0,
+              "features": {
+                "allocation_utilization_ratio": 0.8,
+                "capacity_load_ratio": 0.8888888888888888,
+                "design_changes_30d": 2,
+                "order_quantity": 12000,
+                "pickup_forecast_gap_ratio": 0.2,
+                "recent_yield": 0.9,
+                "schedule_slack_days": 1
+              },
+              "line": "LINE-1",
+              "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+              "model_status": "synthetic_unpromoted",
+              "outside_training_range": [],
+              "planning_hash": "4f84c7c5ae93c7aee771057f877fcde2e081ebc66e34c7d4fdd74951273b4c1a",
+              "requires_capacity_review": false,
+              "risk_score": 16.481822514943325,
+              "training_range_check": "available"
+            },
+            "tools": [
+              "published_cost_totals",
+              "source_condition_checks",
+              "local_risk_model.score"
+            ]
+          }
+        },
+        {
+          "seq": 4,
+          "event": "business.complete",
+          "body": {
+            "options": [
+              {
+                "gross_profit_cents": 2400000,
+                "margin_allowed": true,
+                "margin_bps": 1333,
+                "option_id": "retain_price",
+                "quantity": 12000,
+                "revenue_cents": 18000000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1500
+              },
+              {
+                "gross_profit_cents": 1500000,
+                "margin_allowed": false,
+                "margin_bps": 877,
+                "option_id": "customer_request",
+                "quantity": 12000,
+                "revenue_cents": 17100000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1425
+              },
+              {
+                "gross_profit_cents": 1740000,
+                "margin_allowed": true,
+                "margin_bps": 1003,
+                "option_id": "counteroffer",
+                "quantity": 12000,
+                "revenue_cents": 17340000,
+                "total_cost_cents": 15600000,
+                "unit_price_cents": 1445
+              }
+            ],
+            "tool": "integer_cent_pricing"
+          }
+        },
+        {
+          "seq": 5,
+          "event": "draft.validated",
+          "body": {
+            "payload_hash": "baf82942a322d98d177231b86ff6da625a9f266bf961d1dffbbf32fc4c45e90a"
+          }
+        }
+      ],
+      "model_hash": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409",
+      "config_hash": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8"
+    }
+  ],
+  "scope": "Controlled local fault experiments, not LLM accuracy or production monitoring",
+  "llm_calls": 0,
+  "external_api_calls": 0,
+  "manager_feedback": {
+    "passed": true,
+    "checks": {
+      "rejection_stops_approval": true,
+      "feedback_bound_to_original_payload": true,
+      "feedback_bound_to_source_versions": true,
+      "feedback_kept_for_review_not_ground_truth": true,
+      "new_revision_links_to_rejected_draft": true,
+      "new_quantity_recalculates_capacity": true,
+      "feedback_survives_supersession": true
+    },
+    "feedback": {
+      "feedback_id": "10b429d65734478fbd6ea9e0195b7393",
+      "job_id": "9f9da368af554ab9b708f416b5b6ba77",
+      "actor": "demo-manager-a",
+      "revision": 1,
+      "payload_hash": "4d42f6203e50126c7da823e97c6f876bbf05ca0d6410bb3e4f4098ac53896fde",
+      "input_fingerprints": {
+        "agent_runtime": "d1f06123597e7afbf56e38fd162ac5c460fe45eca73c1ac1dc78000105d984a6",
+        "config": "9abec25fdd5f235007757070bd1ee15efd5e189968b0020a92d8ad3b1f98e5e8",
+        "evidence": "c77ef63302ecc5b1bc1a1bedaca6958ed22103ef7ccd3c53e610d76618eed685",
+        "model": "cd05f28c33a8179cf4c1e2f9d6a1644b55d94d56f4bbd49df9f81c8bba972409"
+      },
+      "reason_code": "commercial_context",
+      "note": "Review an 18,000-unit scenario; the additional customer volume is not signed.",
+      "review_status": "pending_review",
+      "created_at_utc": "2026-10-20T03:55:28.424630+00:00"
+    },
+    "revised_status": "needs_capacity_review",
+    "revised_quantity": 18000,
+    "capacity_shortfall_units": 4000,
+    "limits": "Manager feedback awaits independent review; no automatic label creation or training"
+  }
+}

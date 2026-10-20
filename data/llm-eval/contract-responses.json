@@ -1,0 +1,34 @@
+{
+  "synthetic": true,
+  "mode": "authored_mock_responses",
+  "not_real_model_output": true,
+  "tools": {
+    "engineering": [
+      "read_order_facts",
+      "retrieve_documents",
+      "calculate_capacity"
+    ],
+    "business": [
+      "read_engineering_handoff",
+      "calculate_quote_options"
+    ]
+  },
+  "condition_evidence": [
+    {
+      "condition_id": "unsigned_future_volume",
+      "citation_id": "MAIL-A-001:v2:c2"
+    },
+    {
+      "condition_id": "mandatory_material_inspection",
+      "citation_id": "ENG-A-001:v2:c1"
+    },
+    {
+      "condition_id": "no_approved_volume_cost_reduction",
+      "citation_id": "ENG-A-001:v2:c2"
+    },
+    {
+      "condition_id": "engineering_review_required",
+      "citation_id": "ENG-A-001:v2:c2"
+    }
+  ]
+}

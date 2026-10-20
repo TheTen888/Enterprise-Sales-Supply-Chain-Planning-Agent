@@ -35,3 +35,6 @@ docs/evidence/*
 !docs/evidence/api-contracts.json
 !docs/evidence/rag-walkthrough.json
 !docs/evidence/risk-model.json
+!docs/evidence/agents.json
+!docs/evidence/agent-eval.json
+!docs/evidence/model-contracts.json

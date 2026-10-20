@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23737de0'/%3E%3Ctext x='9' y='29' font-size='28' fill='white'%3ED%3C/text%3E%3C/svg%3E"
+    />
+    <title>Decision Workspace — Sales & Risk</title>
+    <link rel="stylesheet" href="/app.css" />
+    <link rel="stylesheet" href="/workbench.css" />
+    <script src="/workbench.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <div class="ambient ambient-three"></div>
+    <div class="workbench-shell">
+      <header class="workbench-header glass">
+        <a class="workbench-brand" href="/workbench"
+          ><span class="brand-mark">D<span></span></span
+          ><span>Sales & Risk<strong>Decision Workspace</strong></span></a
+        >
+        <nav aria-label="Workspace navigation">
+          <a href="/#agents">Evaluation Studio ↗</a
+          ><button id="export-session" class="secondary" disabled>
+            Export session
+          </button>
+        </nav>
+      </header>
+      <main>
+        <section class="workbench-intro">
+          <div>
+            <span class="eyebrow">LOCAL BUSINESS SCENARIO</span>
+            <h1>From feedback to a defensible quote.</h1>
+            <p>
+              Compare pricing options. Test a quantity change. Keep every
+              decision tied to its evidence.
+            </p>
+          </div>
+          <span class="badge blue"
+            >Synthetic · Deterministic · $0 API calls</span
+          >
+        </section>
+        <div id="message" role="status" aria-live="polite"></div>
+        <div id="content">
+          <section class="panel">
+            <p>Opening the local decision workspace…</p>
+          </section>
+        </div>
+      </main>
+      <footer>
+        <span>Local demo identity · No customer dispatch · No LLM calls</span
+        ><span
+          >Live session actions and recorded regression evidence are
+          separate.</span
+        >
+      </footer>
+    </div>
+  </body>
+</html>

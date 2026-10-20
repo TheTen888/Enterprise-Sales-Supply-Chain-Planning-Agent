@@ -14,6 +14,12 @@ def require_live(allow_live: bool):
         raise PermissionError("live services require explicit opt-in and ALLOW_LIVE_SERVICES=true")
 
 
+def require_model_live(allow_live: bool):
+    require_live(allow_live)
+    if os.environ.get("ALLOW_LIVE_MODEL_CALLS") != "true":
+        raise PermissionError("model calls require ALLOW_LIVE_MODEL_CALLS=true")
+
+
 @dataclass(frozen=True)
 class SnowflakeSettings:
     account: str
