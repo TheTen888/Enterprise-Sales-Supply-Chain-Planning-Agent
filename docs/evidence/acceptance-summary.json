@@ -1,0 +1,189 @@
+{
+  "cases": 23,
+  "passed": 23,
+  "metrics": {
+    "case_pass_rate": 1.0,
+    "capacity_overcommitment_rate": 0.0,
+    "delivery_constraint_pass_rate": 1.0,
+    "calculation_pass_rate": 1.0,
+    "critical_condition_pass_rate": 1.0,
+    "negative_control_pass_rate": 0.08695652173913043
+  },
+  "usage": {
+    "input_tokens": 127235,
+    "output_tokens": 4089,
+    "total_tokens": 131324
+  },
+  "memory": {
+    "scope": "Synthetic memory lifecycle tests; not a real-model memory benchmark",
+    "metrics": {
+      "temporal_recall": 1.0,
+      "temporal_consistency_pass_rate": 1.0,
+      "contradiction_resolution": 1.0,
+      "abstention_rate": 1.0,
+      "answerable_query_success_rate": 1.0
+    },
+    "denominators": {
+      "temporal_relevant_events": 1,
+      "temporal_checks": 3,
+      "conflict_checks": 2,
+      "unanswerable_cases": 3,
+      "answerable_cases": 1
+    },
+    "passed": true
+  },
+  "implementation_hash": "3884527d9531599a4173fa4511f9f7cde7ae9d8564f3587f5edadba9b590db7f",
+  "dataset_hash": "421957ddd507f0afadde4f6d379d94cbecc44d56064e97be70626c2aa5691a4c",
+  "release": {
+    "local_contracts_pass": true,
+    "independent_labels_reviewed": true,
+    "real_llm_evaluated": true,
+    "deployment_checks_pass": true,
+    "local_acceptance_passed": true,
+    "production_approved": true,
+    "qualification_scope": "local_release",
+    "aws_production_approved": false,
+    "blockers": []
+  },
+  "qualification_scope": "local_release",
+  "case_traces": [
+    {
+      "case_id": "standard-quote",
+      "passed": true,
+      "case_trace_id": "01a1b9dc-f88d-71cc-852a-dba3438eceb0",
+      "mode": "llm"
+    },
+    {
+      "case_id": "conflicting-ecn",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-17e3-71c2-adbc-014c93b914d6",
+      "mode": "llm"
+    },
+    {
+      "case_id": "capacity-exhausted",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-34b9-726f-ade9-1c4ecc700ee4",
+      "mode": "llm"
+    },
+    {
+      "case_id": "invalid-quarter",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-545c-75d3-9011-234acdab6bdf",
+      "mode": "validation_error"
+    },
+    {
+      "case_id": "direct-answer",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-545e-776f-ad6d-fad6508f8278",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-14-1000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-5f57-75fd-92e0-e35978d31ff0",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-14-1000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-7d72-7091-b465-2968f3add89b",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-14-12000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-9b73-71d6-b940-6f894c06021e",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-14-12000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-c4ef-7668-b1c8-996ab903a17c",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-14-50000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9dd-efc6-73a5-ab5a-b94c30a9439b",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-14-50000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9de-0e2b-76be-b3c1-15c43484edeb",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-28-1000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9de-2dd8-772d-ab66-5460a20138d1",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-28-1000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9de-4ad7-76c4-a63b-eb95ac9323fa",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-28-12000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9de-6908-7580-a98a-9efd16f37267",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-28-12000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9de-85e1-7663-beb4-442738fc1b33",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-28-50000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9de-b242-732b-a27f-d07ff3ef02f6",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-28-50000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9de-d423-74a3-b1c3-4bba25995314",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-35-1000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9de-f2d5-7512-97d9-95d3a2b5de00",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-35-1000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9df-1313-76a8-a806-2ad29d150e4e",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-35-12000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9df-330c-76a2-8d0a-589b239735cf",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-35-12000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9df-51fc-72ab-bd8c-81faa35cbe41",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-35-50000-PLANT-A",
+      "passed": true,
+      "case_trace_id": "01a1b9df-7017-7230-975e-07b072be6738",
+      "mode": "llm"
+    },
+    {
+      "case_id": "matrix-35-50000-PLANT-B",
+      "passed": true,
+      "case_trace_id": "01a1b9df-9173-744f-9d29-600966de3124",
+      "mode": "llm"
+    }
+  ]
+}

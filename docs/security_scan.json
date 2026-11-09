@@ -1,0 +1,9 @@
+{
+  "scope": "Release candidate files; runtime, credentials and dependencies excluded",
+  "scanned_files": 166,
+  "credential_findings": [],
+  "env_git_ignored": true,
+  "env_mode": "0o600",
+  "passed": true,
+  "publication_performed": false
+}

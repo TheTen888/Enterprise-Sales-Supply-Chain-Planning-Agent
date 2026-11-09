@@ -1,0 +1,9 @@
+{
+  "scope": "Staged files and all reachable Git history",
+  "scanned_objects": 332,
+  "scanned_blobs": 280,
+  "credential_findings": [],
+  "forbidden_tracked_paths": [],
+  "env_git_ignored": true,
+  "passed": true
+}

@@ -1,192 +1,202 @@
-# Enterprise Sales & Supply Chain Planning Agent
+![Enterprise AI system architecture](docs/assets/overview.png)
 
-**[Live Demo →](https://enterprise-ai-sales-risk-architecture.dapper-moss-8891.chatgpt.site/#overview)** — Explore the interactive Overview, ETL, RAG, Risk Model, Multi-Agent, and Agent Eval diagrams.
+# Enterprise AI Agent: Sales, Quoting & Supply Chain Risk System
 
-[![Verification](https://github.com/TheTen888/Enterprise-Sales-Supply-Chain-Planning-Agent/actions/workflows/ci.yml/badge.svg)](https://github.com/TheTen888/Enterprise-Sales-Supply-Chain-Planning-Agent/actions/workflows/ci.yml)
+**Help manufacturing sales managers prepare feasible quotes, understand delivery constraints, and review alternatives before making a customer commitment.**
 
-**Help manufacturing sales managers spot delivery risks and prepare customer quotes they can explain.**
+[**Live Architecture Demo ↗**](https://enterprise-ai-sales-risk-architecture.dapper-moss-8891.chatgpt.site/#overview) · [ML Risk Model](#ml-risk-model) · [Qualification Report](qualification_report.md) · [Quickstart](#quickstart--graceful-fallback)
 
-When a customer asks for a lower price or changes an order, sales needs answers from engineering and supply planning: What does the change cost? Can the shared production line deliver? Which conditions must stay in the quote? This system brings those facts into one reviewable proposal.
+A fictional customer requests **5% off 12,000 units with delivery in 14 days**. The latest engineering change requires **28 days**, and the preferred factory has only **2,000 units available**. The system retrieves current evidence, checks pricing and both factories, proposes a feasible alternative, and leaves approval with the manager. A quantity change triggers recalculation and invalidates the previous approval.
 
-**v0.3 is a runnable, zero-cost local prototype.** It uses invented data, deterministic business and engineering roles, and a small delivery-risk model. Cloud services in the architecture are target integrations; no language model or paid API is required.
+**Recorded acceptance:** 23/23 synthetic business cases passed, with 23 LangSmith root Run IDs and 106 logical agent model calls. The gate passed for **local release qualification**, not an AWS production rollout. The public demo is an interactive architecture viewer; the executable workflow runs locally.
 
-[Overview](#system-overview) · [ETL](#etl-and-data-ingestion) · [RAG](#rag-and-document-retrieval) · [ML](#ml-risk-model) · [Multi-Agent](#multi-agent-analysis) · [Agent Eval](#agent-eval-and-observability) · [Run the demo](#run-the-showcase)
+## System Architecture Overview
 
-## What business problem does it solve?
+[Download high-resolution overview](docs/assets/overview.png) · [Editable SVG](docs/assets/overview.svg)
 
-| Business question | How the system helps |
-|---|---|
-| **Can we deliver this order on time?** | Combine order quantity, shared capacity, schedule slack, yield, design changes, allocation and pickup gaps into risk scores and capacity checks. Compare the model with rules before relying on it. |
-| **Can we justify our quote to the customer?** | Bring current order costs together with customer emails and engineering documents. Prepare keep-price, requested-discount and counteroffer options with the conditions that support them. |
-| **What changes when the manager revises the plan?** | Recalculate quote totals and capacity, save a new draft, and require a fresh decision. A what-if quantity never silently becomes a customer commitment. |
-| **Can we trust the proposal?** | Check customer access, source versions, evidence conditions and arithmetic. Record manager feedback and block approval when inputs are stale or capacity is insufficient. |
+| Layer | Business purpose | Flow |
+|---|---|---|
+| **01 Data Ingestion & ML Risk Pipeline** | Keep engineering evidence current and surface potential delivery delays | Two-lane ingestion → durable checkpoints → current evidence; planned point-in-time ML features → risk scoring |
+| **02 Memory System & Multi-Agent** | Generate customer-specific options that respect costs, capacity and prior commitments | Scoped retrieval + four memory types → Triage Router → QuoteAgent ↔ CapacityAgent → Risk Supervisor → Manager Review |
+| **03 Evaluation** | Explain failures, reject invalid proposals and control release readiness | LangSmith tracing · business evaluation · security controls · AgentCore deployment checks |
 
-The intended benefit is less time assembling information and fewer decisions made from inconsistent facts. Revenue growth, cost savings and avoided delays have not been measured.
+**Implementation boundary:** local ingestion, memory, RAG, LangGraph tool calling, business assertions and AgentCore HTTP contracts are implemented. The SageMaker/XGBoost risk extension, hosted Inngest, browser WASM, LlamaFirewall and IntellAgent integrations are designs. Their diagrams describe the intended architecture, not completed deployments.
 
-## System overview
+## Ingestion & ETL
 
-[![Enterprise AI Agent Sales & Risk System Architecture](architecture/overview.svg)](architecture/overview.svg)
+![Two-lane ingestion and hybrid retrieval](docs/assets/rag_ingestion_architecture.png)
 
-**Target architecture:** S3 retains raw inputs. Existing CRM data, business tables, RAG, daily batch scoring and dashboards stay in Snowflake; SageMaker handles training. Multi-Agent Analysis prepares drafts for manager review, with evaluation and access controls shared across the system.
+[SVG](docs/assets/rag_ingestion_architecture.svg)
 
-**Current runtime:** Python, SQLite, local keyword retrieval and a portable numeric model implement the core contracts below. The diagram describes the cloud design, not an already deployed cloud system. [Explore module boundaries and technology choices →](architecture/README.md)
+Two-lane routing separates lightweight conversion from workbooks and layouts that need server-side processing. The pipeline records **Fetch → Convert → Chunk → Embed → Idempotent Upsert** as durable steps, binds content and metadata to SHA-256 identifiers, and publishes only validated current versions.
 
-The following module diagrams preserve the agreed target design and service logos. Each section identifies the subset that runs locally today; click any diagram to view it at full size.
+- **Business validation:** verify customer/project ownership, ECN versions, required lead times and BOM arithmetic before evidence is indexed.
+- **Recovery:** completed steps are reused after failure; atomic publication and replay checks prevent duplicate documents.
+- **Spreadsheet correctness:** openpyxl reads workbook contents. A separate restricted formula evaluator computes supported formulas and rejects unsupported or inconsistent inputs.
+- **Current implementation:** SQLite-backed checkpoints and an Inngest integration wrapper. Hosted Inngest and browser WASM conversion remain unverified.
 
-## ETL and Data Ingestion
-
-**Give sales, engineering and planning the same current order facts.** A repeated update should not double the order, and an older event should not overwrite a newer delivery commitment or cost.
-
-[![ETL and Data Ingestion architecture](architecture/etl.svg)](architecture/etl.svg)
-
-- **Target flow:** Read-only database exports and Gmail updates → S3 originals → Airflow orchestration → Snowflake/dbt transformations → validated business snapshots.
-- **Local implementation:** Pin input batches, check customer ownership and amounts, deduplicate events, enforce versions, publish atomically and recover after failures. Quarantined batches cannot advance the checkpoint.
-- **Business example:** A quantity or design update reaches downstream pricing and risk analysis only after the new order version passes validation.
-
-[ETL design and trade-offs](docs/design.md) · [Runnable order walkthrough](scripts/order_walkthrough.py)
-
-## RAG and Document Retrieval
-
-**Keep the conditions behind a quote attached to the recommendation.** A customer's possible future volume is not a signed commitment, and required engineering work cannot disappear from a discount proposal.
-
-[![RAG and Document Retrieval architecture](architecture/rag.svg)](architecture/rag.svg)
-
-- **Target flow:** Authorized database/email content → permission binding and chunking → versioned Snowflake knowledge → Cortex Search → a customer/project-scoped evidence pack.
-- **Local implementation:** Keyword retrieval with bounded document expansion, citations, source-version checks and access checks before retrieval and return. Updates, logical deletion and revoked permissions invalidate cached evidence.
-- **Business example:** The discount case retains all four annotated commercial and engineering conditions across two current documents, instead of returning only one passage per document.
-
-[RAG design and limits](docs/rag-review.md) · [Discount and document-lifecycle walkthrough](docs/rag-audit-walkthrough.md)
+**Retry-cost target: 80% fewer repeated step executions** in the illustrative case where four of five equal-cost steps have completed. This is not a measured billing reduction. The implemented embedding-failure test skips Fetch, Convert and Chunk, then resumes Embed and Upsert; actual savings depend on step cost and failure location. External API acceptance followed by a crash may still cause repeat billing without provider idempotency.
 
 ## ML Risk Model
 
-**Help supply planners prioritize orders that may miss their delivery commitments.** Features capture shared-line load, schedule slack, historical yield, design changes, allocation and pickup gaps, alongside order quantity.
+![Order Delay Early Warning System](docs/assets/ml_risk_architecture.png)
 
-[![Risk Model Training and Evaluation architecture](architecture/risk-model.svg)](architecture/risk-model.svg)
+[SVG](docs/assets/ml_risk_architecture.svg) · [Open interactive ML view](https://enterprise-ai-sales-risk-architecture.dapper-moss-8891.chatgpt.site/#ml)
 
-- **Target flow:** Point-in-time Snowflake features and delivery labels → S3 training snapshot → SageMaker training → MLflow evaluation and promotion checks → Snowflake registry and daily batch scoring.
-- **Local implementation:** Synthetic historical replay, train-only preprocessing, chronological splits, mature-label checks, rules comparison and portable numeric scoring. Later deadline changes cannot rewrite the original prediction-time commitment.
-- **Business example:** Prioritize a capacity-constrained order without treating a later renegotiated deadline as information the model already knew. The current model does not beat rules at the operating alert budget and remains unpromoted.
+The **Order Delay Early Warning System** is the planned V2 extension using **AWS SageMaker + XGBoost + MLflow**:
 
-[Labels, features, leakage controls and measured results](docs/risk-model-review.md)
+1. Build **Rolling Time-Series Features** from committed capacity, production schedules, yield, customer allocation, pickup-versus-forecast gaps and design changes.
+2. Reconstruct only facts available at each prediction time. Use **Temporal Splits**, separate validation windows and mature delivery labels to avoid future-information leakage.
+3. Train XGBoost on SageMaker, calibrate scores on validation data, and compare against rules at the **same alert budget**. Record model and dataset versions in MLflow.
+4. Run approved batch scoring in Snowflake. Pass the **Delay Risk Score**, prediction timestamp and model version to **CapacityAgent** and the supervisor for scheduling review.
 
-## Multi-Agent Analysis
+**Design targets—not measured results:** improve recall from **55% to 85%** and flag risk **five days earlier**. The earlier separate logistic prototype measured approximately **54.3% recall**, matching its rules baseline at the same alert budget. No SageMaker/XGBoost training or improvement to 85% is claimed by this V2 release. Production benefit requires time-held-out evaluation and shared-capacity intervention analysis.
 
-**Turn customer feedback and engineering costs into options a sales manager can compare.** Engineering establishes costs and constraints; business uses those checked facts to prepare pricing options.
+## Memory & RAG
 
-[![Multi-Agent Analysis architecture](architecture/multi-agent.svg)](architecture/multi-agent.svg)
+![Four-type memory architecture](docs/assets/memory_architecture.png)
 
-- **Target flow:** Scoped RAG, SQL facts and risk scores → an asynchronous LangGraph/AgentCore draft job → deterministic checks and guardrails → versioned quote options → manager questions and approval.
-- **Local implementation:** Deterministic engineering/business roles, a local background worker, exact quote calculations, guided follow-ups, quantity what-ifs and revision-bound review. General LLM chat and targeted cost/design-edit routing remain planned.
-- **Business example:** A manager increases quantity from 12,000 to 18,000 units. The system recomputes cost and capacity, blocks approval for the resulting 4,000-unit gap, and keeps the customer commitment unchanged.
+[Memory SVG](docs/assets/memory_architecture.svg)
 
-[Role handoffs and approval rules](docs/multi-agent-review.md) · [Decision Workspace walkthrough](docs/showcase.md)
+| Memory | Responsibility |
+|---|---|
+| **Working** | Bounded tool outputs and session context; SQLite checkpoints by default, with Redis checkpointer selection |
+| **Episodic** | Timestamped inquiry events and prior conversations with source and customer/project scope |
+| **Semantic** | Confirmed customer profiles and preferences, versioned facts and validity intervals |
+| **Procedural** | Trusted pricing and capacity skills loaded from application-controlled files |
 
-## Agent Eval and Observability
+The **Memory Consolidator** turns trusted confirmed event fields into facts. Similarity finds duplicate candidates; named facts and equivalent values determine actual deduplication. New confirmed values supersede older versions while preserving history. Out-of-order conflicts wait for review. Engineering source records outrank conversational preferences.
 
-**Find out why a proposal failed, and prevent the same mistake from reaching the next review.** Trace inspection explains the decision path; evaluation checks whether that path and its result satisfy the business rules.
+![Hybrid RAG with metadata and version controls](docs/assets/rag_ingestion_architecture.png)
 
-[![Agent Evaluation and Observability architecture](architecture/agent-eval.svg)](architecture/agent-eval.svg)
+**BM25 + Vector + Cross-Encoder Reranking** combines exact part/ECN matching and semantic retrieval. Authorization and active-version filtering run **before ranking**, so obsolete ECNs and other customers' documents cannot become valid evidence merely by scoring highly. The live acceptance run used local Sentence-Transformers and cross-encoder weights. Offline mode uses deterministic lexical-hash retrieval.
 
-- **Target flow:** Correlated draft/revision traces and manager feedback → human-reviewed evaluation cases → candidate replay and comparison → an agent release gate. CloudWatch, OpenTelemetry/ADOT and MLflow support the target monitoring and evaluation workflow.
-- **Local implementation:** Recorded workflow events, controlled failure experiments, source-bound feedback, recalculation checks and offline model contracts. Manager disagreement stays pending review rather than automatically becoming ground truth.
-- **Business example:** A rejected quote or changed quantity is replayed to check evidence conditions, exact amounts, capacity and approval invalidation. Real LLM quality remains unmeasured, so model qualification stays blocked. Delivery-risk ML evaluation remains in the ML module.
+Memory Eval checks temporal recall, contradiction resolution and abstention, including an answerable-query control. These are small synthetic lifecycle tests; their denominators and scope appear in the qualification report. Live Redis and broad unseen-document retrieval quality remain unverified.
 
-[Evaluation Studio and test boundaries](docs/eval-ui.md) · [Model-contract evaluation and monitoring](docs/model-adapters.md)
+## Multi-Agent Orchestration (LangGraph & A2A Protocol)
 
-## Walk through one customer request
+![LangGraph and typed A2A task orchestration](docs/assets/multi_agent_a2a_architecture.png)
 
-A fictional customer asks for **5% off a 12,000-unit order**.
+[SVG](docs/assets/multi_agent_a2a_architecture.svg)
 
-1. **Get the current facts.** ETL publishes the latest valid order. Scoped retrieval returns customer email and engineering evidence: future volume is unsigned, required inspection cannot be removed, and no volume-based cost reduction is approved.
-2. **Build the options.** Engineering confirms a **$13.00 unit cost**. Business compares the $15.00 current price, the customer's $14.25 request and a $14.45 counteroffer. The requested price falls below the fictional 10% margin floor; the counteroffer clears it. Calculations use integer cents.
-3. **Test the manager's change.** Increasing the scenario to **18,000 units** raises total cost from **$156,000 to $234,000** and creates a **4,000-unit capacity gap**. Approval is blocked, the previous approval cannot carry over, and the published order remains 12,000 units.
-4. **Review the decision.** Managers compare options, ask guided follow-ups, approve an eligible internal draft or reject it with a reason. Feedback keeps its draft and evidence versions and waits for review before it can become an evaluation label.
+- **Triage Router:** direct questions avoid unnecessary tools; current-information requests require current source checks; factual lookups cross-check evidence.
+- **QuoteAgent:** retrieves BOM/ECN evidence and confirmed preferences, then calls deterministic pricing tools. Uncommitted future volume cannot silently qualify an order for a discount.
+- **CapacityAgent:** checks both factories and the latest ECN lead time. Conflicts trigger a bounded revision of plant or delivery date; unresolved constraints block approval.
+- **Risk Supervisor and manager:** validate the proposal, retain evidence and conditions, and require review before an external commitment. Changed quantity, costs or design inputs require recalculation.
 
-[Five-minute walkthrough](docs/showcase.md) · [Quote and approval rules](docs/multi-agent-review.md) · [Evidence retrieval example](docs/rag-audit-walkthrough.md)
+Typed **A2A Task Envelopes** carry task IDs, parent relationships, messages and quote artifacts within one LangGraph application. SDK task objects are validated; this is not a distributed A2A discovery/JSON-RPC deployment. Agents propose; tools calculate and enforce business constraints.
 
-## Run the showcase
+## Evaluation, Security & Deployment
 
-Requires Python 3.11. No credentials, cloud account or language-model download.
+![Evaluation and local release gate](docs/assets/eval_observability_architecture.png)
+
+[SVG](docs/assets/eval_observability_architecture.svg) · [Frozen qualification report](qualification_report.md) · [Machine-readable acceptance summary](docs/evidence/acceptance-summary.json)
+
+The recorded batch contains **5 authored fixtures + 18 parameterized cases**. Twenty-two cases used real inference without fallback; one malformed request was rejected before inference. A separate `gpt-4.1-mini` judge reviewed project-authored expectations alongside deterministic assertions. This is independent-model consistency review, not independent human expert labeling.
+
+| Recorded metric | Result | Scope |
+|---|---:|---|
+| Business case pass rate | **23/23 (100%)** | All applicable assertions per synthetic case |
+| Capacity over-commitment | **0%** | Non-blocked proposals versus selected factory availability |
+| Delivery constraints met | **100%** | Quote cases satisfying the active ECN minimum lead time |
+| Calculation checks | **100%** | Exact cost, revenue and margin assertions |
+| Critical conditions retained | **100%** | Required evidence and discount/engineering conditions |
+| Independent model consistency review | **23/23** | Existing project-authored reference rules |
+| LangSmith root Run IDs | **23** | Includes the validation rejection |
+| Logical agent model calls | **106** | Final acceptance batch; excludes earlier probes and judge usage |
+| Agent token usage | **131,324** | 127,235 input + 4,089 output tokens |
+
+### Agent Tracing & Debugging with LangSmith
+
+![LangSmith tracing architecture](docs/assets/agent_tracing_architecture.png)
+
+![LangSmith activity screenshot supplied by the project owner](docs/assets/langsmith.png)
+
+Root and child runs record node transitions, tool arguments, model calls, token usage and latency. Waterfall traces support diagnosis across **data → retrieval → tools → final decisions**. The screenshot is a seven-day activity aggregate including diagnostics and other runs; its 120 traces and model-call totals are **not the same denominator** as the 23-case acceptance batch. Detailed case Run IDs are retained in the report; private LangSmith access is not required to read this repository.
+
+### Automated Agent Evaluation
+
+![Recorded evaluation results](docs/assets/evaluation-dashboard.png)
+
+![Automated evaluation architecture](docs/assets/automated_agent_eval_architecture.png)
+
+Benchmark generation, simulation and Pytest-backed business assertions test stale ECNs, invalid quarters, exhausted capacity, discount conditions, recalculation and deliberately corrupted outputs. **IntellAgent is a proposed integration**; the measured 23/23 result comes from the implemented authored harness and model judge. Passing these fixtures establishes tested contract behavior, not generalized production accuracy or sales impact.
+
+### Agent Security
+
+![Agent security design](docs/assets/agent_security_architecture.png)
+
+The target **LlamaFirewall** design combines Input/Output/Tool Guardrails, prompt-injection checks and behavior alignment with application-level PII policies, scoped authorization and schema validation. **LlamaFirewall is not installed or evaluated in this release.** Implemented controls reject caller-supplied customer identities, enforce customer/project scope, validate tool parameters and block inconsistent arithmetic or business conditions. A content scanner cannot replace these controls.
+
+### Agent Deployment
+
+![AgentCore deployment architecture](docs/assets/agent_deployment_architecture.png)
+
+The actual AWS Bedrock AgentCore SDK wraps `invoke(payload)` with `@app.entrypoint`. Local checks exercise **GET `/ping`**, **POST `/invocations`**, malformed payloads, authorization and customer-scope injection. The Dockerfile targets ARM64 and non-root execution; **image execution and AWS rollout have not been verified**.
+
+![Recorded Evaluation and Production Gate dashboard](docs/assets/production-gate.png)
+
+The displayed **Production Gate: Passed** uses the explicit `local_release` policy: local contracts, separate-model review, real inference/traces and local HTTP/static Dockerfile checks. Cloud production qualification additionally requires container and AWS evidence. UI changes do not upgrade the qualification scope.
+
+## Quickstart & Graceful Fallback
+
+Use Python 3.11. All fixture customers, plants, orders and engineering documents are synthetic.
 
 ```bash
 python3.11 -m venv .venv
-.venv/bin/python -m pip install -r requirements-ci.txt -r requirements-risk.txt
-.venv/bin/python -m scripts.verify --agents
-.venv/bin/python -m scripts.serve_showcase
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+AGENT_MODE=mock python -m scripts.demo
+AGENT_MODE=mock python -m pytest -q
+AGENT_MODE=mock python -m streamlit run app/architecture_dashboard.py --server.address 127.0.0.1 --server.port 8770 --browser.gatherUsageStats false
 ```
 
-Open **[Decision Workspace](http://127.0.0.1:8769/workbench)** to generate and revise a proposal. Open **[Evaluation Studio](http://127.0.0.1:8769/#agents)** to inspect test results and the workflow event sequence. Both run locally; the links work after starting the server.
+The demo generates sources, runs ingestion and agents, and evaluates all 23 cases without paid services. **System Overview** opens the architecture; **Live Workbench** opens the scenario, evaluation and workflow trace. Without `OPENAI_API_KEY`, `auto` mode chooses deterministic execution. Missing weights or failed live contracts produce a visible fallback; fallback never qualifies as a real-LLM pass.
 
-Each session saves its synthetic state under ignored `artifacts/`. Stop with Ctrl-C; see [session and resume instructions](docs/showcase.md). Customer sending is disabled.
-
-<details>
-<summary>Run individual modules</summary>
+For real inference and tracing:
 
 ```bash
-.venv/bin/python -m scripts.run_local
-.venv/bin/python -m scripts.review_rag
-.venv/bin/python -m scripts.run_risk_model
-.venv/bin/python -m scripts.run_agents
-.venv/bin/python -m scripts.demo_model_contracts
+python -m pip install -e '.[test,runtime,semantic]'
+cp .env.example .env
+chmod 600 .env
+python -m scripts.prepare_models
 ```
 
-ETL and RAG need only Python's standard library. Training and full verification use the installed test/ML dependencies. Model-adapter demonstrations inject fake SDK responses; they never start local LLM inference or connect to a real model API.
+Edit `.env` locally, filling `OPENAI_API_KEY`, `OPENAI_MODEL=gpt-4o-mini`, `JUDGE_MODEL=gpt-4.1-mini`, `LANGSMITH_API_KEY`, `LANGCHAIN_TRACING_V2=true`, and your `LANGSMITH_PROJECT`. Set `EMBEDDING_MODEL_PATH=runtime/models/embedding` and `RERANKER_MODEL_PATH=runtime/models/reranker`. Legacy `LANGCHAIN_API_KEY` / `LANGCHAIN_PROJECT` aliases are supported. No keys belong in source, screenshots or issues.
 
-</details>
+```bash
+QUALIFICATION_SCOPE=local_release python -m scripts.qualify --root runtime/live-qualification --live --http --reference-existing-rules --review-labels
+python -m scripts.qualification_report --root runtime/live-qualification
+AGENT_STUDIO_ROOT=runtime/live-qualification python -m streamlit run app/architecture_dashboard.py --server.address 127.0.0.1 --server.port 8770
+```
 
-## How do we know it works?
+Live qualification calls paid APIs and uploads synthetic traces to the configured LangSmith project. Model preparation downloads lightweight encoder/reranker weights; it does not run a local generative model. See [qualification setup](config/production-qualification.md) and [local-release policy](config/local-release-policy.md).
 
-The [recorded verification](docs/evidence/verification.json) contains **230 passing tests, zero skips**, and reproducible synthetic experiments:
+Rebuild diagrams and the public static viewer:
 
-| Concern | Evidence |
-|---|---|
-| Lost or duplicated updates | Five ETL failure/recovery experiments and four load scenarios, checked against independent reconciliation |
-| Wrong customer or stale evidence | Nine RAG query cases and five update, deletion and permission experiments |
-| Incorrect quotes or unsafe approval | 14 workflow checks, nine controlled failures and seven manager-feedback checks |
-| Delivery-risk prediction | Chronological holdout, point-in-time features, frozen commitments, pending labels and the same alert budget for rules and ML |
-| Future model integration | Eight mock SDK calls exercise guarded tool selection and response checks; 4 development and 16 acceptance cases await independent label review |
+```bash
+python -m pip install -r docs/diagrams/requirements.txt
+python -m scripts.render_architecture
+python -m scripts.render_system_views
+python -m scripts.export_assets
+python -m http.server 8780 --directory docs/site
+```
 
-**The risk model is not promoted.** Rules and logistic regression each find 25 of 46 known late orders: **54.3% recall at the same 36-alert budget**. Better ranking scores alone do not justify replacing the baseline. These are synthetic results, not production accuracy.
-
-Real LLM quality, latency and cost remain **unmeasured**. Model qualification stays blocked. Evaluation Studio separates those limits from passing local correctness checks.
-
-[Evaluation design](docs/eval-ui.md) · [Labels, features and leakage controls](docs/risk-model-review.md) · [Offline model interfaces](docs/model-adapters.md)
-
-## What is implemented?
-
-| Runs in this repository | Still requires integration and validation |
-|---|---|
-| Incremental ETL, deduplication, versioning and atomic local publication | Live database/Gmail ingestion, S3, Airflow and Snowflake/dbt execution |
-| Customer/project-scoped retrieval, bounded context, citations and lifecycle checks | Cortex Search deployment, semantic quality and production identity |
-| Synthetic risk training, temporal evaluation and portable batch scoring | Real labels, intervention-aware evaluation, SageMaker training and Snowflake scoring |
-| Deterministic engineering/business roles, quote tools, draft revisions and internal review | LLM-backed LangGraph/AgentCore execution and general chatbot conversations |
-| Decision Workspace, Evaluation Studio, persisted events and local session metrics | Distributed workers, live CloudWatch telemetry and a controlled production rollout |
-| Disabled-by-default Snowflake, Gmail and Bedrock adapter call paths | Real credentials, service compatibility and cloud deployment |
-
-[Implementation status](docs/implementation-status.md) documents the exact boundaries. [Architecture contracts](architecture/README.md) explain why engineering checks costs before business prices options and why manager disagreement is not automatically ground truth.
-
-## Repository guide
+## Repository Map
 
 ```text
-architecture/   System overview and module contracts
-pipelines/etl/  Incremental data publication and recovery
-rag/           Scoped evidence retrieval and document lifecycle
-risk_model/    Historical features, labels, training and scoring
-agents/        Quote workflow, revisions, checks and evaluation
-app/           Decision Workspace and Evaluation Studio
-integrations/  Optional service adapters and offline call contracts
-scripts/       Runnable demos, verification and release checks
-data/          Invented fixtures and evaluation cases
-tests/         Business, data, recovery and access boundaries
-docs/          Walkthroughs, trade-offs and measured evidence
+app/             Glass-style architecture viewer and dashboard wrapper
+agent/           LangGraph routing, tool calls, proposals and review boundary
+data_pipeline/   Conversion, validation, checkpoints and idempotent ingestion
+memory/          Working, episodic, semantic and procedural memory
+rag/             Scoped hybrid retrieval and optional semantic reranking
+evaluation/      Fixtures, business assertions, judge, memory eval and gates
+deployment/      AgentCore HTTP entrypoint, self-checks and Dockerfile
+mock_data/       Anonymous synthetic business inputs
+scripts/         Demo, qualification, diagram export and security audit
+tests/          Offline contracts, recovery, isolation and regression checks
+docs/assets/     High-resolution diagrams and dashboard evidence
+docs/site/       Public read-only architecture viewer
 ```
 
-## CI, data and credentials
-
-[GitHub Actions](.github/workflows/ci.yml) runs lint, full local verification and release-file checks with live services disabled. The badge links to actual hosted results. Local test success alone is not evidence of cloud deployment.
-
-[release-files.txt](release-files.txt) defines the reviewed source set. `.env.example` contains no credentials and disables live access. Keys, OAuth tokens, databases, generated model artifacts, caches and local interview notes are excluded. All customer, email, order and engineering examples are fictional. Demo actors are not production authentication; logical deletion is not complete privacy erasure.
-
-[Changelog](CHANGELOG.md) · [ETL trade-offs](docs/design.md) · [RAG design](docs/rag-review.md) · [API contracts](docs/api-adapters.md)
-
-The ETL layering was inspired by John Data Lab's `enterprise-ai-agent`. Its [MIT notice](LICENSES/JohnDataLab-MIT.txt) is retained alongside this project's [license](LICENSE).
+V2 replaces the earlier prototype at the repository root; previous versions remain in Git history. [MIT license](LICENSE). Brand assets retain their respective owners' rights; [asset sources](docs/diagrams/brands/README.md).

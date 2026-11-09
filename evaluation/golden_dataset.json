@@ -1,0 +1,7 @@
+[
+  {"id":"standard-quote","request":{"prompt":"Prepare a quote","requested_days":35,"preferred_factory":"PLANT-B"},"expected_route":"quote","oracle":{"minimum_days":28,"unit_cost_cents":1300,"factory_available":{"PLANT-A":2000,"PLANT-B":40000}},"label_status":"authored_fixture_not_independently_reviewed"},
+  {"id":"conflicting-ecn","request":{"prompt":"Prepare a quote with ECN-001","requested_days":14},"expected_route":"quote","oracle":{"minimum_days":28,"unit_cost_cents":1300,"factory_available":{"PLANT-A":2000,"PLANT-B":40000}},"label_status":"authored_fixture_not_independently_reviewed"},
+  {"id":"capacity-exhausted","request":{"prompt":"Prepare an urgent quote","quantity":50000,"requested_days":14},"expected_route":"quote","oracle":{"minimum_days":28,"unit_cost_cents":1300,"factory_available":{"PLANT-A":2000,"PLANT-B":40000}},"label_status":"authored_fixture_not_independently_reviewed"},
+  {"id":"invalid-quarter","request":{"prompt":"Prepare a quote","quarter":"Q4-2026"},"expected_route":"validation_error","oracle":{},"label_status":"authored_fixture_not_independently_reviewed"},
+  {"id":"direct-answer","request":{"prompt":"What is FOB?"},"expected_route":"direct","oracle":{},"label_status":"authored_fixture_not_independently_reviewed"}
+]

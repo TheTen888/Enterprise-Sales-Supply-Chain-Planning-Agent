@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222"/></marker></defs><rect width="1600" height="1080" fill="white"/><g font-family="Arial, Helvetica, sans-serif" fill="#222" stroke-linejoin="round" stroke-linecap="round">
+<text x="800" y="48" text-anchor="middle" font-size="28" font-weight="600">Agent Memory Architecture</text>
+<rect x="40" y="80" width="1520" height="270" rx="30" fill="none" stroke="#222" stroke-width="1.6"/>
+<text x="800.0" y="112" text-anchor="middle" font-size="21" font-weight="600">Active Session</text>
+<rect x="75" y="135" width="220" height="52" rx="20" fill="#d5e8d4" stroke="#222" stroke-width="1.8"/>
+<text x="185.0" y="168.0" text-anchor="middle" font-size="20" font-weight="600">User Prompt</text>
+<rect x="75" y="205" width="220" height="52" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="185.0" y="238.0" text-anchor="middle" font-size="18" font-weight="600">Current Chat History</text>
+<rect x="75" y="275" width="220" height="52" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="185.0" y="308.0" text-anchor="middle" font-size="20" font-weight="600">System Prompt</text>
+<rect x="415" y="192" width="265" height="94" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="547.5" y="231.5" text-anchor="middle" font-size="20" font-weight="600">Working Memory</text>
+<text x="547.5" y="260.5" text-anchor="middle" font-size="20" font-weight="400">Context RAM</text>
+<text x="550" y="139" text-anchor="middle" font-size="19" font-weight="600">Context Editing</text>
+<text x="550" y="166" text-anchor="middle" font-size="16" font-weight="400">Tool pruning · Context trimming</text>
+<polyline points="295,161 350,161 350,239 415,239" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<polyline points="295,231 350,231 350,239 415,239" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<polyline points="295,301 350,301 350,239 415,239" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<ellipse cx="955.0" cy="240.0" rx="145.0" ry="55.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
+<text x="955.0" y="247.0" text-anchor="middle" font-size="20" font-weight="600">Multi-Agent</text>
+<polyline points="680,239 810,239" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="1250" y="212" width="220" height="62" rx="20" fill="#d5e8d4" stroke="#222" stroke-width="1.8"/>
+<text x="1360.0" y="250.0" text-anchor="middle" font-size="20" font-weight="600">Reply</text>
+<polyline points="1100,239 1250,239" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="80" y="475" width="310" height="145" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="235.0" y="525.5" text-anchor="middle" font-size="20" font-weight="600">Procedural Memory</text>
+<text x="235.0" y="554.5" text-anchor="middle" font-size="20" font-weight="400">Files / Text</text>
+<text x="235.0" y="583.5" text-anchor="middle" font-size="20" font-weight="400">Skills · Rules</text>
+<rect x="475" y="475" width="310" height="145" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="630.0" y="527.5" text-anchor="middle" font-size="18" font-weight="600">Semantic Memory</text>
+<text x="630.0" y="554.5" text-anchor="middle" font-size="18" font-weight="400">Vector Store</text>
+<text x="630.0" y="581.5" text-anchor="middle" font-size="18" font-weight="400">Durable facts · User profiles</text>
+<rect x="870" y="475" width="310" height="145" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="1025.0" y="527.5" text-anchor="middle" font-size="18" font-weight="600">Episodic Memory</text>
+<text x="1025.0" y="554.5" text-anchor="middle" font-size="18" font-weight="400">Vector Store</text>
+<text x="1025.0" y="581.5" text-anchor="middle" font-size="18" font-weight="400">Dated events · Session logs</text>
+<polyline points="235,475 235,393 460,393 460,286" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="310" y="382" text-anchor="middle" font-size="18" font-weight="400">Load skills</text>
+<polyline points="630,475 630,286" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="780" y="400" text-anchor="middle" font-size="18" font-weight="600">Hybrid Retrieval</text>
+<text x="780" y="426" text-anchor="middle" font-size="17" font-weight="400">Vector + BM25</text>
+<polyline points="1025,475 1025,365 665,365 665,286" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="1160" y="389" text-anchor="middle" font-size="18" font-weight="400">Recall events</text>
+<path d="M530,685 A100.0,20 0 0 1 730,685 V765 A100.0,20 0 0 1 530,765 Z" fill="#f5f5f5" stroke="#222" stroke-width="1.8"/><ellipse cx="630.0" cy="685" rx="100.0" ry="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="630.0" y="730.0" text-anchor="middle" font-size="19" font-weight="600">Fact Store</text>
+<polyline points="630,665 630,620" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<path d="M1255,500 A110.0,20 0 0 1 1475,500 V600 A110.0,20 0 0 1 1255,600 Z" fill="#f5f5f5" stroke="#222" stroke-width="1.8"/><ellipse cx="1365.0" cy="500" rx="110.0" ry="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="1365.0" y="555.0" text-anchor="middle" font-size="19" font-weight="600">Event Store</text>
+<polyline points="1360,274 1360,480" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="1435" y="422" text-anchor="middle" font-size="18" font-weight="400">Save events</text>
+<polyline points="1255,550 1180,550" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<path d="M1355.0,680 L1510,740.0 L1355.0,800 L1200,740.0 Z" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="1355.0" y="747.0" text-anchor="middle" font-size="19" font-weight="600">New events?</text>
+<polyline points="1365,620 1365,680" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<ellipse cx="1050.0" cy="875.0" rx="155.0" ry="50.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
+<text x="1050.0" y="882.0" text-anchor="middle" font-size="20" font-weight="600">Memory Consolidator</text>
+<polyline points="1355,800 1355,875 1205,875" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="1300" y="852" text-anchor="middle" font-size="17" font-weight="400">Yes</text>
+<polyline points="895,875 630,875 630,785" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="765" y="852" text-anchor="middle" font-size="18" font-weight="400">Distill into facts</text>
+<polyline points="1050,925 1050,975" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)" marker-start="url(#arrow)" stroke-dasharray="6 6"/>
+<rect x="40" y="975" width="1520" height="78" rx="20" fill="#f5f5f5" stroke="#222" stroke-width="1.8"/>
+<text x="800.0" y="1007.0" text-anchor="middle" font-size="19" font-weight="600">Memory Eval</text>
+<text x="800.0" y="1035.0" text-anchor="middle" font-size="19" font-weight="400">Temporal Recall · Contradiction Resolution · Abstention Rate</text>
+</g></svg>

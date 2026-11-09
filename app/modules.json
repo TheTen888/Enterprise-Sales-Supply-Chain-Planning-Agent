@@ -1,0 +1,65 @@
+{
+  "rag": {
+    "title": "RAG & Ingestion",
+    "stem": "rag_ingestion_architecture",
+    "number": "01",
+    "description": "Turn scattered source files into current, authorized evidence.",
+    "note": "WASM / Edge is a target integration. Durable local ingestion uses SQLite checkpoints; Inngest is an adapter."
+  },
+  "agents": {
+    "title": "Multi-Agent Analysis",
+    "stem": "multi_agent_a2a_architecture",
+    "number": "02",
+    "description": "Combine quote economics and factory constraints into a reviewable proposal.",
+    "note": "Typed task envelopes run within one LangGraph. Unresolved constraints block approval; managers review external commitments."
+  },
+  "memory": {
+    "title": "Memory",
+    "stem": "memory_architecture",
+    "number": "03",
+    "description": "Working context, event recall, confirmed facts and procedural skills.",
+    "note": "Working context, procedural rules, semantic facts and dated events form one memory lifecycle."
+  },
+  "eval": {
+    "title": "Automated Agent Evaluation",
+    "stem": "automated_agent_eval_architecture",
+    "number": "04",
+    "description": "Benchmark synthesis, multi-turn simulation and deterministic business assertions.",
+    "note": "Recorded synthetic suite: 23/23 business cases passed. Current execution uses the local authored harness and separate model judge. IntellAgent is a proposed framework integration; it did not produce the recorded 23 cases. Reference: https://github.com/plurai-ai/intellagent"
+  },
+  "retrieval": {
+    "title": "Hybrid RAG & Retrieval",
+    "stem": "rag_ingestion_architecture",
+    "number": "01",
+    "description": "Scoped lexical and vector retrieval with active-version filtering and cross-encoder reranking.",
+    "note": "WASM / Edge is a target integration. Durable local ingestion uses SQLite checkpoints; Inngest is an adapter."
+  },
+  "ml": {
+    "title": "ML Risk Model",
+    "stem": "ml_risk_architecture",
+    "number": "02",
+    "description": "Rolling time-series features, temporal splits and calibrated delay-risk scoring.",
+    "note": "Planned V2 integration: SageMaker, XGBoost, MLflow and approved batch scoring. Recall 55% \u2192 85% and five-day earlier warnings are design targets, not measured results. The prior separate synthetic logistic prototype achieved approximately 54.3% recall at the same alert budget as its rules baseline; it is not an XGBoost/SageMaker deployment."
+  },
+  "tracing": {
+    "title": "Agent Tracing & Debugging",
+    "stem": "agent_tracing_architecture",
+    "number": "05",
+    "description": "LangSmith waterfall traces, token and latency profiling, and root-cause diagnosis.",
+    "note": "Real LangSmith traces were verified for all 23 recorded acceptance cases. Four-level diagnosis is a review workflow across data, retrieval, tools and decisions, not an automatic root-cause classifier."
+  },
+  "security": {
+    "title": "Agent Security",
+    "stem": "agent_security_architecture",
+    "number": "07",
+    "description": "Input, output and tool guardrails. Prompt injection, behavior alignment and access control.",
+    "note": "LlamaFirewall integration is a proposed design, not installed or evaluated here. Existing code validates payloads, customer scope and tool contracts. PII policies, tool allowlists and authorization require application enforcement alongside scanners. Reference: https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall"
+  },
+  "deployment": {
+    "title": "Agent Deployment",
+    "stem": "agent_deployment_architecture",
+    "number": "08",
+    "description": "AWS Bedrock AgentCore microservice runtime with Docker and standard HTTP contracts.",
+    "note": "AgentCore local /ping and /invocations checks passed. Dockerfile static checks passed. Container execution and AWS deployment remain unverified."
+  }
+}

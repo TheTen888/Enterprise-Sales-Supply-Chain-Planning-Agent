@@ -3,31 +3,32 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "enterprise-sales-supply-chain-planning-agent"
-version = "0.3.0"
-description = "Local manufacturing quote and delivery-risk decision support with reproducible evaluation"
-readme = "README.md"
+name = "enterprise-sales-agent-v2"
+version = "0.1.0"
+description = "Scenario-first quotation and capacity agent with offline fault evaluation"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["pydantic>=2.10,<3", "openpyxl>=3.1,<4", "langgraph>=1,<2", "langgraph-checkpoint-sqlite>=3,<4", "rank-bm25>=0.2,<1", "streamlit>=1.40,<2", "python-dotenv>=1,<2"]
 
 [project.optional-dependencies]
-risk = ["scikit-learn==1.9.1"]
-snowflake = ["snowflake>=0.8,<2", "snowflake-connector-python>=3,<5"]
-gmail = ["google-api-python-client>=2,<3", "google-auth-httplib2>=0.2,<1"]
-bedrock = ["boto3>=1.34,<2"]
+test = ["pytest>=8,<10", "ruff>=0.9,<1"]
+runtime = ["langchain-openai>=1,<2", "bedrock-agentcore>=1,<2", "a2a-sdk>=0.3,<1", "langgraph-checkpoint-redis>=0.3,<1"]
+integrations = ["langchain-openai>=1,<2", "langsmith>=0.4,<1", "redis>=8,<9", "redisvl>=0.3,<1", "langgraph-checkpoint-redis>=0.3,<1", "inngest>=0.5,<1", "bedrock-agentcore>=1,<2", "a2a-sdk>=0.3,<1"]
+semantic = ["sentence-transformers>=5,<6"]
 
 [tool.setuptools.packages.find]
-include = ["app*", "pipelines*", "rag*", "scripts*", "integrations*", "risk_model*", "agents*"]
-exclude = ["tests*"]
+include = ["config*", "mock_data*", "data_pipeline*", "memory*", "rag*", "agent*", "evaluation*", "deployment*", "scripts*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.setuptools.package-data]
-app = ["eval_ui/*.html", "eval_ui/*.css", "eval_ui/*.js"]
+evaluation = ["golden_dataset.json"]
+memory = ["skills/*.md"]
 
 [tool.ruff]
 target-version = "py311"
 line-length = 100
-exclude = [".venv", "artifacts", "__pycache__"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP"]
+select = ["E", "F", "I"]
 ignore = ["E501"]

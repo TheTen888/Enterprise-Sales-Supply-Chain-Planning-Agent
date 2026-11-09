@@ -1,0 +1,54 @@
+{
+  "inngest": {
+    "url": "https://www.inngest.com/favicon.ico",
+    "file": "inngest.png"
+  },
+  "redis": {
+    "url": "https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/redis.svg",
+    "file": "redis.svg"
+  },
+  "langgraph": {
+    "url": "https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/langgraph.svg",
+    "file": "langgraph.svg"
+  },
+  "langsmith": {
+    "url": "https://smith.langchain.com/favicon.ico",
+    "file": "langsmith.png"
+  },
+  "mlflow": {
+    "url": "https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/mlflow.svg",
+    "file": "mlflow.svg"
+  },
+  "pydantic": {
+    "url": "https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/pydantic.svg",
+    "file": "pydantic.svg"
+  },
+  "meta": {
+    "url": "https://cdn.jsdelivr.net/npm/simple-icons@16.34.0/icons/meta.svg",
+    "file": "meta.svg"
+  },
+  "docker": {
+    "url": "https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/docker/docker-original.svg",
+    "file": "docker.svg"
+  },
+  "pytest": {
+    "url": "https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/pytest/pytest-original.svg",
+    "file": "pytest.svg"
+  },
+  "s3": {
+    "url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/storage/simple-storage-service-s3.png",
+    "file": "s3.png"
+  },
+  "sagemaker": {
+    "url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/ml/sagemaker.png",
+    "file": "sagemaker.png"
+  },
+  "bedrock": {
+    "url": "https://raw.githubusercontent.com/mingrammer/diagrams/master/resources/aws/ml/bedrock.png",
+    "file": "bedrock.png"
+  },
+  "xgboost": {
+    "url": "https://raw.githubusercontent.com/dmlc/xgboost/master/doc/_static/xgboost-logo.png",
+    "available": false
+  }
+}

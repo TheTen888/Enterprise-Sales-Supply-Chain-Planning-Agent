@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222"/></marker></defs><rect width="1600" height="1080" fill="white"/><g font-family="Arial, Helvetica, sans-serif" fill="#222" stroke-linejoin="round" stroke-linecap="round">
+<text x="800" y="48" text-anchor="middle" font-size="28" font-weight="600">Agent Tracing &amp; Debugging with LangSmith</text>
+<rect x="70" y="170" width="250" height="90" rx="20" fill="#d5e8d4" stroke="#222" stroke-width="1.8"/>
+<text x="195.0" y="222.0" text-anchor="middle" font-size="20" font-weight="600">Agent Request</text>
+<ellipse cx="615.0" cy="215.0" rx="145.0" ry="60.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
+<text x="615.0" y="208.5" text-anchor="middle" font-size="18" font-weight="600">LangGraph Execution</text>
+<text x="615.0" y="235.5" text-anchor="middle" font-size="18" font-weight="400">Router · Quote · Capacity</text>
+<rect x="925" y="160" width="300" height="110" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="1075.0" y="195.0" text-anchor="middle" font-size="18" font-weight="600">Model &amp; Tool Spans</text>
+<text x="1075.0" y="222.0" text-anchor="middle" font-size="18" font-weight="400">Inputs · Outputs · Duration</text>
+<text x="1075.0" y="249.0" text-anchor="middle" font-size="18" font-weight="400">Tokens · Errors</text>
+<polyline points="320,215 470,215" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<polyline points="760,215 925,215" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<path d="M925,445 A150.0,20 0 0 1 1225,445 V560 A150.0,20 0 0 1 925,560 Z" fill="#f5f5f5" stroke="#222" stroke-width="1.8"/><ellipse cx="1075.0" cy="445" rx="150.0" ry="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="1075.0" y="507.5" text-anchor="middle" font-size="19" font-weight="600">LangSmith</text>
+<text x="1075.0" y="535.5" text-anchor="middle" font-size="19" font-weight="400">Run IDs &amp; Waterfall</text>
+<polyline points="1075,270 1075,425" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="460" y="440" width="310" height="110" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="615.0" y="475.0" text-anchor="middle" font-size="18" font-weight="600">Root-Cause Diagnosis</text>
+<text x="615.0" y="502.0" text-anchor="middle" font-size="18" font-weight="400">Data → Retrieval → Tools</text>
+<text x="615.0" y="529.0" text-anchor="middle" font-size="18" font-weight="400">→ Final Decision</text>
+<polyline points="925,495 770,495" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="70" y="440" width="250" height="110" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="195.0" y="488.5" text-anchor="middle" font-size="18" font-weight="600">Versioned Replay</text>
+<text x="195.0" y="515.5" text-anchor="middle" font-size="18" font-weight="400">Same evidence &amp; inputs</text>
+<polyline points="460,495 320,495" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="460" y="755" width="310" height="95" rx="20" fill="#d5e8d4" stroke="#222" stroke-width="1.8"/>
+<text x="615.0" y="796.0" text-anchor="middle" font-size="18" font-weight="600">Regression Case</text>
+<text x="615.0" y="823.0" text-anchor="middle" font-size="18" font-weight="400">Fix → Re-evaluate</text>
+<polyline points="195,550 195,802 460,802" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<polyline points="615,755 615,550" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="40" y="975" width="1520" height="78" rx="20" fill="#f5f5f5" stroke="#222" stroke-width="1.8"/>
+<text x="800.0" y="1007.0" text-anchor="middle" font-size="19" font-weight="600">Telemetry Metrics</text>
+<text x="800.0" y="1035.0" text-anchor="middle" font-size="19" font-weight="400">Error Rate · P95 Latency · Tokens / Request · Cost / Completed Task</text>
+</g></svg>

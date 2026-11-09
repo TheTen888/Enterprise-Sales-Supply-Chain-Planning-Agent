@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1180" viewBox="0 0 1600 1180"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#222"/></marker></defs><rect width="1600" height="1180" fill="white"/><g font-family="Arial, Helvetica, sans-serif" fill="#222" stroke-linejoin="round" stroke-linecap="round">
+<text x="800" y="48" text-anchor="middle" font-size="28" font-weight="600">LangGraph &amp; A2A Protocol Orchestration</text>
+<rect x="40" y="80" width="1520" height="960" rx="30" fill="none" stroke="#222" stroke-width="1.6"/>
+<text x="800.0" y="112" text-anchor="middle" font-size="21" font-weight="600">Active A2A Task Session</text>
+<rect x="75" y="150" width="270" height="80" rx="20" fill="#d5e8d4" stroke="#222" stroke-width="1.8"/>
+<text x="210.0" y="183.5" text-anchor="middle" font-size="18" font-weight="600">Client Request</text>
+<text x="210.0" y="210.5" text-anchor="middle" font-size="18" font-weight="400">Working Memory Context</text>
+<ellipse cx="562.5" cy="190.0" rx="122.5" ry="45.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
+<text x="562.5" y="197.0" text-anchor="middle" font-size="20" font-weight="600">Triage Router</text>
+<polyline points="345,190 440,190" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<rect x="1180" y="155" width="300" height="70" rx="20" fill="#d5e8d4" stroke="#222" stroke-width="1.8"/>
+<text x="1330.0" y="197.0" text-anchor="middle" font-size="20" font-weight="600">Direct Answer</text>
+<polyline points="685,190 1180,190" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="915" y="172" text-anchor="middle" font-size="17" font-weight="400">Direct Answer</text>
+<polyline points="560,235 560,330" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="780" y="280" text-anchor="middle" font-size="18" font-weight="400">Current Info · Factual Lookup</text>
+<ellipse cx="560.0" cy="385.0" rx="140.0" ry="55.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
+<text x="560.0" y="392.0" text-anchor="middle" font-size="20" font-weight="600">QuoteAgent</text>
+<ellipse cx="1230.0" cy="385.0" rx="140.0" ry="55.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
+<text x="1230.0" y="392.0" text-anchor="middle" font-size="20" font-weight="600">CapacityAgent</text>
+<polyline points="700,385 1090,385" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<text x="895" y="323" text-anchor="middle" font-size="18" font-weight="600">A2A Task Envelope</text>
+<text x="895" y="349" text-anchor="middle" font-size="16" font-weight="400">task_id · parent_task_id · Message</text>
+<rect x="410" y="510" width="300" height="105" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="560.0" y="556.0" text-anchor="middle" font-size="18" font-weight="600">BOM &amp; Discount Calculator</text>
+<text x="560.0" y="583.0" text-anchor="middle" font-size="18" font-weight="400">Hybrid RAG Lookup</text>
+<rect x="1070" y="510" width="330" height="105" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="1235.0" y="542.5" text-anchor="middle" font-size="18" font-weight="600">Factory Line Utilization</text>
+<text x="1235.0" y="569.5" text-anchor="middle" font-size="18" font-weight="400">PLANT-A / PLANT-B</text>
+<text x="1235.0" y="596.5" text-anchor="middle" font-size="18" font-weight="400">ECN Lead-Time Validator</text>
+<polyline points="560,440 560,510" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<polyline points="1230,440 1230,510" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+<polyline points="1370,385 1500,385 1500,715 1380,715" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<path d="M1230.0,650 L1380,715.0 L1230.0,780 L1080,715.0 Z" fill="white" stroke="#222" stroke-width="1.8"/>
+<text x="1230.0" y="708.0" text-anchor="middle" font-size="19" font-weight="600">Capacity &amp; ECN</text>
+<text x="1230.0" y="736.0" text-anchor="middle" font-size="19" font-weight="400">Constraints Met?</text>
+<polyline points="1080,715 180,715 180,385 420,385" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="610" y="680" text-anchor="middle" font-size="18" font-weight="600">No · Conflict / Over-capacity</text>
+<text x="610" y="706" text-anchor="middle" font-size="18" font-weight="400">Re-negotiate plant / Extend lead time to 28d</text>
+<text x="610" y="752" text-anchor="middle" font-size="16" font-weight="400">Bounded retries · Unresolved conflicts block approval</text>
+<polyline points="1230,780 1230,815 825,815 825,865" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="1040" y="804" text-anchor="middle" font-size="18" font-weight="400">Yes</text>
+<ellipse cx="825.0" cy="915.0" rx="145.0" ry="50.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
+<text x="825.0" y="922.0" text-anchor="middle" font-size="20" font-weight="600">Risk Supervisor</text>
+<rect x="1160" y="870" width="340" height="90" rx="20" fill="#d5e8d4" stroke="#222" stroke-width="1.8"/>
+<text x="1330.0" y="907.5" text-anchor="middle" font-size="20" font-weight="600">A2A Artifact</text>
+<text x="1330.0" y="936.5" text-anchor="middle" font-size="20" font-weight="400">Verified Quote JSON</text>
+<polyline points="970,915 1160,915" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="800" y="1005" text-anchor="middle" font-size="17" font-weight="400">Typed task handoffs within one LangGraph · Manager review before external action</text>
+<rect x="40" y="1075" width="1520" height="78" rx="20" fill="#f5f5f5" stroke="#222" stroke-width="1.8"/>
+<text x="800.0" y="1107.0" text-anchor="middle" font-size="19" font-weight="600">Multi-Agent Trajectory Eval</text>
+<text x="800.0" y="1135.0" text-anchor="middle" font-size="19" font-weight="400">Tool Selection Accuracy · Parameter Schema Conformance · A2A State Consistency</text>
+</g></svg>
