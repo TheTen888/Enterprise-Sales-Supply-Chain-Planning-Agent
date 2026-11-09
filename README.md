@@ -4,7 +4,7 @@
 
 **Help manufacturing sales managers prepare feasible quotes, understand delivery constraints, and review alternatives before making a customer commitment.**
 
-[**Live Architecture Demo ↗**](https://enterprise-ai-sales-risk-architecture.dapper-moss-8891.chatgpt.site/#overview) · [ML Risk Model](#ml-risk-model) · [Qualification Report](qualification_report.md) · [Quickstart](#quickstart--graceful-fallback)
+[**Live Architecture Demo ↗**](https://enterprise-ai-sales-risk-architecture.chengkaicao9.chatgpt.site/#overview) · [ML Risk Model](#ml-risk-model) · [Qualification Report](qualification_report.md) · [Quickstart](#quickstart--graceful-fallback)
 
 A fictional customer requests **5% off 12,000 units with delivery in 14 days**. The latest engineering change requires **28 days**, and the preferred factory has only **2,000 units available**. The system retrieves current evidence, checks pricing and both factories, proposes a feasible alternative, and leaves approval with the manager. A quantity change triggers recalculation and invalidates the previous approval.
 
@@ -41,7 +41,7 @@ Two-lane routing separates lightweight conversion from workbooks and layouts tha
 
 ![Order Delay Early Warning System](docs/assets/ml_risk_architecture.png)
 
-[SVG](docs/assets/ml_risk_architecture.svg) · [Open interactive ML view](https://enterprise-ai-sales-risk-architecture.dapper-moss-8891.chatgpt.site/#ml)
+[SVG](docs/assets/ml_risk_architecture.svg) · [Open interactive ML view](https://enterprise-ai-sales-risk-architecture.chengkaicao9.chatgpt.site/#ml)
 
 The **Order Delay Early Warning System** is the planned V2 extension using **AWS SageMaker + XGBoost + MLflow**:
 
