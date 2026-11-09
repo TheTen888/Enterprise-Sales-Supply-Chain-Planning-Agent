@@ -110,7 +110,7 @@ The recorded batch contains **5 authored fixtures + 18 parameterized cases**. Tw
 
 ![LangSmith tracing architecture](docs/assets/agent_tracing_architecture.png)
 
-![LangSmith activity screenshot supplied by the project owner](docs/assets/langsmith.png)
+![LangSmith activity screenshot supplied by the project owner](docs/assets/langsmith-observability-2026-11-08.png)
 
 Root and child runs record node transitions, tool arguments, model calls, token usage and latency. Waterfall traces support diagnosis across **data → retrieval → tools → final decisions**. The screenshot is a seven-day activity aggregate including diagnostics and other runs; its 121 traces and model-call totals are **not the same denominator** as the 23-case acceptance batch. Detailed case Run IDs are retained in the report; private LangSmith access is not required to read this repository.
 
@@ -130,7 +130,7 @@ The target **LlamaFirewall** design combines Input/Output/Tool Guardrails, promp
 
 ### Agent Deployment
 
-![AgentCore deployment architecture](docs/assets/agent_deployment_architecture.png)
+![AgentCore deployment architecture](docs/assets/agent-deployment-flow-v2.png)
 
 The actual AWS Bedrock AgentCore SDK wraps `invoke(payload)` with `@app.entrypoint`. Local checks exercise **GET `/ping`**, **POST `/invocations`**, malformed payloads, authorization and customer-scope injection. The Dockerfile targets ARM64 and non-root execution; **image execution and AWS rollout have not been verified**.
 

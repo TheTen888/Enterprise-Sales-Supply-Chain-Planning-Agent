@@ -397,11 +397,11 @@ def automated_eval():
 def deployment():
     d = Diagram("Agent Deployment · AWS Bedrock AgentCore")
     d.box(70, 180, 270, 100, ["Client Request", "Task payload"], "#d5e8d4", 18)
-    d.box(450, 180, 300, 100, ["Identity & Payload Check", "Schema · Customer scope"], size=18)
+    d.box(450, 180, 300, 100, ["POST /invocations", "Identity · Schema · Customer scope"], size=18)
     d.ellipse(880, 165, 330, 130, ["AgentCore Runtime", "@app.entrypoint"], 19)
     d.arrow([(340, 230), (450, 230)])
     d.arrow([(750, 230), (880, 230)])
-    d.box(880, 450, 330, 100, ["POST /invocations", "LangGraph workflow"], size=19)
+    d.box(880, 450, 330, 100, ["LangGraph Workflow", "QuoteAgent · CapacityAgent"], size=19)
     d.arrow([(1045, 295), (1045, 450)])
     d.box(
         450,
@@ -414,12 +414,15 @@ def deployment():
     d.arrow([(880, 500), (750, 500)])
     d.box(70, 450, 270, 100, ["Manager Review"], "#d5e8d4")
     d.arrow([(450, 500), (340, 500)])
-    d.box(70, 765, 270, 105, ["GET /ping", "Health check"], size=19)
-    d.box(450, 765, 300, 105, ["Docker ARM64", "Non-root · Port 8080"], size=19)
-    d.box(
-        880, 765, 330, 105, ["AWS Runtime Deployment", "Identity · Network · Monitoring"], size=18
-    )
+    d.box(70, 765, 270, 105, ["Docker ARM64", "Non-root · Port 8080"], size=19)
+    d.box(450, 765, 300, 105, ["AWS Runtime Deployment", "Identity · Network · Monitoring"], size=17)
+    d.box(880, 765, 330, 105, ["GET /ping", "Runtime health check"], size=19)
+    d.arrow([(340, 817), (450, 817)])
+    d.text(395, 797, ["Deploy"], 16)
     d.arrow([(750, 817), (880, 817)])
+    d.text(815, 797, ["Health probe"], 16)
+    d.arrow([(600, 765), (600, 650), (1340, 650), (1340, 230), (1210, 230)], dashed=True)
+    d.text(1100, 632, ["Hosts runtime"], 17)
     d.text(800, 930, ["Local HTTP validated · Docker execution and AWS rollout pending"], 18)
     d.footer("Deployment Eval", "HTTP Contracts · A2A Schema · Authorization · Health · Recovery")
     d.save("agent_deployment_architecture")

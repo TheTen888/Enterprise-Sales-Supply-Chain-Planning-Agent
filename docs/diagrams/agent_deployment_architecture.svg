@@ -4,16 +4,16 @@
 <text x="205.0" y="223.5" text-anchor="middle" font-size="18" font-weight="600">Client Request</text>
 <text x="205.0" y="250.5" text-anchor="middle" font-size="18" font-weight="400">Task payload</text>
 <rect x="450" y="180" width="300" height="100" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
-<text x="600.0" y="223.5" text-anchor="middle" font-size="18" font-weight="600">Identity &amp; Payload Check</text>
-<text x="600.0" y="250.5" text-anchor="middle" font-size="18" font-weight="400">Schema · Customer scope</text>
+<text x="600.0" y="223.5" text-anchor="middle" font-size="18" font-weight="600">POST /invocations</text>
+<text x="600.0" y="250.5" text-anchor="middle" font-size="18" font-weight="400">Identity · Schema · Customer scope</text>
 <ellipse cx="1045.0" cy="230.0" rx="165.0" ry="65.0" fill="#f8cecc" stroke="#222" stroke-width="1.8"/>
 <text x="1045.0" y="223.0" text-anchor="middle" font-size="19" font-weight="600">AgentCore Runtime</text>
 <text x="1045.0" y="251.0" text-anchor="middle" font-size="19" font-weight="400">@app.entrypoint</text>
 <polyline points="340,230 450,230" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
 <polyline points="750,230 880,230" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
 <rect x="880" y="450" width="330" height="100" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
-<text x="1045.0" y="493.0" text-anchor="middle" font-size="19" font-weight="600">POST /invocations</text>
-<text x="1045.0" y="521.0" text-anchor="middle" font-size="19" font-weight="400">LangGraph workflow</text>
+<text x="1045.0" y="493.0" text-anchor="middle" font-size="19" font-weight="600">LangGraph Workflow</text>
+<text x="1045.0" y="521.0" text-anchor="middle" font-size="19" font-weight="400">QuoteAgent · CapacityAgent</text>
 <polyline points="1045,295 1045,450" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
 <rect x="450" y="450" width="300" height="100" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
 <text x="600.0" y="480.0" text-anchor="middle" font-size="18" font-weight="600">A2A Task Response</text>
@@ -24,15 +24,20 @@
 <text x="205.0" y="507.0" text-anchor="middle" font-size="20" font-weight="600">Manager Review</text>
 <polyline points="450,500 340,500" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
 <rect x="70" y="765" width="270" height="105" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
-<text x="205.0" y="810.5" text-anchor="middle" font-size="19" font-weight="600">GET /ping</text>
-<text x="205.0" y="838.5" text-anchor="middle" font-size="19" font-weight="400">Health check</text>
+<text x="205.0" y="810.5" text-anchor="middle" font-size="19" font-weight="600">Docker ARM64</text>
+<text x="205.0" y="838.5" text-anchor="middle" font-size="19" font-weight="400">Non-root · Port 8080</text>
 <rect x="450" y="765" width="300" height="105" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
-<text x="600.0" y="810.5" text-anchor="middle" font-size="19" font-weight="600">Docker ARM64</text>
-<text x="600.0" y="838.5" text-anchor="middle" font-size="19" font-weight="400">Non-root · Port 8080</text>
+<text x="600.0" y="811.5" text-anchor="middle" font-size="17" font-weight="600">AWS Runtime Deployment</text>
+<text x="600.0" y="837.5" text-anchor="middle" font-size="17" font-weight="400">Identity · Network · Monitoring</text>
 <rect x="880" y="765" width="330" height="105" rx="20" fill="white" stroke="#222" stroke-width="1.8"/>
-<text x="1045.0" y="811.0" text-anchor="middle" font-size="18" font-weight="600">AWS Runtime Deployment</text>
-<text x="1045.0" y="838.0" text-anchor="middle" font-size="18" font-weight="400">Identity · Network · Monitoring</text>
+<text x="1045.0" y="810.5" text-anchor="middle" font-size="19" font-weight="600">GET /ping</text>
+<text x="1045.0" y="838.5" text-anchor="middle" font-size="19" font-weight="400">Runtime health check</text>
+<polyline points="340,817 450,817" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="395" y="797" text-anchor="middle" font-size="16" font-weight="400">Deploy</text>
 <polyline points="750,817 880,817" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="815" y="797" text-anchor="middle" font-size="16" font-weight="400">Health probe</text>
+<polyline points="600,765 600,650 1340,650 1340,230 1210,230" fill="none" stroke="#222" stroke-width="1.7" marker-end="url(#arrow)" stroke-dasharray="6 6"/>
+<text x="1100" y="632" text-anchor="middle" font-size="17" font-weight="400">Hosts runtime</text>
 <text x="800" y="930" text-anchor="middle" font-size="18" font-weight="400">Local HTTP validated · Docker execution and AWS rollout pending</text>
 <rect x="40" y="975" width="1520" height="78" rx="20" fill="#f5f5f5" stroke="#222" stroke-width="1.8"/>
 <text x="800.0" y="1007.0" text-anchor="middle" font-size="19" font-weight="600">Deployment Eval</text>
