@@ -112,7 +112,7 @@ The recorded batch contains **5 authored fixtures + 18 parameterized cases**. Tw
 
 ![LangSmith activity screenshot supplied by the project owner](docs/assets/langsmith.png)
 
-Root and child runs record node transitions, tool arguments, model calls, token usage and latency. Waterfall traces support diagnosis across **data → retrieval → tools → final decisions**. The screenshot is a seven-day activity aggregate including diagnostics and other runs; its 120 traces and model-call totals are **not the same denominator** as the 23-case acceptance batch. Detailed case Run IDs are retained in the report; private LangSmith access is not required to read this repository.
+Root and child runs record node transitions, tool arguments, model calls, token usage and latency. Waterfall traces support diagnosis across **data → retrieval → tools → final decisions**. The screenshot is a seven-day activity aggregate including diagnostics and other runs; its 121 traces and model-call totals are **not the same denominator** as the 23-case acceptance batch. Detailed case Run IDs are retained in the report; private LangSmith access is not required to read this repository.
 
 ### Automated Agent Evaluation
 
